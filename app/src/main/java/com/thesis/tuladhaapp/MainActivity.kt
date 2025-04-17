@@ -6,7 +6,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.thesis.tuladhaapp.databinding.ActivityMain1Binding
 import com.thesis.tuladhaapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

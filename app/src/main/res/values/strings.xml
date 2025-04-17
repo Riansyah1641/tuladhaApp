@@ -22,4 +22,7 @@
     <string name="tv_oopps">Maaf Kosong!</string>
     <string name="text_sorry_course_not_found">Maaf, course tidak ditemukan</string>
     <string name="text_find_course">Cari Course</string>
+    <string name="tv_current_class">Kelas Berjalan</string>
+    <string name="tv_btn_in_progress">In Progress</string>
+    <string name="tv_btn_finish">Selesai</string>
 </resources>

@@ -12,14 +12,16 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_class"
+        android:id="@+id/navigation_course"
         android:name="com.thesis.tuladhaapp.ui.course.CourseFragment"
-        android:label="@string/tv_menu_class"
+        android:label="@string/tv_menu_course"
         tools:layout="@layout/fragment_course" />
 
     <fragment
-        android:id="@+id/navigation_course"
-        android:name="com.thesis.tuladhaapp.ui.notifications.NotificationsFragment"
-        android:label="@string/tv_menu_course"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_class"
+        android:name="com.thesis.tuladhaapp.ui.userClass.ClassFragment"
+        android:label="@string/tv_menu_class"
+        tools:layout="@layout/fragment_class" />
+
+
 </navigation>
