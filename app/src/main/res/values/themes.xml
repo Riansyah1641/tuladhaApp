@@ -30,6 +30,7 @@
         <item name="superBottomSheet_backgroundColor">@color/app_color_accent</item>
         <item name="checkboxStyle">@style/Widget.App.CheckBox</item>
         <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
+        <item name="fontFamily">@font/inter</item>
     </style>
 
     <style name="ChipCustomStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">

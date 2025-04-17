@@ -23,5 +23,4 @@
         android:label="@string/tv_menu_class"
         tools:layout="@layout/fragment_class" />
 
-
 </navigation>

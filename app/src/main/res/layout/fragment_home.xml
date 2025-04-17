@@ -119,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_extralight"
                     android:text="@string/text_popular_course"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
