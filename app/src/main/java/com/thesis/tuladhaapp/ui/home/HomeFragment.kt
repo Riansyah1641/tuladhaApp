@@ -13,6 +13,7 @@ import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.FragmentHomeBinding
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.home.adapter.CategoryAdapter
+import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
 import com.thesis.tuladhaapp.utils.SkeletonConfigWrapper
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,9 +23,15 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModel()
 
+    //define adapter
     private val categoryAdapter: CategoryAdapter by lazy {
         CategoryAdapter {
             navigateToCourseByCategory(it)
+        }
+    }
+    private val popularCourseCategoryAdapter: PopularCourseCategoryAdapter by lazy {
+        PopularCourseCategoryAdapter { category ->
+            homeViewModel.changeSelectedCategory(category)
         }
     }
 
@@ -42,6 +49,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setClickListener()
         observeCategoryData()
+        observePopularCourseCategoryData()
+        observeSelectedCategory()
     }
 
     override fun onResume() {
@@ -58,6 +67,8 @@ class HomeFragment : Fragment() {
             binding.swipeRefresh.isRefreshing = false
         }
     }
+
+
 
     private fun performSearch() {
         val query = binding.searchBar.etSearchBar.text.toString()
@@ -143,11 +154,17 @@ class HomeFragment : Fragment() {
                     binding.layoutStatePopularCategories.tvError.isVisible = true
                     if (it.exception is ApiException) {
                         binding.layoutStatePopularCategories.tvError.text =
-                            it.exception.getParsedError()?.message.orEmpty()
+                            getString(R.string.exception_notif)
                     }
                     binding.rvCategoryPopularCourse.isVisible = false
                 }
             )
+        }
+    }
+
+    private fun observeSelectedCategory() {
+        homeViewModel.selectedCategory.observe(viewLifecycleOwner) {
+            popularCourseCategoryAdapter.setSelectedCategory(it)
         }
     }
 

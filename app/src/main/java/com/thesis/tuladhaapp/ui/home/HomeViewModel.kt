@@ -45,4 +45,13 @@ class HomeViewModel(private val repository: CategoriesRepository) : ViewModel() 
         }
     }
 
+    // get selecter category
+    private val _selectedCategory = MutableLiveData<Category>()
+    val selectedCategory: LiveData<Category>
+        get() = _selectedCategory
+
+    fun changeSelectedCategory(newCategory: Category) {
+        _selectedCategory.value = newCategory
+    }
+
 }
