@@ -7,11 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.thesis.tuladhaapp.R
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CourseFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class CourseFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null

@@ -61,6 +61,10 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     // Coil imageloader
     implementation(libs.coil)
+
+    // splash screen
+    implementation(libs.splashscreen)
+
     // RecyclerView
     implementation(libs.androidx.recyclerview)
     // circle crop image
