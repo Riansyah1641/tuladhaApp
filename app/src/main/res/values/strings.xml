@@ -26,9 +26,9 @@
     <string name="tv_btn_in_progress">In Progress</string>
     <string name="tv_btn_finish">Selesai</string>
     <string name="tv_sort_by">Sort by</string>
-    <string name="rb_sortby_newest">Paling Baru</string>
-    <string name="rb_sortby_most_popular">Paling Populer</string>
-    <string name="rb_sortby_promo">Promo</string>
+    <string name="rb_sortby_newest">Terbaru</string>
+    <string name="rb_sortby_most_popular">Populer</string>
+    <string name="rb_sortby_promo">Rating</string>
     <string name="tv_category">Kategori</string>
     <string name="tv_difficulty_level">Level Kesulitan</string>
     <string name="cb_beginner_level">Beginner Level</string>

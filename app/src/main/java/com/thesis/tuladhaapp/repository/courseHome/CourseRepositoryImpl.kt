@@ -16,7 +16,19 @@ class CourseRepositoryImpl(private val dataSource: DataSourceCourse): CourseRepo
         sortBy: String?
     ): Flow<ResultWrapper<List<Course>>> {
         return proceedFlow {
-            dataSource.getCourses(search, type, category, level, sortBy)
+            dataSource.getCourses(search, type, category, level, sortBy)  ?: emptyList()
+        }
+    }
+
+    override fun getCoursesClass(
+        search: String?,
+        type: String?,
+        category: List<Int>?,
+        level: List<String>?,
+        sortBy: String?
+    ): Flow<ResultWrapper<List<Course>>> {
+        return proceedFlow {
+            dataSource.getCoursesClass(search, type, category, level, sortBy)  ?: emptyList()
         }
     }
 }

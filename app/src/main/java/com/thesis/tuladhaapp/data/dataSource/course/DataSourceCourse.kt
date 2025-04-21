@@ -10,4 +10,12 @@ interface DataSourceCourse {
         level: String? = null,
         sortBy: String? = null
     ): List<Course>
+
+    suspend fun getCoursesClass(
+        search: String?,
+        type: String?,
+        category: List<Int>?,
+        level: List<String>?,
+        sortBy: String?
+    ): List<Course>
 }

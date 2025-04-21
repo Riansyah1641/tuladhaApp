@@ -12,4 +12,12 @@ interface CourseRepository {
         level: String? = null,
         sortBy: String? = null
     ): Flow<ResultWrapper<List<Course>>>
+
+    fun getCoursesClass(
+        search: String?,
+        type: String?,
+        category: List<Int>?,
+        level: List<String>?,
+        sortBy: String?
+    ): Flow<ResultWrapper<List<Course>>>
 }

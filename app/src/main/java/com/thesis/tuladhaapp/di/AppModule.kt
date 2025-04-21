@@ -8,6 +8,7 @@ import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepository
 import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepositoryImpl
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepository
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepositoryImpl
+import com.thesis.tuladhaapp.ui.course.CourseViewModel
 import com.thesis.tuladhaapp.ui.dashboard.DashboardViewModel
 import com.thesis.tuladhaapp.ui.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -22,6 +23,7 @@ object AppModule {
     )
     private val viewModels = module {
         viewModel { HomeViewModel(get(), get()) }
+        viewModel { CourseViewModel(get(), get()) }
         viewModel {DashboardViewModel()}
     }
 
