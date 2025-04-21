@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "642458585583",
+    "project_id": "tuladhaapp",
+    "storage_bucket": "tuladhaapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642458585583:android:1b2a81343a6f21bb6f4e1a",
+        "android_client_info": {
+          "package_name": "com.thesis.tuladhaapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgdIl2pJg_8G-rf2weVBPlktVrnfC5Stw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
