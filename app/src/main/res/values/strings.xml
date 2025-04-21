@@ -9,7 +9,7 @@
     <string name="tv_menu_course">Kursus</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main1">Main1Activity</string>
-    <string name="text_hi_user">Hai, %s</string>
+    <string name="text_hi_user">Hai, parent</string>
     <string name="tv_lets_find_your_course">Mari temukan Kursusmu!</string>
     <string name="text_search_best_course">Cari Kursus terbaik&#8230;</string>
     <string name="text_popular_course">Kursus Populer</string>
@@ -37,4 +37,9 @@
     <string name="tv_btn_apply_filter">Terapkan Filter</string>
     <string name="tv_reset_filter">Hapus Filter</string>
     <string name="exception_notif">maaf terdapat error, harap coba lagi</string>
+    <string name="format_course_duration">%d Menit</string>
+    <string name="format_course_by">by %s</string>
+    <string name="format_course_module">%d Modul</string>
+    <string name="format_btn_pelajari">Pelajari %s</string>
+    <string name="text_free">Gratis</string>
 </resources>

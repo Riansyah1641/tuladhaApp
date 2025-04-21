@@ -1,12 +1,12 @@
-package com.thesis.tuladhaapp
+package com.thesis.tuladhaapp.ui.main
 
 import android.os.Bundle
 import android.widget.PopupMenu
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.findNavController
+import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

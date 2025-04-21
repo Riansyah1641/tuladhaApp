@@ -1,4 +1,4 @@
-package com.group2.sinow.model.course
+package com.thesis.tuladhaapp.model.course
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.thesis.tuladhaapp.ui.home.viewholder.ItemGridCategoryViewHolder
 import com.thesis.tuladhaapp.databinding.ItemGridCategoriesBinding
 import com.thesis.tuladhaapp.model.category.Category
+import com.thesis.tuladhaapp.ui.home.viewholder.ItemGridCategoryViewHolder
 
 class CategoryAdapter(private val itemClick: (Category) -> Unit) :
     RecyclerView.Adapter<ItemGridCategoryViewHolder>() {

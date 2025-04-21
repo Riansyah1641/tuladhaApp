@@ -8,11 +8,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.faltenreich.skeletonlayout.applySkeleton
-import com.google.android.gms.common.api.ApiException
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.FragmentHomeBinding
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.home.adapter.CategoryAdapter
+import com.thesis.tuladhaapp.ui.home.adapter.CourseAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
 import com.thesis.tuladhaapp.utils.SkeletonConfigWrapper
 import com.thesis.tuladhaapp.utils.proceedWhen
@@ -34,6 +34,11 @@ class HomeFragment : Fragment() {
             homeViewModel.changeSelectedCategory(category)
         }
     }
+    private val courseAdapter: CourseAdapter by lazy {
+        CourseAdapter {
+            // Tidak melakukan apa-apa
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +56,7 @@ class HomeFragment : Fragment() {
         observeCategoryData()
         observePopularCourseCategoryData()
         observeSelectedCategory()
+        observeCourseData()
     }
 
     override fun onResume() {
@@ -67,8 +73,6 @@ class HomeFragment : Fragment() {
             binding.swipeRefresh.isRefreshing = false
         }
     }
-
-
 
     private fun performSearch() {
         val query = binding.searchBar.etSearchBar.text.toString()
@@ -114,10 +118,8 @@ class HomeFragment : Fragment() {
                     binding.layoutStateCategories.root.isVisible = true
                     binding.layoutStateCategories.loadingAnimation.isVisible = false
                     binding.layoutStateCategories.tvError.isVisible = true
-                    if (it.exception is ApiException) {
-                        binding.layoutStateCategories.tvError.text =
+                    binding.layoutStateCategories.tvError.text =
                             getString(R.string.exception_notif)
-                    }
                     binding.rvListCategories.isVisible = false
                 }
             )
@@ -152,10 +154,8 @@ class HomeFragment : Fragment() {
                     binding.layoutStatePopularCategories.root.isVisible = true
                     binding.layoutStatePopularCategories.loadingAnimation.isVisible = false
                     binding.layoutStatePopularCategories.tvError.isVisible = true
-                    if (it.exception is ApiException) {
-                        binding.layoutStatePopularCategories.tvError.text =
+                    binding.layoutStatePopularCategories.tvError.text =
                             getString(R.string.exception_notif)
-                    }
                     binding.rvCategoryPopularCourse.isVisible = false
                 }
             )
@@ -168,10 +168,41 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-    private fun getData() {
-    homeViewModel.getCategories()
+    private fun observeCourseData() {
+        homeViewModel.courses.observe(viewLifecycleOwner) { resultWrapper ->
+            resultWrapper.proceedWhen(
+                doOnSuccess = {
+                    binding.layoutStatePopularCourse.root.isVisible = false
+                    binding.layoutStatePopularCourse.loadingAnimation.isVisible = false
+                    binding.layoutStatePopularCourse.tvError.isVisible = false
+                    binding.rvListCourse.apply {
+                        isVisible = true
+                        adapter = courseAdapter
+                    }
+                    it.payload?.let { data -> courseAdapter.submitData(data) }
+                },
+                doOnLoading = {
+                    binding.layoutStatePopularCourse.root.isVisible = true
+                    binding.layoutStatePopularCourse.loadingAnimation.isVisible = true
+                    binding.layoutStatePopularCourse.tvError.isVisible = false
+                    binding.rvListCourse.isVisible = false
+                },
+                doOnError = {
+                    binding.layoutStatePopularCourse.root.isVisible = true
+                    binding.layoutStatePopularCourse.loadingAnimation.isVisible = false
+                    binding.layoutStatePopularCourse.tvError.isVisible = true
+                    binding.layoutStatePopularCourse.tvError.text =
+                                getString(R.string.text_sorry_course_not_found)
+                    binding.rvListCourse.isVisible = false
+                }
+            )
+        }
     }
 
+    private fun getData() {
+        homeViewModel.getCategories()
+        homeViewModel.getPopularCourseCategories()
+        homeViewModel.getCourses()
+    }
 
 }
