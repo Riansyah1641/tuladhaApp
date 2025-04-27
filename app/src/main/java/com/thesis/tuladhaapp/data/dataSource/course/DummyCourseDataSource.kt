@@ -18,8 +18,8 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 1,
                 name = "Mengasuh Anak Usia Dini dengan Cinta",
-                imageUrl = "...",
-                videoPreviewUrl = null,
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
+                videoPreviewUrl = "https://youtu.be/MjHvaLLrE-U",
                 level = "beginner",
                 rating = 4.8,
                 categoryId = 1,
@@ -45,8 +45,8 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 2,
                 name = "Psikologi Anak untuk Orang Tua",
-                imageUrl = "...",
-                videoPreviewUrl = null,
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
+                videoPreviewUrl = "https://www.youtube.com/embed/MjHvaLLrE-U",
                 level = "intermediate",
                 rating = 4.7,
                 categoryId = 5,
@@ -72,7 +72,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 3,
                 name = "Komunikasi Efektif dengan Anak Remaja",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "advanced",
                 rating = 4.5,
@@ -99,7 +99,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 4,
                 name = "Membentuk Karakter Anak Sejak Dini",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "beginner",
                 rating = 4.6,
@@ -126,7 +126,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 5,
                 name = "Parenting Digital untuk Anak Zaman Now",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "intermediate",
                 rating = 4.7,
@@ -153,7 +153,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 6,
                 name = "Menyiapkan Mental Ibu Baru",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "beginner",
                 rating = 4.8,
@@ -179,7 +179,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 7,
                 name = "Pengasuhan Anak Tanpa Kekerasan",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "intermediate",
                 rating = 4.9,
@@ -205,7 +205,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 8,
                 name = "Mengenali Gaya Belajar Anak",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "beginner",
                 rating = 4.6,
@@ -231,7 +231,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 9,
                 name = "Ayah dalam Pengasuhan",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "beginner",
                 rating = 4.7,
@@ -257,7 +257,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 10,
                 name = "Mendampingi Anak Berkebutuhan Khusus",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "advanced",
                 rating = 4.9,
@@ -295,8 +295,8 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 1,
                 name = "Mengasuh Anak Usia Dini dengan Cinta",
-                imageUrl = "...",
-                videoPreviewUrl = null,
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
+                videoPreviewUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 level = "beginner",
                 rating = 4.8,
                 categoryId = 1,
@@ -322,8 +322,8 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 2,
                 name = "Psikologi Anak untuk Orang Tua",
-                imageUrl = "...",
-                videoPreviewUrl = null,
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
+                videoPreviewUrl = "https://www.youtube.com/embed/MjHvaLLrE-U>",
                 level = "intermediate",
                 rating = 4.7,
                 categoryId = 5,
@@ -349,7 +349,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 3,
                 name = "Komunikasi Efektif dengan Anak Remaja",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "advanced",
                 rating = 4.5,
@@ -376,7 +376,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 4,
                 name = "Membentuk Karakter Anak Sejak Dini",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "beginner",
                 rating = 4.6,
@@ -403,7 +403,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 5,
                 name = "Parenting Digital untuk Anak Zaman Now",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "intermediate",
                 rating = 4.7,
@@ -430,7 +430,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 6,
                 name = "Menyiapkan Mental Ibu Baru",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "beginner",
                 rating = 4.8,
@@ -456,7 +456,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 7,
                 name = "Pengasuhan Anak Tanpa Kekerasan",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "intermediate",
                 rating = 4.9,
@@ -482,7 +482,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 8,
                 name = "Mengenali Gaya Belajar Anak",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "beginner",
                 rating = 4.6,
@@ -508,7 +508,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 9,
                 name = "Ayah dalam Pengasuhan",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "beginner",
                 rating = 4.7,
@@ -534,7 +534,7 @@ class DummyCourseDataSource : DataSourceCourse {
             Course(
                 id = 10,
                 name = "Mendampingi Anak Berkebutuhan Khusus",
-                imageUrl = "...",
+                imageUrl = "https://images.unsplash.com/photo-1607746882042-944635dfe10e",
                 videoPreviewUrl = null,
                 level = "advanced",
                 rating = 4.9,

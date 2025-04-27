@@ -42,4 +42,16 @@
     <string name="format_course_module">%d Modul</string>
     <string name="format_btn_pelajari">Pelajari %s</string>
     <string name="text_free">Gratis</string>
+    <string name="text_other_class">Kelas Lainnya</string>
+    <string name="text_total_price">Total Harga</string>
+    <string name="teks_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="text_about_class">Tentang Kelas</string>
+    <string name="text_benefit_follow_this_class">Keuntungan mengikuti kelas ini :</string>
+    <string name="teks_murmer">Murah meriah</string>
+    <string name="text_study_materials">Materi Belajar</string>
+    <string name="tv_toast_you_have_to_pay_first">Anda harus bayar dahulu</string>
+    <string name="text_follow_class">Ikuti Kelas</string>
+    <string name="text_buy_class">Beli Kelas</string>
+    <string name="tv_tab_detail_about">Tentang</string>
+    <string name="tv_tab_detail_material_class">Materi Kelas</string>
 </resources>

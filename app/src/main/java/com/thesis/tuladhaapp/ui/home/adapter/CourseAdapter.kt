@@ -1,5 +1,4 @@
 package com.thesis.tuladhaapp.ui.home.adapter
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer

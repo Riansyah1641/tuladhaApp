@@ -13,6 +13,7 @@ import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.FragmentCourseBinding
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.course.filtercourse.FilterDialogFragment
+import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,9 +39,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener{
         }
     }
 
-    private fun itemCourseListener(courseId: Int?) {
-        //dihapus
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +67,14 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener{
         refreshData()
         buildChipItem()
         viewModel.resetFilter()
+    }
+
+    private fun itemCourseListener(courseId: Int?) {
+        navigateToDetailCourse(courseId)
+    }
+
+    private fun navigateToDetailCourse(courseId: Int?) {
+        DetailCourseActivity.startActivity(requireContext(), courseId)
     }
 
     private fun getData(
@@ -176,7 +183,6 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener{
                     binding.layoutStateClassTopic.root.isVisible = false
                     binding.layoutStateClassTopic.loadingAnimation.isVisible = false
                     binding.layoutStateClassTopic.tvError.isVisible = false
-                    binding.layoutCourseEmpty.root.isVisible = false
                     binding.rvListCourse.apply {
                         isVisible = true
                         adapter = courseItemAdapter
@@ -188,14 +194,11 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener{
                     binding.layoutStateClassTopic.loadingAnimation.isVisible = true
                     binding.layoutStateClassTopic.tvError.isVisible = false
                     binding.rvListCourse.isVisible = false
-                    binding.layoutCourseEmpty.root.isVisible = false
                 },
                 doOnError = {
                     binding.layoutStateClassTopic.root.isVisible = true
                     binding.layoutStateClassTopic.loadingAnimation.isVisible = false
                     binding.rvListCourse.isVisible = false
-                    binding.layoutCourseEmpty.root.isVisible = true
-                    binding.layoutCourseEmpty.btnSearchCourse.isVisible = false
                 }
             )
         }
