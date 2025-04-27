@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.thesis.tuladhaapp.databinding.ActivitySplashScreenSlideOneBinding
 
+
 class SplashScreenSlideOneActivity : AppCompatActivity() {
 
     private val binding: ActivitySplashScreenSlideOneBinding by lazy {
@@ -29,7 +30,7 @@ class SplashScreenSlideOneActivity : AppCompatActivity() {
     }
 
     private fun navigateToSplashScreenTwo() {
-        val intent = Intent(this, SplashScreenSlideTwoActivity::class.java).apply {
+        val intent = Intent(this, SplashScreenSlideTwooActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         }
         startActivity(intent)

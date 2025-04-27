@@ -3,12 +3,13 @@ package com.thesis.tuladhaapp.ui.splashScreen
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.thesis.tuladhaapp.databinding.ActivitySplashScreeenSlideTwoBinding
+import com.thesis.tuladhaapp.databinding.ActivitySplashScreenSlideTwooBinding
+import com.thesis.tuladhaapp.ui.splashScreen.SplashScreenSlideThreeActivity
 
-class SplashScreenTwoActivity : AppCompatActivity() {
+class SplashScreenSlideTwooActivity : AppCompatActivity() {
 
-    private val binding: ActivitySplashScreeenSlideTwoBinding by lazy {
-        ActivitySplashScreeenSlideTwoBinding.inflate(layoutInflater)
+    private val binding: ActivitySplashScreenSlideTwooBinding by lazy {
+        ActivitySplashScreenSlideTwooBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
