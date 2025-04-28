@@ -5,9 +5,11 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -50,10 +52,54 @@ class DetailCourseActivity : AppCompatActivity() {
         observeData()
         setTabLayout()
         setOnClickListener()
+        observeUserModuleData()
     }
     override fun onResume() {
         super.onResume()
         getData()
+    }
+
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            enterFullScreen()
+        } else {
+            exitFullScreen()
+        }
+    }
+
+    private fun exitFullScreen() {
+        isFullScreen = false
+        windowInsetsController.show(WindowInsetsCompat.Type.systemBars())
+        binding.llToolbar.isVisible = true
+        binding.clVideoPlayerContainer.isVisible = true
+        binding.videoView.isVisible = true
+        binding.container.isVisible = true
+        binding.layoutStateDetailCourse.root.isVisible = false
+        val params =
+            binding.clVideoPlayerContainer.layoutParams as ConstraintLayout.LayoutParams
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT
+        params.height = 0
+        params.dimensionRatio = "16:9"
+        binding.clVideoPlayerContainer.layoutParams = params
+        binding.clBtnBuy.isVisible = true
+    }
+
+    private fun enterFullScreen() {
+        isFullScreen = true
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+        binding.llToolbar.isVisible = false
+        binding.clVideoPlayerContainer.isVisible = true
+        binding.videoView.isVisible = true
+        binding.container.isVisible = false
+        binding.layoutStateDetailCourse.root.isVisible = false
+        val params =
+            binding.clVideoPlayerContainer.layoutParams as ConstraintLayout.LayoutParams
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT
+        binding.clVideoPlayerContainer.layoutParams = params
+        binding.clBtnBuy.isVisible = false
     }
 
 
@@ -105,6 +151,27 @@ class DetailCourseActivity : AppCompatActivity() {
         }
     }
 
+    private fun observeUserModuleData() {
+        viewModel.userModule.observe(this) { result ->
+            result.proceedWhen(
+                doOnSuccess = {
+                    it.payload?.videoUrl?.let { it1 ->
+                        playerManager.play(it1) {
+                            checkFullScreen()
+                        }
+                    }
+                },
+                doOnError = { err ->
+                        Toast.makeText(
+                            this,
+                            R.string.exception_notif,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                }
+            )
+        }
+    }
+
 
     private fun bindDetailCourse(courseData: CourseData?) {
         courseData?.let { item ->
@@ -140,13 +207,16 @@ class DetailCourseActivity : AppCompatActivity() {
             val materialClassFragment = ClassMaterialFragment()
             materialClassFragment.arguments = bundle
 
+
             playerManager = ExoPlayerManager(binding.videoView)
             this.lifecycle.addObserver(playerManager)
-            item.course?.videoPreviewUrl?.let {
-                playerManager.play(it) {
+
+            item.course?.videoPreviewUrl?.let { videoUrl ->
+                playerManager.play(videoUrl) { isFullScreen ->
                     checkFullScreen()
                 }
             }
+
 
             when (item.course?.type) {
                 TYPE_GRATIS -> {
@@ -215,11 +285,6 @@ class DetailCourseActivity : AppCompatActivity() {
             tab.text = tabArray[position]
         }.attach()
     }
-
-
-
-
-
 
 
     override fun onDestroy() {

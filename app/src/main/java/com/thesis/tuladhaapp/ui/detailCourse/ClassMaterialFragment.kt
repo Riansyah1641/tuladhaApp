@@ -77,11 +77,22 @@ class ClassMaterialFragment : Fragment() {
                         HeaderItemVideoChapter(it.name, it.totalDuration) { _ ->
                         }
                     )
+                    val dataSection =
+                        it.userModules?.map { userModuleData ->
+                            DataItemVideoChapter(
+                                userModuleData.moduleData?.name,
+                                userModuleData.status,
+                                userModuleData.moduleData?.no
+                            ) {
+
+                            }
+                        }
+                    dataSection?.let { it1 -> section.addAll(it1) }
                     section
                 }
             sections?.let { adapter.addAll(it) }
-
-            // bind data dihapus
         }
     }
+
+
 }

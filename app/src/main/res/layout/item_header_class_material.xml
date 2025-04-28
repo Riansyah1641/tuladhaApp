@@ -7,7 +7,6 @@
 
     <TextView
         android:id="@+id/tv_chapter_materials"
-        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -15,7 +14,7 @@
         android:maxLines="2"
         android:layout_marginTop="8dp"
         android:textColor="@color/app_color_primary"
-        android:textStyle="bold"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tv_duration"
         app:layout_constraintTop_toTopOf="parent"

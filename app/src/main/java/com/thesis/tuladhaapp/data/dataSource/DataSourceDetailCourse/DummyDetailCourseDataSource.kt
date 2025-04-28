@@ -1,12 +1,14 @@
 package com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse
 
+import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.benefitCourse.DataSourceBenefit
+import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.chapterData.DataSourseChapterData
 import com.thesis.tuladhaapp.data.dataSource.course.DataSourceCourse
 import com.thesis.tuladhaapp.model.detailcourse.BenefitData
 import com.thesis.tuladhaapp.model.detailcourse.ChapterData
 import com.thesis.tuladhaapp.model.detailcourse.CourseData
 import com.thesis.tuladhaapp.model.detailcourse.CourseDetailData
 
-class DummyDetailCourseDataSource(private val dataSourceCourse: DataSourceCourse):DataSourceDetailCourse {
+class DummyDetailCourseDataSource(private val dataSourceCourse: DataSourceCourse, private val dataSourceBenefit: DataSourceBenefit, private val dataSourceChapter: DataSourseChapterData):DataSourceDetailCourse {
     override suspend fun getDetailCourse(id: Int): CourseData? {
         val selectedCourse = dataSourceCourse.getCourses().first() { it.id == id } ?: return null
 
@@ -39,20 +41,12 @@ class DummyDetailCourseDataSource(private val dataSourceCourse: DataSourceCourse
                 totalUser = selectedCourse.totalUser,
                 courseBy = selectedCourse.courseBy,
                 courseCreator = selectedCourse.courseCreator,
-                benefits = listOf(
-                    BenefitData(0,1,"Benefit 1"),
-                    BenefitData(1,2,"Benefit 2"),
-                    BenefitData(2,3,"Benefit 3")
-                ),
+                benefits = dataSourceBenefit.getBenefitsForCourse(selectedCourse.id),
                 createdAt = selectedCourse.createdAt,
                 updatedAt = selectedCourse.updatedAt,
                 createdBy = selectedCourse.createdBy,
                 categoryId = selectedCourse.categoryId,
-                chapters = listOf(
-                    ChapterData(0,1,"Introduction",120),
-                    ChapterData(1,2,"Relationship",120),
-                    ChapterData(2,3,"Family",120)
-                )
+                chapters = dataSourceChapter.getChaptersForCourse(selectedCourse.id)
             )
         )
     }

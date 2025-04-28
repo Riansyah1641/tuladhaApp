@@ -34,7 +34,8 @@ firebaseAuth = "23.2.0"
 credentials = "1.5.0"
 credentialsPlayServicesAuth = "1.5.0"
 googleid = "1.1.1"
-media3Ui = "1.6.0"
+media3ExoplayerVersion = "1.0.0"
+media3Ui = "1.6.1"
 mockkAgent = "1.13.8"
 mockkAndroid = "1.13.10"
 navigationFragmentKtx = "2.8.9"
@@ -54,6 +55,7 @@ viewpager2 = "1.1.0"
 
 [libraries]
 # splash screen plugin
+androidx-media3-exoplayer-v100 = { module = "androidx.media3:media3-exoplayer", version.ref = "media3ExoplayerVersion" }
 google-firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
 splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen-version" }
 

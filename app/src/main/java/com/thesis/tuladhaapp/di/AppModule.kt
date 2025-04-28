@@ -5,6 +5,12 @@ import com.thesis.tuladhaapp.data.dataSource.Category.DataSourceCategory
 import com.thesis.tuladhaapp.data.dataSource.Category.DummyCategoryDataSource
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.DataSourceDetailCourse
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.DummyDetailCourseDataSource
+import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.benefitCourse.DataSourceBenefit
+import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.benefitCourse.DummyBenefitCourseDataSource
+import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.chapterData.DataSourseChapterData
+import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.chapterData.DummyChapterDataSource
+import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.moduleData.DummyModuleDataDataSource
+import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.moduleData.ModuleDataSource
 import com.thesis.tuladhaapp.data.dataSource.course.DataSourceCourse
 import com.thesis.tuladhaapp.data.dataSource.course.DummyCourseDataSource
 import com.thesis.tuladhaapp.data.dataSource.user.DataSourceUsers
@@ -27,6 +33,7 @@ import com.thesis.tuladhaapp.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
+import kotlin.math.sin
 
 object AppModule {
     fun getModules(): List<Module> = listOf(
@@ -53,8 +60,11 @@ object AppModule {
     private val dataSource = module {
         single <DataSourceCategory> { DummyCategoryDataSource() }
         single <DataSourceCourse> { DummyCourseDataSource() }
+        single <DataSourceBenefit> { DummyBenefitCourseDataSource() }
+
+        single <DataSourseChapterData> { DummyChapterDataSource() }
         single <DataSourceUsers> { DataSourceUsersImpl(get()) }
-        single <DataSourceDetailCourse> { DummyDetailCourseDataSource(get()) }
+        single <DataSourceDetailCourse> { DummyDetailCourseDataSource(get(),get(),get()) }
 
     }
     private val firebaseModule =

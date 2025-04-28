@@ -10,13 +10,12 @@ import kotlin.math.max
 class ExoPlayerManager(private val playerView: PlayerView) : PlayerManager {
 
     private var player: ExoPlayer? = null
-
     private var startAutoPlay = false
     private var startItemIndex = 0
     private var startPosition: Long = 0
-
     private var currentMediaItem: MediaItem? = null
 
+    // Fungsi untuk memutar video
     private fun play(mediaItem: MediaItem?, haveStartPosition: Boolean = false) {
         currentMediaItem = mediaItem
         currentMediaItem?.let {
@@ -26,19 +25,23 @@ class ExoPlayerManager(private val playerView: PlayerView) : PlayerManager {
         }
     }
 
+    // Inisialisasi ExoPlayer
     private fun initializePlayer(onFullScreenListener: (Boolean) -> Unit) {
-        player = ExoPlayer.Builder(playerView.context)
-            .build()
-            .also { exoPlayer ->
-                exoPlayer.trackSelectionParameters = exoPlayer.trackSelectionParameters
-                    .buildUpon()
-                    .setMaxVideoSizeSd()
-                    .build()
-                playerView.setFullscreenButtonClickListener { isFullScreen ->
-                    onFullScreenListener(isFullScreen)
+        if (player == null) {
+            player = ExoPlayer.Builder(playerView.context)
+                .build()
+                .also { exoPlayer ->
+                    exoPlayer.trackSelectionParameters = exoPlayer.trackSelectionParameters
+                        .buildUpon()
+                        .setMaxVideoSizeSd()
+                        .build()
+                    playerView.setFullscreenButtonClickListener { isFullScreen ->
+                        onFullScreenListener(isFullScreen)
+                    }
+                    playerView.player = exoPlayer
                 }
-                playerView.player = exoPlayer
-            }
+        }
+
         val haveStartPosition = startItemIndex != C.INDEX_UNSET
         if (haveStartPosition) {
             player?.seekTo(startItemIndex, startPosition)
@@ -46,14 +49,21 @@ class ExoPlayerManager(private val playerView: PlayerView) : PlayerManager {
         play(currentMediaItem, haveStartPosition)
     }
 
+    // Fungsi utama untuk memutar video
     override fun play(videoUrl: String, onFullScreenListener: (Boolean) -> Unit) {
-        if (player != null && currentMediaItem != null) {
-            releasePlayer()
+        // Memastikan player sudah siap
+        if (player == null) {
+            initializePlayer(onFullScreenListener)
         }
-        initializePlayer(onFullScreenListener)
-        play(MediaItem.Builder().setUri(videoUrl).build(), false)
+
+        // Buat MediaItem dari URL video
+        val mediaItem = MediaItem.fromUri(videoUrl)
+
+        // Mainkan video
+        play(mediaItem, false)
     }
 
+    // Fungsi untuk melepaskan player
     override fun release() {
         releasePlayer()
     }
@@ -112,5 +122,6 @@ class ExoPlayerManager(private val playerView: PlayerView) : PlayerManager {
     override fun onDestroy(owner: LifecycleOwner) {
         super.onDestroy(owner)
         releasePlayer()
+
     }
 }
