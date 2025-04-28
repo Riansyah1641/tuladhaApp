@@ -1,5 +1,6 @@
 package com.thesis.tuladhaapp.di
 
+import com.google.firebase.auth.FirebaseAuth
 import com.thesis.tuladhaapp.data.dataSource.Category.DataSourceCategory
 import com.thesis.tuladhaapp.data.dataSource.Category.DummyCategoryDataSource
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.DataSourceDetailCourse
@@ -14,6 +15,10 @@ import com.thesis.tuladhaapp.repository.courseHome.CourseRepository
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepositoryImpl
 import com.thesis.tuladhaapp.repository.userRepository.UserRepository
 import com.thesis.tuladhaapp.repository.userRepository.UserRepositoryImpl
+import com.thesis.tuladhaapp.source.firebase.FirebaseService
+import com.thesis.tuladhaapp.source.firebase.FirebaseServiceImpl
+import com.thesis.tuladhaapp.ui.auth.login.LoginViewModel
+import com.thesis.tuladhaapp.ui.auth.register.RegisterViewModel
 import com.thesis.tuladhaapp.ui.course.CourseViewModel
 import com.thesis.tuladhaapp.ui.dashboard.DashboardViewModel
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseViewModel
@@ -28,11 +33,14 @@ object AppModule {
         viewModels,
         repository,
         dataSource,
+        firebaseModule,
     )
     private val viewModels = module {
         viewModel { HomeViewModel(get(), get()) }
         viewModel { CourseViewModel(get(), get()) }
         viewModel {DashboardViewModel()}
+        viewModel {RegisterViewModel(get())}
+        viewModel { LoginViewModel(get()) }
         viewModel { MainViewModel(get()) }
         viewModel { params -> DetailCourseViewModel(params.get(), get()) }
     }
@@ -45,10 +53,15 @@ object AppModule {
     private val dataSource = module {
         single <DataSourceCategory> { DummyCategoryDataSource() }
         single <DataSourceCourse> { DummyCourseDataSource() }
-        single <DataSourceUsers> { DataSourceUsersImpl() }
+        single <DataSourceUsers> { DataSourceUsersImpl(get()) }
         single <DataSourceDetailCourse> { DummyDetailCourseDataSource(get()) }
 
     }
+    private val firebaseModule =
+        module {
+            single<FirebaseService> { FirebaseServiceImpl() }
+            single<FirebaseAuth> { FirebaseAuth.getInstance() }
+        }
 
     }
 

@@ -1,5 +1,6 @@
 package com.thesis.tuladhaapp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.faltenreich.skeletonlayout.applySkeleton
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.FragmentHomeBinding
 import com.thesis.tuladhaapp.model.category.Category
+import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.ui.home.adapter.CategoryAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.CourseAdapter
@@ -85,7 +87,18 @@ private fun setClickListener() {
     binding.swipeRefresh.setOnRefreshListener {
         binding.swipeRefresh.isRefreshing = false
     }
+    binding.icProfile.setOnClickListener {
+        navigateToLogin()
+    }
 }
+    private fun navigateToLogin() {
+        if (isAdded) {
+            val context = requireActivity()
+            val intent = Intent(context, LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+    }
 
 private fun performSearch() {
     val query = binding.searchBar.etSearchBar.text.toString()

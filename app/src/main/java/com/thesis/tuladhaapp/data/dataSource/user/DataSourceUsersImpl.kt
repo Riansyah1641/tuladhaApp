@@ -2,9 +2,10 @@ package com.thesis.tuladhaapp.data.dataSource.user
 
 import com.group2.sinow.model.profile.ProfileAuth
 import com.group2.sinow.model.profile.ProfileData
+import com.thesis.tuladhaapp.source.firebase.FirebaseService
 
 
-class DataSourceUsersImpl(): DataSourceUsers {
+class DataSourceUsersImpl(private val service: FirebaseService): DataSourceUsers {
     override suspend fun getUserData(): ProfileData {
         return ProfileData(
             id = 1,
@@ -26,6 +27,21 @@ class DataSourceUsersImpl(): DataSourceUsers {
                 updatedAt = "2024-04-01T10:00:00Z"
             )
         )
+    }
+
+    override suspend fun doRegister(
+        email: String,
+        fullName: String,
+        password: String,
+    ): Boolean {
+        return service.doRegister(email, fullName, password)
+    }
+
+    override suspend fun doLogin(
+        email: String,
+        password: String,
+    ): Boolean {
+        return service.doLogin(email, password)
     }
 
 

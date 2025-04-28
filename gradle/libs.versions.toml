@@ -54,6 +54,7 @@ viewpager2 = "1.1.0"
 
 [libraries]
 # splash screen plugin
+google-firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
 splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen-version" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

@@ -82,6 +82,10 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     // room database libraries
     implementation(libs.androidx.room.ktx)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     ksp(libs.androidx.room.compiler)
     // Lottie animation
     implementation(libs.lottie)
@@ -89,7 +93,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
-    implementation("com.google.firebase:firebase-auth-ktx")
     // retrofit & okhttp
     implementation(libs.retrofit)
     implementation(libs.converter.gson)

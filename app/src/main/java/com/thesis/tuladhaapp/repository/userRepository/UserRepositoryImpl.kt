@@ -15,4 +15,23 @@ class UserRepositoryImpl(
             dataSource.getUserData()
         }
     }
+
+    override fun doRegister(
+        email: String,
+        fullName: String,
+        password: String,
+    ): Flow<ResultWrapper<Boolean>> {
+        return proceedFlow {
+            dataSource.doRegister(email, fullName, password)
+        }
+    }
+
+    override fun doLogin(
+        email: String,
+        password: String,
+    ): Flow<ResultWrapper<Boolean>> {
+        return proceedFlow {
+            dataSource.doLogin(email, password)
+        }
+    }
 }

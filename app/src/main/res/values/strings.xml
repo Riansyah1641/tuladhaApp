@@ -89,13 +89,13 @@
     <string name="text_pw_nomatch">Password tidak sesuai</string>
     <string name="text_dont_have_an_acc_create">Belum punya akun? Daftar di sini</string>
     <string name="tuladha">Tuladha</string>
-    <string name="parenting_education">Indonesia Parenting Education</string>
+    <string name="parenting_education">Tuladha Parenting</string>
     <string name="skip">Skip</string>
     <string name="welcome_to_tuladha">Welcome to Tuladha</string>
     <string name="slide1_teks_onboarding">mulai perjalanan parenting terbaik mu!</string>
     <string name="slide2_onboarding1">setiap pola asuh itu unik</string>
     <string name="slide2onboarding_2">temukan tipe pola asuh yang cocok buat kamu!</string>
     <string name="with_tuladha">tuladha Parenting</string>
-    <string name="onboarding_slide3_teks">Dukung orang tua buat tumbuh dan berkembang si kecil!</string>
-    <string name="get_started">Mulai Sekarang</string>
+    <string name="onboarding_slide3_teks">Bantu dukung orang tua buat tumbuh dan berkembang si kecil!</string>
+    <string name="get_started">Explore Now</string>
 </resources>
