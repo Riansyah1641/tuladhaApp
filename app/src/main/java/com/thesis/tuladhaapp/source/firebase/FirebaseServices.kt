@@ -22,7 +22,7 @@ interface FirebaseService {
         password: String,
     ): Boolean
 
-    suspend fun updateProfile(fullName: String? = null): Boolean
+    suspend fun updateProfile(fullName: String? = null, url : String? = null): Boolean
 
     suspend fun updatePassword(newPassword: String): Boolean
 
@@ -57,17 +57,19 @@ class FirebaseServiceImpl() : FirebaseService {
         registerResult.user?.updateProfile(
             userProfileChangeRequest {
                displayName = fullName
-               //  photoUri = Uri.parse("autotaritative")
+               photoUri = Uri.parse("0821-xxxx-xxxx")
+
             },
         )?.await()
         return registerResult.user != null
     }
 
-    override suspend fun updateProfile(fullName: String?): Boolean {
+    override suspend fun updateProfile(fullName: String?, url : String?): Boolean {
         getCurrentUser()?.updateProfile(
             userProfileChangeRequest {
                 fullName?.let {
                     displayName = fullName
+                    photoUri = Uri.parse(url)
                 }
             },
         )?.await()

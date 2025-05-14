@@ -14,7 +14,7 @@ class DummyCourseDataSource : DataSourceCourse {
         level: String?,
         sortBy: String?
     ): List<Course> {
-        return listOf(
+        val allCourses = listOf(
             Course(
                 id = 1,
                 name = "Mengasuh Anak Usia Dini dengan Cinta",
@@ -281,6 +281,25 @@ class DummyCourseDataSource : DataSourceCourse {
                 )
             )
         )
+
+
+        val filteredCourses = allCourses
+            .asSequence()
+            .filter { course ->
+                search.isNullOrBlank() || course.name?.contains(search, ignoreCase = true) ?: false
+            }
+            .filter { course ->
+                type.isNullOrBlank() || course.type.equals(type, ignoreCase = true)
+            }
+
+        val sortedCourses = when (sortBy) {
+            "promo" -> filteredCourses.sortedByDescending { it.rating }
+            "terpopular" -> filteredCourses.sortedByDescending { it.totalUser }
+            "terbaru" -> filteredCourses.sortedByDescending { it.createdAt }
+            else -> filteredCourses.sortedByDescending { it.createdAt }
+        }
+
+        return sortedCourses.toList()
 
     }
 

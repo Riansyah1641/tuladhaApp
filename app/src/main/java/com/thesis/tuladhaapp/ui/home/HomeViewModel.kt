@@ -8,11 +8,12 @@ import com.thesis.tuladhaapp.model.course.Course
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepository
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepository
+import com.thesis.tuladhaapp.repository.userRepository.UserRepository
 import com.thesis.tuladhaapp.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repository: CategoriesRepository , private val courseRepository: CourseRepository) : ViewModel() {
+class HomeViewModel(private val repository: CategoriesRepository , private val courseRepository: CourseRepository, private val userRepository: UserRepository) : ViewModel() {
 
     companion object {
         const val LIMIT_COURSE_SIZE = 6
@@ -31,6 +32,10 @@ class HomeViewModel(private val repository: CategoriesRepository , private val c
             }
         }
     }
+
+    fun getCurrentUser() = userRepository.getCurrentUser()
+
+    fun isUserLoggedIn() = userRepository.isLoggedIn()
 
     // get populer category
     private val _popularCourseCategories = MutableLiveData<ResultWrapper<List<Category>>>()

@@ -8,6 +8,7 @@ import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.model.course.Course
 import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepository
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepository
+import com.thesis.tuladhaapp.ui.allPremiumCourse.AllPremiumCourseViewModel.Companion.SORT_BY_POPULAR
 import com.thesis.tuladhaapp.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -66,6 +67,18 @@ class CourseViewModel(private val repository: CategoriesRepository, private val 
                 sortBy = sortBy
             ).collect {
                 _courses.postValue(it)
+            }
+        }
+    }
+
+    fun getCourses(search: String? = null, category: Int? = null) {
+        viewModelScope.launch(Dispatchers.IO) {
+            courseRepository.getCourses(
+                search = search,
+                category = if (category == 0) null else category,
+                sortBy = SORT_BY_POPULAR
+            ).collect { result ->
+                _courses.postValue(result)
             }
         }
     }

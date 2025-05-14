@@ -23,6 +23,7 @@ import com.thesis.tuladhaapp.repository.userRepository.UserRepository
 import com.thesis.tuladhaapp.repository.userRepository.UserRepositoryImpl
 import com.thesis.tuladhaapp.source.firebase.FirebaseService
 import com.thesis.tuladhaapp.source.firebase.FirebaseServiceImpl
+import com.thesis.tuladhaapp.ui.allPremiumCourse.AllPremiumCourseViewModel
 import com.thesis.tuladhaapp.ui.auth.login.LoginViewModel
 import com.thesis.tuladhaapp.ui.auth.register.RegisterViewModel
 import com.thesis.tuladhaapp.ui.course.CourseViewModel
@@ -30,6 +31,7 @@ import com.thesis.tuladhaapp.ui.dashboard.DashboardViewModel
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseViewModel
 import com.thesis.tuladhaapp.ui.home.HomeViewModel
 import com.thesis.tuladhaapp.ui.main.MainViewModel
+import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -43,11 +45,13 @@ object AppModule {
         firebaseModule,
     )
     private val viewModels = module {
-        viewModel { HomeViewModel(get(), get()) }
+        viewModel { HomeViewModel(get(), get(), get()) }
         viewModel { CourseViewModel(get(), get()) }
         viewModel {DashboardViewModel()}
         viewModel {RegisterViewModel(get())}
         viewModel { LoginViewModel(get()) }
+        viewModel { AllPremiumCourseViewModel(get(), get()) }
+        viewModel { ProfileViewModel(get()) }
         viewModel { MainViewModel(get()) }
         viewModel { params -> DetailCourseViewModel(params.get(), get()) }
     }

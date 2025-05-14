@@ -22,7 +22,7 @@
         android:id="@+id/iv_notification_empty"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/iv_course_empty"
+        android:src="@drawable/img_empty_course"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
