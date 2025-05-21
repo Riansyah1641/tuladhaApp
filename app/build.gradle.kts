@@ -7,6 +7,7 @@ plugins {
     id("com.google.firebase.crashlytics")
     id("org.jlleitschuh.gradle.ktlint")
     alias(libs.plugins.google.gms.google.services)
+    id ("kotlin-kapt")
 }
 
 android {
@@ -43,6 +44,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 

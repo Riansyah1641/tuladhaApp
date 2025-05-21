@@ -14,6 +14,11 @@
             app:destination="@id/navigation_course"
             app:popUpTo="@id/navigation_home"
             app:popUpToSaveState="true"/>
+
+        <action
+            android:id="@+id/action_homeFragment_to_quickStartFragment"
+            app:destination="@id/testPolaAsuhFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/navigation_class"
@@ -50,5 +55,13 @@
         android:name="com.thesis.tuladhaapp.ui.filterDialog.FilterDialogFragment"
         android:label="fragment_filter_dialog"
         tools:layout="@layout/fragment_filter_dialog" />
+
+    <fragment
+        android:id="@+id/testPolaAsuhFragment"
+        android:name="com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartFragment"
+        android:label="fragment_test_pola_asuh"
+        tools:layout="@layout/frangment_testpolaasuh" />
+
+
 
 </navigation>

@@ -126,4 +126,13 @@
     <string name="autotaritative">Autotaritative</string>
     <string name="authoritarian">Authoritarian</string>
     <string name="permissive">Permissive</string>
+    <string name="strongly_disagree_radio_btn">Strongly Disagree</string>
+    <string name="disagree_radio_btn">Disagree</string>
+    <string name="agree_radio_btn">Agree</string>
+    <string name="strongly_agree_radio_btn">Strongly Agree</string>
+    <string name="next_btn">Next</string>
+    <string name="questionNumber">Question %1$d/30</string>
+    <string name="current_txt">Current</string>
+    <string name="results_txt">Results</string>
+    <string name="mentalQuestionNumber">%1$d/30</string>
 </resources>

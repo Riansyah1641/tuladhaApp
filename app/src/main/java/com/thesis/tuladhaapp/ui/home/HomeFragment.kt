@@ -105,6 +105,15 @@ class HomeFragment() : Fragment() {
         binding.tvSeeAllCourse.setOnClickListener {
             navigateToAllPremiumCourse()
         }
+        binding.tvCourseText.setOnClickListener {
+            navigateToTestPolaAsuh()
+        }
+    }
+
+    private fun navigateToTestPolaAsuh() {
+
+        val action = HomeFragmentDirections.actionHomeFragmentToQuickStartFragment()
+        findNavController().navigate(action)
     }
 
     private fun navigateToAllPremiumCourse() {

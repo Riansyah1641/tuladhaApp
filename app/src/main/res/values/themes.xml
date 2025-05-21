@@ -33,6 +33,41 @@
         <item name="fontFamily">@font/inter</item>
     </style>
 
+<!--    //test pola asuh style-->
+    <style name="quick_start_txt_view_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="radio_btn_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/radio_btn_background</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="buttonTint">@color/app_color_secondary</item>
+        <item name="android:enabled">true</item>
+        <item name="android:checked">false</item>
+    </style>
+
+    <style name="next_quick_question_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:background">@drawable/ic_next</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="ChipCustomStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/app_color_accent</item>
         <item name="android:textColor">@color/app_color_on_primary_container</item>
