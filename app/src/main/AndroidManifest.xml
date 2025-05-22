@@ -17,6 +17,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.testPolaAsuh.ResultTestActivity"
+            android:exported="false" /> <activity
+            android:name=".ui.testPolaAsuh.QuickStartActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.allPremiumCourse.AllPremiumCourseActivity"
             android:exported="false" />
         <activity

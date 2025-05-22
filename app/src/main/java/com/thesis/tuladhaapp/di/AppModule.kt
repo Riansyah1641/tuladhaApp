@@ -13,12 +13,16 @@ import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.moduleData.D
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.moduleData.ModuleDataSource
 import com.thesis.tuladhaapp.data.dataSource.course.DataSourceCourse
 import com.thesis.tuladhaapp.data.dataSource.course.DummyCourseDataSource
+import com.thesis.tuladhaapp.data.dataSource.typePareting.DataSourceTypeParenting
+import com.thesis.tuladhaapp.data.dataSource.typePareting.DataTypeParentingImpl
 import com.thesis.tuladhaapp.data.dataSource.user.DataSourceUsers
 import com.thesis.tuladhaapp.data.dataSource.user.DataSourceUsersImpl
 import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepository
 import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepositoryImpl
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepository
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepositoryImpl
+import com.thesis.tuladhaapp.repository.typeParenting.TypeParentingRepository
+import com.thesis.tuladhaapp.repository.typeParenting.TypeParentingRepositoryImpl
 import com.thesis.tuladhaapp.repository.userRepository.UserRepository
 import com.thesis.tuladhaapp.repository.userRepository.UserRepositoryImpl
 import com.thesis.tuladhaapp.source.firebase.FirebaseService
@@ -32,6 +36,7 @@ import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseViewModel
 import com.thesis.tuladhaapp.ui.home.HomeViewModel
 import com.thesis.tuladhaapp.ui.main.MainViewModel
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
+import com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -60,11 +65,13 @@ object AppModule {
         single<CategoriesRepository> { CategoriesRepositoryImpl(get()) }
         single<CourseRepository> { CourseRepositoryImpl(get(), get()) }
         single<UserRepository> { UserRepositoryImpl(get()) }
+        single<TypeParentingRepository> { TypeParentingRepositoryImpl(get()) }
     }
     private val dataSource = module {
         single <DataSourceCategory> { DummyCategoryDataSource() }
         single <DataSourceCourse> { DummyCourseDataSource() }
         single <DataSourceBenefit> { DummyBenefitCourseDataSource() }
+        single <DataSourceTypeParenting> { DataTypeParentingImpl() }
 
         single <DataSourseChapterData> { DummyChapterDataSource() }
         single <DataSourceUsers> { DataSourceUsersImpl(get()) }

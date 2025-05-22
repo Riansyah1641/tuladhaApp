@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.testPolaAsuh.QuickStartFragment">
+    >
 
     <!-- Data Binding ViewModel -->
     <data>
@@ -13,26 +11,34 @@
             type="com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartViewModel" />
     </data>
 
-    <!-- Layout utama menggunakan ConstraintLayout -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_background_quick_test"
-        tools:context=".ui.testPolaAsuh.QuickStartFragment">
+        tools:context=".ui.testPolaAsuh.QuickStartActivity">
 
-        <!-- Nomor Pertanyaan -->
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back"
+            />
         <TextView
             android:id="@+id/question_number_textView"
             style="@style/quick_start_txt_view_style"
             android:text='@{String.format("Pertanyaan %d/62", quickStartViewModel.liveIndex)}'
             android:textColor="@color/app_color_primary"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/iv_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Pertanyaan 1/62" />
 
-        <!-- Isi Pertanyaan -->
         <TextView
             android:id="@+id/question_txt"
             style="@style/quick_start_txt_view_style"
@@ -41,10 +47,10 @@
             app:layout_constraintTop_toBottomOf="@id/question_number_textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingHorizontal="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             tools:text="Saya sering memberikan pujian kepada anak saat dia berperilaku baik." />
 
-        <!-- RadioGroup untuk pilihan Likert Scale -->
         <RadioGroup
             android:id="@+id/radioGroupLikert"
             android:layout_width="0dp"
@@ -61,43 +67,76 @@
                 android:id="@+id/rbNever"
                 style="@style/radio_btn_style"
                 android:text="Tidak Pernah"
-                android:onClick="@{() -> quickStartViewModel.selectAnswer(1)}" />
+                android:onClick="@{() -> quickStartViewModel.answerAndNext(1)}" />
 
             <RadioButton
                 android:id="@+id/rbRarely"
                 style="@style/radio_btn_style"
                 android:text="Jarang"
-                android:onClick="@{() -> quickStartViewModel.selectAnswer(2)}" />
+                android:onClick="@{() -> quickStartViewModel.answerAndNext(2)}" />
 
             <RadioButton
                 android:id="@+id/rbSometimes"
                 style="@style/radio_btn_style"
                 android:text="Kadang-kadang"
-                android:onClick="@{() -> quickStartViewModel.selectAnswer(3)}" />
+                android:onClick="@{() -> quickStartViewModel.answerAndNext(3)}" />
 
             <RadioButton
                 android:id="@+id/rbOften"
                 style="@style/radio_btn_style"
                 android:text="Sering"
-                android:onClick="@{() -> quickStartViewModel.selectAnswer(4)}" />
+                android:onClick="@{() -> quickStartViewModel.answerAndNext(4)}" />
 
             <RadioButton
                 android:id="@+id/rbAlways"
                 style="@style/radio_btn_style"
                 android:text="Selalu"
-                android:onClick="@{() -> quickStartViewModel.selectAnswer(5)}" />
+                android:onClick="@{() -> quickStartViewModel.answerAndNext(5)}" />
         </RadioGroup>
 
-        <!-- Tombol Next -->
+
         <Button
             android:id="@+id/next_quick_question"
             style="@style/next_quick_question_style"
-            android:text="@string/next_btn"
             android:layout_marginTop="24dp"
-            android:onClick="@{() -> quickStartViewModel.nextQuestion()}"
-            app:layout_constraintTop_toBottomOf="@id/radioGroupLikert"
+            android:layout_marginBottom="24dp"
+            android:text='@{quickStartViewModel.isLastQuestion ? "Selesai" : "next"}'
+            android:enabled='@{quickStartViewModel.isAnswerSelected}'
+            android:onClick='@{() -> quickStartViewModel.nextQuestion()}'
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupLikert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/tvAuthoritative"
+                android:text='@{`Authoritative: ` + String.valueOf(quickStartViewModel.authoritativeScore)}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvAuthoritarian"
+                android:text='@{`Authoritarian: ` + String.valueOf(quickStartViewModel.authoritarianScore)}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvPermissive"
+                android:text='@{`Permissive: ` + String.valueOf(quickStartViewModel.permissiveScore)}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

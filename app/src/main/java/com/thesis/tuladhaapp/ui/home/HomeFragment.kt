@@ -25,6 +25,7 @@ import com.thesis.tuladhaapp.ui.home.adapter.CourseAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
 import com.thesis.tuladhaapp.ui.main.MainViewModel
 import com.thesis.tuladhaapp.ui.profile.ProfileActivity
+import com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartActivity
 import com.thesis.tuladhaapp.utils.SkeletonConfigWrapper
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -111,10 +112,10 @@ class HomeFragment() : Fragment() {
     }
 
     private fun navigateToTestPolaAsuh() {
-
-        val action = HomeFragmentDirections.actionHomeFragmentToQuickStartFragment()
-        findNavController().navigate(action)
+        val intent = Intent(requireContext(), QuickStartActivity::class.java)
+        startActivity(intent)
     }
+
 
     private fun navigateToAllPremiumCourse() {
         val intent = Intent(requireContext(), AllPremiumCourseActivity::class.java)
