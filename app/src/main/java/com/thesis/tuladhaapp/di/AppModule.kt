@@ -39,6 +39,7 @@ import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
+import org.koin.core.scope.get
 import org.koin.dsl.module
 import kotlin.math.sin
 
@@ -58,6 +59,7 @@ object AppModule {
         viewModel { AllPremiumCourseViewModel(get(), get()) }
         viewModel { ProfileViewModel(get()) }
         viewModel { MainViewModel(get()) }
+        viewModel { QuickStartViewModel(get()) }
         viewModel { params -> DetailCourseViewModel(params.get(), get()) }
     }
 

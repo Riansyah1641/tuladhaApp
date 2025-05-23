@@ -20,7 +20,7 @@ class ResultTestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        setOnClickListener()
 
         val typeName = intent.getStringExtra("TYPE_NAME")
         val typeDesc = intent.getStringExtra("TYPE_DESC")

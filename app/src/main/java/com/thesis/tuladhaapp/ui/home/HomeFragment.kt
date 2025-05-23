@@ -26,6 +26,7 @@ import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
 import com.thesis.tuladhaapp.ui.main.MainViewModel
 import com.thesis.tuladhaapp.ui.profile.ProfileActivity
 import com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartActivity
+import com.thesis.tuladhaapp.ui.testPolaAsuh.SplashTesPolaAsuhActivity
 import com.thesis.tuladhaapp.utils.SkeletonConfigWrapper
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -106,13 +107,13 @@ class HomeFragment() : Fragment() {
         binding.tvSeeAllCourse.setOnClickListener {
             navigateToAllPremiumCourse()
         }
-        binding.tvCourseText.setOnClickListener {
+        binding.btnStartTest.setOnClickListener {
             navigateToTestPolaAsuh()
         }
     }
 
     private fun navigateToTestPolaAsuh() {
-        val intent = Intent(requireContext(), QuickStartActivity::class.java)
+        val intent = Intent(requireContext(), SplashTesPolaAsuhActivity::class.java)
         startActivity(intent)
     }
 

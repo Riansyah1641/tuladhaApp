@@ -136,4 +136,7 @@
     <string name="results_txt">Tipe Pola Asuh Anda</string>
     <string name="mentalQuestionNumber">%1$d/30</string>
     <string name="result_polaAsuh">Selamat, Anda telah menyelesaikan tes pola asuh</string>
+    <string name="desk_tespolaasuh_home">Ikuti tes singkat, untuk mengetahui pola asuhmu dan Akses ke layanan kami!</string>
+    <string name="title_test_polasuhhome">Yuk, Kenali Gaya Pola Asuhmu!</string>
+    <string name="start_tes">Mulai Tes</string>
 </resources>

@@ -4,14 +4,17 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.thesis.tuladhaapp.data.dataSource.typePareting.DataTypeParentingImpl
 import com.thesis.tuladhaapp.model.testpolaasuh.TypeParenting
 import com.thesis.tuladhaapp.repository.typeParenting.TypeParentingRepository
+import com.thesis.tuladhaapp.repository.userRepository.UserRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class QuickStartViewModel() : ViewModel() {
+class QuickStartViewModel(private val repo: UserRepository) : ViewModel() {
 
     private lateinit var questions: List<QuestionItem>
     private val _currentQuestion = MutableLiveData<String>()
@@ -47,6 +50,11 @@ class QuickStartViewModel() : ViewModel() {
     private val _isAnswerSelected = MutableLiveData(false)
     val isAnswerSelected: LiveData<Boolean> get() = _isAnswerSelected
 
+    fun getCurrentUser() = repo.getCurrentUser()
+    fun isUserLoggedIn() = repo.isLoggedIn()
+    fun changeProfile(fullName: String, uri: String) = repo.updateProfile(fullName, uri).asLiveData(
+        Dispatchers.IO)
+
     init {
         setQuestions()
         _liveIndex.value = currentIndex + 1
@@ -69,6 +77,8 @@ class QuickStartViewModel() : ViewModel() {
     )
 
 
+
+
     fun answerAndNext(score: Int) {
         selectAnswer(score)
         if (_isLastQuestion.value != true) {
@@ -76,8 +86,6 @@ class QuickStartViewModel() : ViewModel() {
                 delay(300L) // 1 detik delay
                 nextQuestion()
             }
-        } else {
-            ResultUserCalculate()
         }
 
     }
@@ -162,6 +170,8 @@ class QuickStartViewModel() : ViewModel() {
         _authoritativeScore.value = authoritative
         _authoritarianScore.value = authoritarian
         _permissiveScore.value = permissive
+
+        ResultUserCalculate()
     }
 
     private fun setQuestions() {

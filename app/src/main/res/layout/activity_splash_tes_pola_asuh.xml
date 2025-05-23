@@ -1,0 +1,78 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp"
+        android:background="@color/app_color_on_primary"
+        tools:context=".ui.testPolaAsuh.TestDescriptionActivity">
+
+        <!-- Tombol Back -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_back_black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivImageTes"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/img_empty_course"
+            app:layout_constraintTop_toBottomOf="@+id/btnBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Judul -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tes Pola Asuh Parenting"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/app_color_primary"
+            app:layout_constraintTop_toBottomOf="@+id/ivImageTes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <!-- Deskripsi -->
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintBottom_toTopOf="@+id/btnStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp"
+                android:text="Tes Pola Asuh ini menggunakan Parenting Styles and Dimensions Questionnaire (PSDQ) yang terdiri dari 62 pertanyaan. Tes ini bertujuan untuk membantu orang tua memahami gaya pengasuhan yang paling dominan mereka terapkan, yaitu:\n\n1. Authoritative (demokratis)\n2. Authoritarian (otoriter)\n3. Permissive (memanjakan)\n\nSilakan tekan tombol di bawah ini untuk memulai tes." />
+        </ScrollView>
+
+        <!-- Tombol Mulai Tes -->
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Mulai Tes"
+            android:backgroundTint="@color/app_color_primary"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
