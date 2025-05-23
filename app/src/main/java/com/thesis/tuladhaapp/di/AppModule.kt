@@ -13,6 +13,8 @@ import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.moduleData.D
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.moduleData.ModuleDataSource
 import com.thesis.tuladhaapp.data.dataSource.course.DataSourceCourse
 import com.thesis.tuladhaapp.data.dataSource.course.DummyCourseDataSource
+import com.thesis.tuladhaapp.data.dataSource.kuisCourse.DummyKuisCourseDataSource
+import com.thesis.tuladhaapp.data.dataSource.kuisCourse.kuisCourseDataSource
 import com.thesis.tuladhaapp.data.dataSource.typePareting.DataSourceTypeParenting
 import com.thesis.tuladhaapp.data.dataSource.typePareting.DataTypeParentingImpl
 import com.thesis.tuladhaapp.data.dataSource.user.DataSourceUsers
@@ -21,6 +23,8 @@ import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepository
 import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepositoryImpl
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepository
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepositoryImpl
+import com.thesis.tuladhaapp.repository.kuisCourse.KuisRepository
+import com.thesis.tuladhaapp.repository.kuisCourse.KuisRepositoryImpl
 import com.thesis.tuladhaapp.repository.typeParenting.TypeParentingRepository
 import com.thesis.tuladhaapp.repository.typeParenting.TypeParentingRepositoryImpl
 import com.thesis.tuladhaapp.repository.userRepository.UserRepository
@@ -34,6 +38,7 @@ import com.thesis.tuladhaapp.ui.course.CourseViewModel
 import com.thesis.tuladhaapp.ui.dashboard.DashboardViewModel
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseViewModel
 import com.thesis.tuladhaapp.ui.home.HomeViewModel
+import com.thesis.tuladhaapp.ui.kuisCourse.QuizViewModel
 import com.thesis.tuladhaapp.ui.main.MainViewModel
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartViewModel
@@ -59,6 +64,7 @@ object AppModule {
         viewModel { AllPremiumCourseViewModel(get(), get()) }
         viewModel { ProfileViewModel(get()) }
         viewModel { MainViewModel(get()) }
+        viewModel { QuizViewModel(get()) }
         viewModel { QuickStartViewModel(get()) }
         viewModel { params -> DetailCourseViewModel(params.get(), get()) }
     }
@@ -67,6 +73,7 @@ object AppModule {
         single<CategoriesRepository> { CategoriesRepositoryImpl(get()) }
         single<CourseRepository> { CourseRepositoryImpl(get(), get()) }
         single<UserRepository> { UserRepositoryImpl(get()) }
+        single<KuisRepository> { KuisRepositoryImpl(get()) }
         single<TypeParentingRepository> { TypeParentingRepositoryImpl(get()) }
     }
     private val dataSource = module {
@@ -76,6 +83,7 @@ object AppModule {
         single <DataSourceTypeParenting> { DataTypeParentingImpl() }
 
         single <DataSourseChapterData> { DummyChapterDataSource() }
+        single <kuisCourseDataSource> { DummyKuisCourseDataSource() }
         single <DataSourceUsers> { DataSourceUsersImpl(get()) }
         single <DataSourceDetailCourse> { DummyDetailCourseDataSource(get(),get(),get()) }
 

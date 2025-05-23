@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.faltenreich.skeletonlayout.applySkeleton
+import com.thesis.tuladhaapp.AssesCourseActivity
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
 import com.thesis.tuladhaapp.databinding.FragmentHomeBinding
@@ -23,6 +24,7 @@ import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.ui.home.adapter.CategoryAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.CourseAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
+import com.thesis.tuladhaapp.ui.kuisCourse.QuizActivity
 import com.thesis.tuladhaapp.ui.main.MainViewModel
 import com.thesis.tuladhaapp.ui.profile.ProfileActivity
 import com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartActivity
@@ -109,6 +111,10 @@ class HomeFragment() : Fragment() {
         }
         binding.btnStartTest.setOnClickListener {
             navigateToTestPolaAsuh()
+        }
+        binding.tvCourseText.setOnClickListener {
+            val intent = Intent(requireContext(), AssesCourseActivity::class.java)
+            startActivity(intent)
         }
     }
 

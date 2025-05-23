@@ -131,6 +131,9 @@ dependencies {
     // Skeleton layout
     implementation(libs.skeletonlayout)
 
+    //progress bar
+    implementation (libs.circularprogressbar)
+
     // OTP View
     implementation(libs.pinview)
     // Swipe Refresh Layout

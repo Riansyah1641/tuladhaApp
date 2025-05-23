@@ -23,6 +23,8 @@ import com.thesis.tuladhaapp.model.detailcourse.CourseData
 import com.thesis.tuladhaapp.ui.detailCourse.adapter.DetailViewPagerAdapter
 import com.thesis.tuladhaapp.ui.detailCourse.player.ExoPlayerManager
 import com.thesis.tuladhaapp.ui.detailCourse.player.PlayerManager
+import com.thesis.tuladhaapp.ui.kuisCourse.QuizActivity
+import com.thesis.tuladhaapp.ui.testPolaAsuh.ResultTestActivity
 import com.thesis.tuladhaapp.utils.formatSecondsToMinutes
 import com.thesis.tuladhaapp.utils.proceedWhen
 import com.thesis.tuladhaapp.utils.toCurrencyFormat
@@ -43,6 +45,8 @@ class DetailCourseActivity : AppCompatActivity() {
 
     private var isFullScreen = false
 
+    var courseId: Int? = 2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,13 +54,10 @@ class DetailCourseActivity : AppCompatActivity() {
         windowInsetsController.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         observeData()
+        getData()
         setTabLayout()
         setOnClickListener()
         observeUserModuleData()
-    }
-    override fun onResume() {
-        super.onResume()
-        getData()
     }
 
 
@@ -75,6 +76,7 @@ class DetailCourseActivity : AppCompatActivity() {
         binding.llToolbar.isVisible = true
         binding.clVideoPlayerContainer.isVisible = true
         binding.videoView.isVisible = true
+        binding.clBtnBuy.isVisible = true
         binding.container.isVisible = true
         binding.layoutStateDetailCourse.root.isVisible = false
         val params =
@@ -83,13 +85,14 @@ class DetailCourseActivity : AppCompatActivity() {
         params.height = 0
         params.dimensionRatio = "16:9"
         binding.clVideoPlayerContainer.layoutParams = params
-        binding.clBtnBuy.isVisible = true
+
     }
 
     private fun enterFullScreen() {
         isFullScreen = true
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
         binding.llToolbar.isVisible = false
+        binding.clBtnBuy.isVisible = false
         binding.clVideoPlayerContainer.isVisible = true
         binding.videoView.isVisible = true
         binding.container.isVisible = false
@@ -99,7 +102,6 @@ class DetailCourseActivity : AppCompatActivity() {
         params.width = ViewGroup.LayoutParams.MATCH_PARENT
         params.height = ViewGroup.LayoutParams.MATCH_PARENT
         binding.clVideoPlayerContainer.layoutParams = params
-        binding.clBtnBuy.isVisible = false
     }
 
 
@@ -112,11 +114,23 @@ class DetailCourseActivity : AppCompatActivity() {
             playerManager.release()
             binding.swipeRefresh.isRefreshing = false
         }
+
+        binding.btnNextQuiz.setOnClickListener {
+            nextToQuiz()
+        }
+    }
+
+    private fun nextToQuiz(){
+        val intent = Intent(this, QuizActivity::class.java).apply {
+            putExtra("ID_COURSE",courseId )
+        }
+        startActivity(intent)
+        finish()
     }
 
     private fun getData() {
-        val courseId = intent.getIntExtra(EXTRA_COURSE, 0)
-        viewModel.getDetailCourse(courseId)
+        courseId = intent.getIntExtra(EXTRA_COURSE, 0)
+        viewModel.getDetailCourse(courseId!!)
     }
 
     private fun observeData() {
@@ -124,11 +138,9 @@ class DetailCourseActivity : AppCompatActivity() {
             resultWrapper.proceedWhen(
                 doOnSuccess = {
                     binding.container.isVisible = true
-                    binding.btnBuyClass.isVisible = true
                     binding.layoutStateDetailCourse.root.isVisible = false
                     binding.layoutStateDetailCourse.loadingAnimation.isVisible = false
                     binding.layoutStateDetailCourse.tvError.isVisible = false
-                    binding.clBtnBuy.isVisible = true
                     bindDetailCourse(it.payload)
                 },
                 doOnLoading = {
@@ -136,16 +148,16 @@ class DetailCourseActivity : AppCompatActivity() {
                     binding.layoutStateDetailCourse.loadingAnimation.isVisible = true
                     binding.layoutStateDetailCourse.tvError.isVisible = false
                     binding.container.isVisible = false
-                    binding.btnBuyClass.isVisible = false
-                    binding.clBtnBuy.isVisible = false
+
+
                 },
                 doOnError = {
                     binding.container.isVisible = false
-                    binding.btnBuyClass.isVisible = false
+
                     binding.layoutStateDetailCourse.root.isVisible = true
                     binding.layoutStateDetailCourse.loadingAnimation.isVisible = false
                     binding.layoutStateDetailCourse.tvError.isVisible = true
-                    binding.clBtnBuy.isVisible = false
+
                 }
             )
         }
@@ -214,38 +226,6 @@ class DetailCourseActivity : AppCompatActivity() {
             item.course?.videoPreviewUrl?.let { videoUrl ->
                 playerManager.play(videoUrl) { isFullScreen ->
                     checkFullScreen()
-                }
-            }
-
-
-            when (item.course?.type) {
-                TYPE_GRATIS -> {
-                    if (item.isFollowing == true) {
-                        binding.clBtnBuy.isVisible = false
-                    } else {
-                        binding.clBtnBuy.isVisible = true
-                        binding.tvTotalPrice.isVisible = false
-                        binding.tvCoursePrice.text = getString(R.string.text_free)
-                        binding.tvBtnBuy.text = getString(R.string.text_follow_class)
-                        binding.btnBuyClass.setOnClickListener {
-                            // openStartLearningDialog()
-                        }
-                    }
-                }
-
-                TYPE_PREMIUM -> {
-                    if (item.isFollowing == true && item.isAccessible == true) {
-                        binding.clBtnBuy.isVisible = false
-                    } else {
-                        binding.clBtnBuy.isVisible = true
-                        binding.tvBtnBuy.text =
-                            getString(R.string.text_buy_class)
-                        binding.tvTotalPrice.isVisible = true
-                        binding.tvCoursePrice.text = item.course.price?.toDouble()?.toCurrencyFormat()
-                        binding.btnBuyClass.setOnClickListener {
-                           //  openBuyPremiumClass()
-                        }
-                    }
                 }
             }
         }
