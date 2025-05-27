@@ -6,12 +6,11 @@
     <string name="title_notifications">Notifications</string>
     <string name="tv_menu_home">Beranda</string>
     <string name="tv_menu_class">Kelas</string>
-    <string name="tv_menu_course">Kursus</string>
+    <string name="tv_menu_course">courses</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_main1">Main1Activity</string>
     <string name="text_hi_user">Hai, parent</string>
-    <string name="tv_lets_find_your_course">Mari temukan Kursusmu!</string>
-    <string name="text_search_best_course">Cari Kursus terbaik&#8230;</string>
+    <string name="tv_lets_find_your_course">Mari temukan modulmu!</string>
+    <string name="text_search_best_course">Cari modul Anda&#8230;</string>
     <string name="text_popular_course">Kursus Populer</string>
     <string name="text_see_all">Lihat Semua</string>
     <string name="text_class_topic">Class Topics</string>
@@ -30,17 +29,17 @@
     <string name="rb_sortby_most_popular">Populer</string>
     <string name="rb_sortby_promo">Rating</string>
     <string name="tv_category">Kategori</string>
-    <string name="tv_difficulty_level">Level Kesulitan</string>
-    <string name="cb_beginner_level">Beginner Level</string>
-    <string name="cb_intermediate_level">Intermediate Level</string>
-    <string name="cb_advanced_level">Advanced Level</string>
+    <string name="tv_children_age">Usia Anak</string>
+    <string name="cb_beginner_level">0 - 3 Bulan</string>
+    <string name="cb_intermediate_level">3 - 6 Bulan</string>
+    <string name="cb_advanced_level">6 - 9 Bulan</string>
     <string name="tv_btn_apply_filter">Terapkan Filter</string>
     <string name="tv_reset_filter">Hapus Filter</string>
     <string name="exception_notif">maaf terdapat error, harap coba lagi</string>
-    <string name="format_course_duration">%d Menit</string>
+    <string name="format_course_duration">%d Jam</string>
     <string name="format_course_by">by %s</string>
     <string name="format_course_module">%d Modul</string>
-    <string name="format_btn_pelajari">Pelajari %s</string>
+    <string name="format_btn_pelajari">Pelajari Sekarang</string>
     <string name="text_free">Gratis</string>
     <string name="text_other_class">Kelas Lainnya</string>
     <string name="text_total_price">Total Harga</string>
@@ -107,7 +106,7 @@
     <string name="form_username_profile">Username</string>
     <string name="tabel_email_profile">Email</string>
     <string name="email_profile_hint">ex: kevin@gmail.com</string>
-    <string name="tv_table_nomor_profile">Nomor Hp</string>
+    <string name="tv_tipe_pola_asuh">Tipe Pola Asuh</string>
     <string name="et_nomor_profile_hint">ex: +62813456782</string>
     <string name="tf_name">Username tidak terdeteksi</string>
     <string name="tf_email">Email tidak terdeteksi</string>
@@ -115,7 +114,7 @@
     <string name="text_button_logout">Logout</string>
     <string name="text_dialog_logout">Hanya memastikan, Apakah Anda ingin Logout?</string>
     <string name="text_doalog_logout_back">kembali</string>
-    <string name="text_phone_profile">082156450989</string>
+    <string name="text_phone_profile">Belum melakukan tes pola asuh</string>
     <string name="text_link_change_password">ubah password</string>
     <string name="text_link_edit_profile_success">data profile berhasil diedit</string>
     <string name="text_link_edit_profile_failed">data profile gagal diedit</string>
@@ -142,12 +141,12 @@
     <string name="answer_1">Answer 1</string>
     <string name="next">Next</string>
     <string name="progres_bar">9/10</string>
-    <string name="question">Pertayaan?</string>
+    <string name="question">Dari pembelajaran ini pada anak Anda, berapa tingkat kesesuaian dari e-course yang diberikan? </string>
     <string name="exit">Kembali</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="previous">Previous</string>
+    <string name="previous">Sebelumnya</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -185,8 +184,35 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="great_job">Great Job!</string>
+    <string name="great_job">Bagus Sekali</string>
     <string name="correct_answer">Jawaban Benar: 0</string>
     <string name="incorrect_answer">Jawaban Salah: 0</string>
     <string name="next_quiz">Lanjut Kuis</string>
+    <string name="title_assesment">Assessment ke Anak</string>
+    <string name="assessment_activity">Assessment Activity</string>
+    <string name="text_deskription_course">Gendong bayi berkeliling sambil memperlihatkan atau menunjuk benda yang menarik. Gendong bayi pada posisi tegak menghadap ke depan sehingga ia dapat melihat apa yang terjadi di sekitarnya dan dapat belajar menahan kepalanya tetap tegak.</string>
+    <string name="text_next_button_suggestion">Jika sudah melakukan kegiatan ini, silakan tekan tombol Next untuk melanjutkan.</string>
+    <string name="not_proper">tidak sesuai</string>
+    <string name="normal">Biasa</string>
+    <string name="proper">Sudah Sesuai</string>
+    <string name="next_to_assesment">Lanjut</string>
+    <string name="assesment_stimulate">Stimulatasi Anak</string>
+    <string name="repeat_quiz">Maaf, Anda harus memahami materi ini kembali</string>
+    <string name="back_to_course">Kembali ke Course</string>
+    <string name="text_feedback_answer">Kami ingin mendengar pendapat Anda memberikan nilai %1$s pada kami. berikan masukan atau kesan Anda:</string>
+    <string name="hint_feedback">Tulis masukan Anda di sini...</string>
+    <string name="feedback_not_emptyy">Masukan tidak boleh kosong</string>
+    <string name="submit">Submit</string>
+    <string name="desk_next_Sectionn">Selanjutnya, silahkan kerjakan asesment berupa aktivitas prakter yang ditujukan kepada anak Anda</string>
+    <string name="great_result_quiz">Bagus Sekali!, Anda sudah memahami materi dengan baik</string>
+    <string name="good_result_quiz">Sudah bagus, namun dapat di tingkatkan lagi yaa</string>
+    <string name="_9_12_bulan">9 - 12 Bulan</string>
+    <string name="_1_2_tahun">1 - 2 Tahun</string>
+    <string name="_3_4_tahun">3 - 4 Tahun</string>
+    <string name="_2_3_tahun">2 - 3 Tahun</string>
+    <string name="_4_5_tahun">4 - 5 Tahun</string>
+    <string name="splash_screen_tes_pola_asuh">Tes Pola Asuh ini menggunakan Parenting Styles and Dimensions Questionnaire (PSDQ) yang terdiri dari 62 pertanyaan. Tes ini bertujuan untuk membantu orang tua memahami gaya pengasuhan yang paling dominan mereka terapkan, yaitu:\n\n1. Authoritative \n2. Authoritarian \n3. Permissive \n\nSilakan tekan tombol di bawah ini untuk memulai tes.</string>
+    <string name="mulai_tes">Mulai Tes</string>
+    <string name="profil_akun">Profil Akun</string>
+    <string name="netword_alert">Maaf, harap gunakan paket data untuk mengakses aplikasi</string>
 </resources>

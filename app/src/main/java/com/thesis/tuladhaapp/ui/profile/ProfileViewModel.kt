@@ -24,8 +24,6 @@ class ProfileViewModel(private val repo: UserRepository): ViewModel() {
 
     fun isUserLoggedIn() = repo.isLoggedIn()
 
-    fun requestChangePasswordByEmail() = repo.requestChangePasswordByEmail()
-
     fun doLogout() {
         repo.doLogout()
     }

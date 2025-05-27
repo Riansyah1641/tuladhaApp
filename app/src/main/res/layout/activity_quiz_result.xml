@@ -42,9 +42,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/great_job"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/tv_desk_next_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/desk_next_Sectionn"
+                android:textSize="16sp"
+                android:visibility="visible"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginBottom="14dp"/>
 
             <TextView
                 android:id="@+id/correctAnswers"
@@ -67,10 +80,21 @@
                 android:layout_marginBottom="24dp"/>
 
             <Button
+                android:id="@+id/courseButton"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="@string/back_to_course"
+                android:textColor="@color/white"
+                android:backgroundTint="#2196F3"/>
+
+            <Button
                 android:id="@+id/closeButton"
                 android:layout_width="wrap_content"
+                android:visibility="visible"
                 android:layout_height="wrap_content"
-                android:text="Close"
+                android:text="@string/next_to_assesment"
                 android:textColor="@color/white"
                 android:backgroundTint="#2196F3"/>
 

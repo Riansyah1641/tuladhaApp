@@ -11,6 +11,8 @@ import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.chapterData.
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.chapterData.DummyChapterDataSource
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.moduleData.DummyModuleDataDataSource
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.moduleData.ModuleDataSource
+import com.thesis.tuladhaapp.data.dataSource.assesmentCourse.AssesmentCourseDataSource
+import com.thesis.tuladhaapp.data.dataSource.assesmentCourse.DummyAssesmentCourse
 import com.thesis.tuladhaapp.data.dataSource.course.DataSourceCourse
 import com.thesis.tuladhaapp.data.dataSource.course.DummyCourseDataSource
 import com.thesis.tuladhaapp.data.dataSource.kuisCourse.DummyKuisCourseDataSource
@@ -21,6 +23,8 @@ import com.thesis.tuladhaapp.data.dataSource.user.DataSourceUsers
 import com.thesis.tuladhaapp.data.dataSource.user.DataSourceUsersImpl
 import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepository
 import com.thesis.tuladhaapp.repository.CategoriesHome.CategoriesRepositoryImpl
+import com.thesis.tuladhaapp.repository.assesmentCourse.AssesmentRepository
+import com.thesis.tuladhaapp.repository.assesmentCourse.AssesmentRepositoryImpl
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepository
 import com.thesis.tuladhaapp.repository.courseHome.CourseRepositoryImpl
 import com.thesis.tuladhaapp.repository.kuisCourse.KuisRepository
@@ -32,6 +36,7 @@ import com.thesis.tuladhaapp.repository.userRepository.UserRepositoryImpl
 import com.thesis.tuladhaapp.source.firebase.FirebaseService
 import com.thesis.tuladhaapp.source.firebase.FirebaseServiceImpl
 import com.thesis.tuladhaapp.ui.allPremiumCourse.AllPremiumCourseViewModel
+import com.thesis.tuladhaapp.ui.assesmentCourse.AssesmentCourseViewModel
 import com.thesis.tuladhaapp.ui.auth.login.LoginViewModel
 import com.thesis.tuladhaapp.ui.auth.register.RegisterViewModel
 import com.thesis.tuladhaapp.ui.course.CourseViewModel
@@ -63,22 +68,25 @@ object AppModule {
         viewModel { LoginViewModel(get()) }
         viewModel { AllPremiumCourseViewModel(get(), get()) }
         viewModel { ProfileViewModel(get()) }
-        viewModel { MainViewModel(get()) }
+        viewModel { MainViewModel() }
+        viewModel { AssesmentCourseViewModel(get()) }
         viewModel { QuizViewModel(get()) }
         viewModel { QuickStartViewModel(get()) }
-        viewModel { params -> DetailCourseViewModel(params.get(), get()) }
+        viewModel { params -> DetailCourseViewModel(get()) }
     }
 
     private val repository = module {
         single<CategoriesRepository> { CategoriesRepositoryImpl(get()) }
         single<CourseRepository> { CourseRepositoryImpl(get(), get()) }
         single<UserRepository> { UserRepositoryImpl(get()) }
+        single<AssesmentRepository> { AssesmentRepositoryImpl(get()) }
         single<KuisRepository> { KuisRepositoryImpl(get()) }
         single<TypeParentingRepository> { TypeParentingRepositoryImpl(get()) }
     }
     private val dataSource = module {
         single <DataSourceCategory> { DummyCategoryDataSource() }
         single <DataSourceCourse> { DummyCourseDataSource() }
+        single <AssesmentCourseDataSource> { DummyAssesmentCourse() }
         single <DataSourceBenefit> { DummyBenefitCourseDataSource() }
         single <DataSourceTypeParenting> { DataTypeParentingImpl() }
 

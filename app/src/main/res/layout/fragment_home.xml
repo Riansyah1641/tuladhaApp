@@ -21,40 +21,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_white_rounded"
+                    android:padding="6dp"
+                    android:src="@drawable/logo_tuladha"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
                 <TextView
                     android:id="@+id/tv_greeting_user"
                     style="@style/TextAppearance.Material3.TitleLarge"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:ellipsize="marquee"
                     android:maxLines="1"
                     android:text="@string/text_hi_user"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/ic_notification"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@id/iv_logo"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_find_course"
-                    style="@style/TextAppearance.Material3.TitleMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/tv_lets_find_your_course"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_greeting_user" />
 
                 <ImageView
                     android:id="@+id/ic_profile"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginTop="8dp"
                     android:src="@drawable/ic_profile"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_find_course"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_greeting_user" />
 
@@ -62,9 +65,9 @@
                     android:id="@+id/ic_notification"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_notification"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_find_course"
                     app:layout_constraintEnd_toStartOf="@id/ic_profile"
                     app:layout_constraintTop_toTopOf="@id/tv_greeting_user" />
 
@@ -82,7 +85,7 @@
                     layout="@layout/layout_content_search_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/tv_find_course" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_greeting_user" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/tesPolaAsuh"
@@ -205,19 +208,6 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/tv_course_text">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_category_popular_course"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="true"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/item_list_category"
-                        tools:visibility="visible" />
 
                     <include
                         android:id="@+id/layout_state_popular_categories"

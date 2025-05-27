@@ -40,8 +40,7 @@ class ItemGridCourseViewHolder(
                 binding.btnBuy.text = itemView.rootView.context.getString(R.string.text_free)
             } else {
                 binding.btnBuy.text = itemView.rootView.context.getString(
-                    R.string.format_btn_pelajari,
-                    item.price?.toDouble()?.toCurrencyFormat()
+                    R.string.format_btn_pelajari
                 )
             }
             itemView.setOnClickListener {

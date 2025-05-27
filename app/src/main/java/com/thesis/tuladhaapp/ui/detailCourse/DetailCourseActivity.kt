@@ -51,13 +51,13 @@ class DetailCourseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
         windowInsetsController.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         observeData()
         getData()
         setTabLayout()
         setOnClickListener()
-        observeUserModuleData()
     }
 
 
@@ -163,26 +163,6 @@ class DetailCourseActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeUserModuleData() {
-        viewModel.userModule.observe(this) { result ->
-            result.proceedWhen(
-                doOnSuccess = {
-                    it.payload?.videoUrl?.let { it1 ->
-                        playerManager.play(it1) {
-                            checkFullScreen()
-                        }
-                    }
-                },
-                doOnError = { err ->
-                        Toast.makeText(
-                            this,
-                            R.string.exception_notif,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                }
-            )
-        }
-    }
 
 
     private fun bindDetailCourse(courseData: CourseData?) {

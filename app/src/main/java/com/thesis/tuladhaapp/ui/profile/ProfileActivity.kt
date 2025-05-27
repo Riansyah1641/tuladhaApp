@@ -77,6 +77,9 @@ class ProfileActivity : AppCompatActivity() {
                 navigateToLogin()
             }
         }
+        binding.toolbar.setOnClickListener {
+            finish()
+        }
 
         binding.btnChangePw.setOnClickListener {
             if (profileViewModel.isUserLoggedIn()) {

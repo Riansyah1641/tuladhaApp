@@ -137,6 +137,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:paddingBottom="60dp"
+                    android:paddingTop="20dp"
                     android:visibility="visible"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_list_course" />
@@ -145,7 +147,7 @@
                     android:id="@+id/layout_state_class_topic"
                     layout="@layout/common_layout_content_state"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:visibility="gone"
                     tools:visibility="visible" />
 

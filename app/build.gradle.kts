@@ -63,10 +63,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     // Coil imageloader
     implementation(libs.coil)
-
     // splash screen
     implementation(libs.splashscreen)
-
     // RecyclerView
     implementation(libs.androidx.recyclerview)
     // circle crop image
@@ -99,21 +97,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
-    // chucker
-    debugImplementation(libs.library)
-    releaseImplementation(libs.library.no.op)
     // Koin for Android
     implementation(libs.koin.android)
-    // unit testing
-    testImplementation(libs.mockk.android)
-    testImplementation(libs.mockk.agent)
-    testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.turbine)
-    testImplementation(libs.androidx.core.testing)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    testImplementation(libs.junit)
-
     // viewpager2
     implementation(libs.androidx.viewpager2)
     // super bottom sheet
@@ -134,8 +119,6 @@ dependencies {
     //progress bar
     implementation (libs.circularprogressbar)
 
-    // OTP View
-    implementation(libs.pinview)
     // Swipe Refresh Layout
     implementation(libs.androidx.swiperefreshlayout)
     // FancyToast

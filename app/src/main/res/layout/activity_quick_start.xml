@@ -107,36 +107,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-
-
-        <LinearLayout
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupLikert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="24dp">
-
-            <TextView
-                android:id="@+id/tvAuthoritative"
-                android:text='@{`Authoritative: ` + String.valueOf(quickStartViewModel.authoritativeScore)}'
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tvAuthoritarian"
-                android:text='@{`Authoritarian: ` + String.valueOf(quickStartViewModel.authoritarianScore)}'
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tvPermissive"
-                android:text='@{`Permissive: ` + String.valueOf(quickStartViewModel.permissiveScore)}'
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -60,7 +60,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:lineSpacingExtra="4dp"
-                android:text="Tes Pola Asuh ini menggunakan Parenting Styles and Dimensions Questionnaire (PSDQ) yang terdiri dari 62 pertanyaan. Tes ini bertujuan untuk membantu orang tua memahami gaya pengasuhan yang paling dominan mereka terapkan, yaitu:\n\n1. Authoritative (demokratis)\n2. Authoritarian (otoriter)\n3. Permissive (memanjakan)\n\nSilakan tekan tombol di bawah ini untuk memulai tes." />
+                android:text="@string/splash_screen_tes_pola_asuh" />
         </ScrollView>
 
         <!-- Tombol Mulai Tes -->
@@ -68,7 +68,7 @@
             android:id="@+id/btnStart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Mulai Tes"
+            android:text="@string/mulai_tes"
             android:backgroundTint="@color/app_color_primary"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

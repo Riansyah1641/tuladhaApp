@@ -57,7 +57,7 @@ class FirebaseServiceImpl() : FirebaseService {
         registerResult.user?.updateProfile(
             userProfileChangeRequest {
                displayName = fullName
-               photoUri = Uri.parse("0821-xxxx-xxxx")
+               photoUri = Uri.parse("Belum tes pola asuh")
 
             },
         )?.await()

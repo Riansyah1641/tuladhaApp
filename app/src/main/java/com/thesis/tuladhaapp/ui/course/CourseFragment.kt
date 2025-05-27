@@ -18,7 +18,7 @@ import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener{
+class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     private lateinit var binding: FragmentCourseBinding
     private val filterDialogFragment: FilterDialogFragment by lazy {
         FilterDialogFragment()
@@ -38,7 +38,6 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener{
             itemCourseListener(it.id)
         }
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +66,8 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener{
         refreshData()
         buildChipItem()
         viewModel.resetFilter()
+
+
     }
 
     private fun itemCourseListener(courseId: Int?) {
@@ -136,17 +137,24 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener{
         val category = arguments?.getParcelable<Category>(KEY_CATEGORY)
         if (category == null) {
             selectedCategories = null
+            binding.layoutStateClassTopic.root.isVisible = true
+            binding.rvListCourse.isVisible = false
         } else {
             selectedCategories = listOf(category)
             viewModel.addSelectedCategory(category)
+            binding.layoutStateClassTopic.root.isVisible = false
         }
         val query = arguments?.getString(KEY_QUERY)
         if (!query.isNullOrEmpty()) {
             searchQuery = query
             viewModel.setSearchQuery(query)
             binding.searchBar.etSearchBar.setText(query)
+            binding.layoutStateClassTopic.root.isVisible = false
+            binding.rvListCourse.isVisible = true
         } else {
             searchQuery = null
+            binding.layoutStateClassTopic.root.isVisible = true
+            binding.rvListCourse.isVisible = false
         }
         getData(searchQuery, selectedType, selectedCategories, selectedLevel, selectedSortBy)
         arguments = null
@@ -157,13 +165,18 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener{
             selectedCategories?.map {
                 addChipToGroup(it.categoryName)
             }
+
         }
         if (selectedLevel != null) {
             selectedLevel?.map {
                 addChipToGroup(it)
             }
+
         }
-        if (selectedSortBy != null) addChipToGroup(selectedSortBy)
+        if (selectedSortBy != null) {
+            addChipToGroup(selectedSortBy)
+
+        }
     }
 
     private fun addChipToGroup(chipItem: String?) {

@@ -12,6 +12,7 @@ import com.google.android.material.card.MaterialCardView
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.ActivityQuizBinding
 import com.thesis.tuladhaapp.model.kuis.Quiz
+import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -46,6 +47,9 @@ class QuizActivity : AppCompatActivity() {
 
 
         binding.exitButton.setOnClickListener {
+            val intent = Intent(this, DetailCourseActivity::class.java)
+            intent.putExtra("EXTRA_COURSE", idCourse)
+            startActivity(intent)
             finish()
         }
 
@@ -63,6 +67,7 @@ class QuizActivity : AppCompatActivity() {
                 } else {
                     val intent = Intent(this@QuizActivity, QuizResultActivity::class.java)
                     intent.putExtra("correctAnswers", correctAnswers)
+                    intent.putExtra("ID_COURSE", idCourse)
                     intent.putExtra("incorrectAnswers", incorrectAnswers)
                     startActivity(intent)
                     finish()

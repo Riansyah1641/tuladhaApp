@@ -44,13 +44,13 @@ class AllPremiumCourseActivity : AppCompatActivity() {
     private var selectedType: String? = null
 
     private fun itemCourseListener(courseId: Int?) {
-        viewModel.userData.observe(this) { resultWrapper ->
-            if (resultWrapper.payload != null) {
-                navigateToDetailCourse(courseId)
-            } else {
-                loginDialog()
-            }
-        }
+//        viewModel.userData.observe(this) { resultWrapper ->
+//            if (resultWrapper.payload != null) {
+//                navigateToDetailCourse(courseId)
+//            } else {
+//                loginDialog()
+//            }
+//        }
     }
 
 

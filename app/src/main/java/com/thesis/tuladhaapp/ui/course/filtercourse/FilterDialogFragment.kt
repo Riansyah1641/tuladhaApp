@@ -33,10 +33,6 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
         })
     }
 
-    private var isBeginnerChecked: Boolean = false
-    private var isIntermediateChecked: Boolean = false
-    private var isAdvancedChecked: Boolean = false
-
     private var filterListener: OnFilterListener? = null
 
     interface OnFilterListener {
@@ -100,13 +96,15 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
         viewModel.clearSelectedCategories()
 
         val selectedLevels = mutableListOf<String>().apply {
-            isBeginnerChecked = false
-            isIntermediateChecked = false
-            isAdvancedChecked = false
 
-            binding.cbBeginner.isChecked = isBeginnerChecked
-            binding.cbIntermediate.isChecked = isIntermediateChecked
-            binding.cbAdvance.isChecked = isAdvancedChecked
+            binding.cb03Bulan.isChecked = false
+            binding.cb12Tahun.isChecked = false
+            binding.cb23Tahun.isChecked = false
+            binding.cb34Tahun.isChecked = false
+            binding.cb36Bulan.isChecked = false
+            binding.cb45Tahun.isChecked = false
+            binding.cb69Bulan.isChecked = false
+            binding.cb912Bulan.isChecked = false
         }
         val selectedSortBy = null
         binding.topPicks.clearCheck()
@@ -119,9 +117,14 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
         val selectedType = viewModel.selectedType.value
         val selectedCategories = viewModel.selectedCategories.value
         val selectedLevels = mutableListOf<String>().apply {
-            if (binding.cbBeginner.isChecked) add(BEGINNER_LEVEL)
-            if (binding.cbIntermediate.isChecked) add(INTERMEDIATE_LEVEL)
-            if (binding.cbAdvance.isChecked) add(ADVANCED_LEVEL)
+            if (binding.cb03Bulan.isChecked) add(BULAN_1_3_LEVEL)
+            if (binding.cb36Bulan.isChecked) add(BULAN_3_6_LEVEL)
+            if (binding.cb69Bulan.isChecked) add(BULAN_6_9_LEVEL)
+            if (binding.cb912Bulan.isChecked) add(BULAN_9_12_LEVEL)
+            if (binding.cb12Tahun.isChecked) add(TAHUN_1_2_LEVEL)
+            if (binding.cb23Tahun.isChecked) add(TAHUN_2_3_LEVEL)
+            if (binding.cb34Tahun.isChecked) add(TAHUN_3_4_LEVEL)
+            if (binding.cb45Tahun.isChecked) add(TAHUN_4_5_LEVEL)
         }
         val selectedSortBy = when (binding.topPicks.checkedRadioButtonId) {
             R.id.rb_new -> NEW_SORT
@@ -156,9 +159,14 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
     }
 
     companion object {
-        const val BEGINNER_LEVEL = "beginner"
-        const val INTERMEDIATE_LEVEL = "intermediate"
-        const val ADVANCED_LEVEL = "advanced"
+        const val BULAN_1_3_LEVEL = "0-3 Bulan"
+        const val BULAN_3_6_LEVEL = "3-6 Bulan"
+        const val BULAN_6_9_LEVEL = "6-9 Bulan"
+        const val BULAN_9_12_LEVEL = "9-12 Bulan"
+        const val TAHUN_1_2_LEVEL = "1-2 Tahun"
+        const val TAHUN_2_3_LEVEL = "2-3 Tahun"
+        const val TAHUN_3_4_LEVEL = "3-4 Tahun"
+        const val TAHUN_4_5_LEVEL = "4-5 Tahun"
         const val NEW_SORT = "terbaru"
         const val POPULAR_SORT = "terpopuler"
         const val PROMO_SORT = "rating"

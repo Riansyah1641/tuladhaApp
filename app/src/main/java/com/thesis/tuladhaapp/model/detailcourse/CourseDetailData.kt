@@ -6,9 +6,7 @@ import com.thesis.tuladhaapp.model.course.CourseBenefit
 import com.thesis.tuladhaapp.model.course.CourseCategory
 import com.thesis.tuladhaapp.model.course.CourseCreator
 import com.thesis.tuladhaapp.model.detailcourse.BenefitData
-import com.thesis.tuladhaapp.model.detailcourse.CategoryData
 import com.thesis.tuladhaapp.model.detailcourse.ChapterData
-import com.thesis.tuladhaapp.model.detailcourse.CourseCreatorData
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

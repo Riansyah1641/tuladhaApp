@@ -17,8 +17,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/btn_filter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,42 +102,96 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@id/btn_filter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <TextView
-                    style="@style/TextAppearance.Material3.TitleMedium"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_difficulty_level"
-                    android:textColor="?attr/colorOnPrimaryContainer"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp">
+                    <TextView
+                        style="@style/TextAppearance.Material3.TitleMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tv_children_age"
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        android:textStyle="bold" />
 
-                <CheckBox
-                    android:id="@+id/cb_beginner"
-                    style="@style/Widget.App.CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cb_beginner_level"
-                    android:textColor="?attr/colorOnPrimaryContainer" />
+                    <CheckBox
+                        android:id="@+id/cb_0_3_bulan"
+                        style="@style/Widget.App.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cb_beginner_level"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
 
-                <CheckBox
-                    android:id="@+id/cb_intermediate"
-                    style="@style/Widget.App.CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cb_intermediate_level"
-                    android:textColor="?attr/colorOnPrimaryContainer" />
+                    <CheckBox
+                        android:id="@+id/cb_3_6_bulan"
+                        style="@style/Widget.App.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cb_intermediate_level"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
 
-                <CheckBox
-                    android:id="@+id/cb_advance"
-                    style="@style/Widget.App.CheckBox"
+                    <CheckBox
+                        android:id="@+id/cb_6_9_bulan"
+                        style="@style/Widget.App.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cb_advanced_level"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
+
+                    <CheckBox
+                        android:id="@+id/cb_9_12_bulan"
+                        style="@style/Widget.App.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_9_12_bulan"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cb_advanced_level"
-                    android:textColor="?attr/colorOnPrimaryContainer" />
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp">
+
+                    <CheckBox
+                        android:id="@+id/cb_1_2_tahun"
+                        style="@style/Widget.App.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_1_2_tahun"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
+                    <CheckBox
+                        android:id="@+id/cb_2_3_tahun"
+                        style="@style/Widget.App.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_2_3_tahun"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
+                    <CheckBox
+                        android:id="@+id/cb_3_4_tahun"
+                        style="@style/Widget.App.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_3_4_tahun"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
+                    <CheckBox
+                        android:id="@+id/cb_4_5_tahun"
+                        style="@style/Widget.App.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_4_5_tahun"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
+                </LinearLayout>
+
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -147,10 +202,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="52dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="42dp"
         android:backgroundTint="@color/app_color_primary"
         android:text="@string/tv_btn_apply_filter"
-        app:layout_constraintBottom_toTopOf="@id/tv_reset_filter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -162,7 +217,7 @@
         android:padding="4dp"
         android:text="@string/tv_reset_filter"
         android:textColor="?attr/colorOnPrimaryContainer"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_filter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

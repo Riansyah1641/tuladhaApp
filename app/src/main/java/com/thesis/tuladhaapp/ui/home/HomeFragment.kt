@@ -8,26 +8,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.faltenreich.skeletonlayout.applySkeleton
-import com.thesis.tuladhaapp.AssesCourseActivity
+import com.shashank.sony.fancytoastlib.FancyToast
+import com.thesis.tuladhaapp.ui.assesmentCourse.AssesCourseActivity
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
 import com.thesis.tuladhaapp.databinding.FragmentHomeBinding
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.allPremiumCourse.AllPremiumCourseActivity
+import com.thesis.tuladhaapp.ui.assesmentCourse.AssesmentCourseActivity
 import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
-import com.thesis.tuladhaapp.ui.auth.register.RegisterActivity
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.ui.home.adapter.CategoryAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.CourseAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
-import com.thesis.tuladhaapp.ui.kuisCourse.QuizActivity
+import com.thesis.tuladhaapp.ui.main.MainActivity
 import com.thesis.tuladhaapp.ui.main.MainViewModel
 import com.thesis.tuladhaapp.ui.profile.ProfileActivity
-import com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartActivity
 import com.thesis.tuladhaapp.ui.testPolaAsuh.SplashTesPolaAsuhActivity
 import com.thesis.tuladhaapp.utils.SkeletonConfigWrapper
 import com.thesis.tuladhaapp.utils.proceedWhen
@@ -76,6 +77,7 @@ class HomeFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setClickListener()
         observeCategoryData()
+        checkIfUserLogin()
         observePopularCourseCategoryData()
         observeSelectedCategory()
         observeCourseData()
@@ -84,6 +86,24 @@ class HomeFragment() : Fragment() {
     override fun onResume() {
         super.onResume()
         getData()
+    }
+
+
+
+    private fun checkIfUserLogin() {
+        if (homeViewModel.isUserLoggedIn()) {
+            getProfileData()
+        } else {
+
+        }
+    }
+
+    private fun getProfileData() {
+        homeViewModel.getCurrentUser()?.let {
+            val firstName = it.fullName.split(" ").firstOrNull() ?: ""
+            val greeting = "Hi, $firstName"
+            binding.tvGreetingUser.text = greeting
+        }
     }
 
     private fun navigateToDetailCourse(courseId: Int?) {
@@ -112,15 +132,27 @@ class HomeFragment() : Fragment() {
         binding.btnStartTest.setOnClickListener {
             navigateToTestPolaAsuh()
         }
-        binding.tvCourseText.setOnClickListener {
-            val intent = Intent(requireContext(), AssesCourseActivity::class.java)
-            startActivity(intent)
-        }
+    }
+
+    private fun navigateToLogin() {
+        startActivity(Intent(requireContext(), LoginActivity::class.java))
+    }
+
+    private fun navigateToHome() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity((intent))
     }
 
     private fun navigateToTestPolaAsuh() {
-        val intent = Intent(requireContext(), SplashTesPolaAsuhActivity::class.java)
-        startActivity(intent)
+
+        if (homeViewModel.isUserLoggedIn()) {
+            val intent = Intent(requireContext(), SplashTesPolaAsuhActivity::class.java)
+            startActivity(intent)
+        } else {
+            FancyToast.makeText(requireContext(),"Silahkan Login Terlebih Dahulu", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show()
+            navigateToLogin()
+        }
+     
     }
 
 
@@ -216,22 +248,14 @@ class HomeFragment() : Fragment() {
                     binding.layoutStatePopularCategories.root.isVisible = false
                     binding.layoutStatePopularCategories.loadingAnimation.isVisible = false
                     binding.layoutStatePopularCategories.tvError.isVisible = false
-                    binding.rvCategoryPopularCourse.apply {
-                        isVisible = true
-                        adapter = popularCourseCategoryAdapter
-                    }
+
                     it.payload?.let { data -> popularCourseCategoryAdapter.submitData(data) }
                 },
                 doOnLoading = {
                     binding.layoutStatePopularCategories.root.isVisible = false
                     binding.layoutStatePopularCategories.loadingAnimation.isVisible = false
                     binding.layoutStatePopularCategories.tvError.isVisible = false
-                    binding.rvCategoryPopularCourse.isVisible = true
-                    binding.rvCategoryPopularCourse.applySkeleton(
-                        R.layout.item_list_category,
-                        itemCount = 8,
-                        SkeletonConfigWrapper(requireContext()).customSkeletonConfig()
-                    ).showSkeleton()
+
                 },
                 doOnError = {
                     binding.layoutStatePopularCategories.root.isVisible = true
@@ -239,7 +263,7 @@ class HomeFragment() : Fragment() {
                     binding.layoutStatePopularCategories.tvError.isVisible = true
                     binding.layoutStatePopularCategories.tvError.text =
                         getString(R.string.exception_notif)
-                    binding.rvCategoryPopularCourse.isVisible = false
+
                 }
             )
         }

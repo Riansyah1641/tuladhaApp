@@ -1,12 +1,8 @@
 package com.thesis.tuladhaapp.data.dataSource.user
 
-import com.group2.sinow.model.profile.ProfileData
 import com.thesis.tuladhaapp.model.firebase.User
-import com.thesis.tuladhaapp.utils.ResultWrapper
-import kotlinx.coroutines.flow.Flow
 
 interface DataSourceUsers {
-    suspend fun getUserData(): ProfileData
     @Throws(exceptionClasses = [Exception::class])
     suspend fun doRegister(
         email: String,
@@ -20,7 +16,7 @@ interface DataSourceUsers {
         password: String,
     ): Boolean
 
-    suspend fun updateProfile(fullName: String? = null, uri : String? = null): Boolean
+    suspend fun updateProfile(fullName: String? = null, uri: String? = null): Boolean
 
     suspend fun updatePassword(newPassword: String): Boolean
 

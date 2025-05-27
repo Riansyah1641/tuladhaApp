@@ -13,7 +13,7 @@ class DummyDetailCourseDataSource(private val dataSourceCourse: DataSourceCourse
         val selectedCourse = dataSourceCourse.getCourses().first() { it.id == id } ?: return null
 
         return CourseData(
-            id = 1001,
+            id = 1,
             userId = null,
             courseId = selectedCourse.id,
             isAccessible = true,
