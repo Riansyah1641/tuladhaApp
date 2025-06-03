@@ -2,6 +2,9 @@ package com.thesis.tuladhaapp.utils
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 object Utils {
 
@@ -15,5 +18,10 @@ object Utils {
         val sharedPreferences = context.getSharedPreferences("QuizPrefs", MODE_PRIVATE)
         val percentage = sharedPreferences.getInt("scorePercentage", 0)
         return percentage
+    }
+    fun lastseenTime():String {
+        val currentDate = Date()
+        val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        return formatter.format(currentDate)
     }
 }

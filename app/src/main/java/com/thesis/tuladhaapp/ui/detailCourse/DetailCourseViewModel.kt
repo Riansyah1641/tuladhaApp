@@ -26,4 +26,16 @@ class DetailCourseViewModel(
             }
         }
     }
+
+
+    fun sendCourseData(courseData: CourseData,idUser: String, callback: (Boolean, String?) -> Unit) {
+        viewModelScope.launch {
+            try {
+                val isSuccess =repository.sendCourseDataToFirebase(courseData, idUser)
+                callback(isSuccess, null)
+            } catch (e: Exception) {
+                callback(false, e.localizedMessage)
+            }
+        }
+    }
 }

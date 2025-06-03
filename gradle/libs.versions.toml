@@ -53,6 +53,7 @@ superbottomsheet = "2.0.0"
 swiperefreshlayout = "1.2.0-beta01"
 turbine = "1.0.0"
 viewpager2 = "1.1.0"
+firebaseDatabase = "21.0.0"
 
 [libraries]
 # splash screen plugin
@@ -119,6 +120,7 @@ skeletonlayout = { module = "com.faltenreich:skeletonlayout", version.ref = "ske
 smoothbottombar = { module = "com.github.ibrahimsn98:SmoothBottomBar", version.ref = "smoothbottombar" }
 superbottomsheet = { module = "com.github.andrefrsousa:SuperBottomSheet", version.ref = "superbottomsheet" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

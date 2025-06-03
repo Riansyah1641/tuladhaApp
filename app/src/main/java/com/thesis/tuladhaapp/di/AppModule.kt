@@ -47,6 +47,7 @@ import com.thesis.tuladhaapp.ui.kuisCourse.QuizViewModel
 import com.thesis.tuladhaapp.ui.main.MainViewModel
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartViewModel
+import com.thesis.tuladhaapp.ui.userClass.ClassFragmentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.core.scope.get
@@ -69,8 +70,9 @@ object AppModule {
         viewModel { AllPremiumCourseViewModel(get(), get()) }
         viewModel { ProfileViewModel(get()) }
         viewModel { MainViewModel() }
-        viewModel { AssesmentCourseViewModel(get()) }
+        viewModel { AssesmentCourseViewModel(get(),get()) }
         viewModel { QuizViewModel(get()) }
+        viewModel { ClassFragmentViewModel(get(),get()) }
         viewModel { QuickStartViewModel(get()) }
         viewModel { params -> DetailCourseViewModel(get()) }
     }
@@ -93,7 +95,7 @@ object AppModule {
         single <DataSourseChapterData> { DummyChapterDataSource() }
         single <kuisCourseDataSource> { DummyKuisCourseDataSource() }
         single <DataSourceUsers> { DataSourceUsersImpl(get()) }
-        single <DataSourceDetailCourse> { DummyDetailCourseDataSource(get(),get(),get()) }
+        single <DataSourceDetailCourse> { DummyDetailCourseDataSource(get(),get(),get(),get()) }
 
     }
     private val firebaseModule =

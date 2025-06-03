@@ -21,6 +21,11 @@ interface CourseRepository {
         level: List<String>?,
         sortBy: String?
     ): Flow<ResultWrapper<List<Course>>>
+
     fun getDetailCourse(id: Int): Flow<ResultWrapper<CourseData?>>
+
+    suspend fun sendCourseDataToFirebase(courseData: CourseData, idUser: String): Boolean
+
+    fun getUserCourses(userId: String): Flow<List<CourseData>>
 
 }

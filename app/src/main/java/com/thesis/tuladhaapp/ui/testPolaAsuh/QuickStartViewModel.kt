@@ -433,9 +433,6 @@ class QuickStartViewModel(private val repo: UserRepository) : ViewModel() {
         )
     }
 
-    fun onNavigatToResultComplete() {
-        _navigateToResult.value = false
-    }
 }
 
 data class QuestionItem(

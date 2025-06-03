@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ChapterData(
-    val id: Int?,
-    val no: Int?,
-    val name: String?,
-    val totalDuration: Int?,
-    val userModules: List<UserModuleData>?
+    val id: Int? = null,
+    val no: Int? = null,
+    val name: String? = null,
+    val totalDuration: Int? = null,
+    val userModules: List<UserModuleData>? = null,
 ) : Parcelable

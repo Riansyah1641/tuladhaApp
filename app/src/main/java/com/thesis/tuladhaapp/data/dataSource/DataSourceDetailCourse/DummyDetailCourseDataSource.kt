@@ -3,26 +3,31 @@ package com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.benefitCourse.DataSourceBenefit
 import com.thesis.tuladhaapp.data.dataSource.DataSourceDetailCourse.chapterData.DataSourseChapterData
 import com.thesis.tuladhaapp.data.dataSource.course.DataSourceCourse
-import com.thesis.tuladhaapp.model.detailcourse.BenefitData
-import com.thesis.tuladhaapp.model.detailcourse.ChapterData
 import com.thesis.tuladhaapp.model.detailcourse.CourseData
 import com.thesis.tuladhaapp.model.detailcourse.CourseDetailData
+import com.thesis.tuladhaapp.repository.userRepository.UserRepository
+import com.thesis.tuladhaapp.utils.Utils
 
-class DummyDetailCourseDataSource(private val dataSourceCourse: DataSourceCourse, private val dataSourceBenefit: DataSourceBenefit, private val dataSourceChapter: DataSourseChapterData):DataSourceDetailCourse {
+class DummyDetailCourseDataSource(
+    private val dataSourceCourse: DataSourceCourse,
+    private val dataSourceBenefit: DataSourceBenefit,
+    private val dataSourceChapter: DataSourseChapterData,
+    private val userRepository: UserRepository
+) : DataSourceDetailCourse {
     override suspend fun getDetailCourse(id: Int): CourseData? {
         val selectedCourse = dataSourceCourse.getCourses().first() { it.id == id } ?: return null
-
+        val idUser = userRepository.getCurrentUser()
         return CourseData(
             id = 1,
-            userId = null,
+            userId = idUser?.id,
             courseId = selectedCourse.id,
             isAccessible = true,
             isFollowing = true,
-            lastSeen = "2025-04-01T12:00:00Z",
-            progress = "Module 2",
+            lastSeen = Utils.lastseenTime(),
+            progress = "Dalam Progress",
             progressPercentage = 35,
-            createdAt = "2025-03-01T10:00:00Z",
-            updatedAt = "2025-04-01T12:00:00Z",
+            createdAt = selectedCourse.createdAt,
+            updatedAt = selectedCourse.updatedAt,
             course = CourseDetailData(
                 id = selectedCourse.id,
                 name = selectedCourse.name,
@@ -37,7 +42,7 @@ class DummyDetailCourseDataSource(private val dataSourceCourse: DataSourceCourse
                 totalDuration = selectedCourse.totalDuration,
                 type = selectedCourse.type,
                 price = selectedCourse.price,
-                promo= selectedCourse.promoDiscountPercentage,
+                promo = selectedCourse.promoDiscountPercentage,
                 totalUser = selectedCourse.totalUser,
                 courseBy = selectedCourse.courseBy,
                 courseCreator = selectedCourse.courseCreator,
@@ -50,5 +55,4 @@ class DummyDetailCourseDataSource(private val dataSourceCourse: DataSourceCourse
             )
         )
     }
-
 }

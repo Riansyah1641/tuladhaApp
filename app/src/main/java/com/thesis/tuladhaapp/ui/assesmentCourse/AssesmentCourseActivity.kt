@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import com.shashank.sony.fancytoastlib.FancyToast
 import com.thesis.tuladhaapp.databinding.ActivityAssesmentCourseBinding
+import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AssesmentCourseActivity : AppCompatActivity() {
@@ -27,7 +30,9 @@ class AssesmentCourseActivity : AppCompatActivity() {
     private fun getData() {
         idCourse = intent.getIntExtra("ID_COURSE", 0)
         viewModel.GetAssesmentById(idCourse)
+        viewModel.getDetailCourse(idCourse)
     }
+
 
     private fun putData() {
         viewModel.assesment.observe(this) { assesment ->

@@ -32,6 +32,7 @@ class AssesCourseActivity : AppCompatActivity() {
         val progress = binding.likertSeekBar.progress
         val intent = Intent(this, FeedbackCourseActivity::class.java).apply {
             putExtra("SEEKBAR", progress+1)
+            putExtra("ID_COURSE", idCourse)
         }
         startActivity(intent)
     }

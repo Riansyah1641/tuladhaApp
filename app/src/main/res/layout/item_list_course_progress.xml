@@ -184,30 +184,18 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_progress" />
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp">
-
-                    <ProgressBar
-                        android:id="@+id/progress_bar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:progress="60"
-                        android:background="@drawable/progress_bar_background"
-                        android:progressDrawable="@drawable/curved_progress_bar" />
 
                     <TextView
                         android:id="@+id/tv_progress"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="left"
                         android:layout_marginStart="8dp"
-                        tools:text="60% complete"
-                        android:textColor="@color/white"
-                        style="@style/TextAppearance.Material3.BodySmall"/>
-                </FrameLayout>
+                        tools:text="Dalam Progress"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        />
+
 
             </LinearLayout>
 

@@ -5,15 +5,15 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CourseData(
-    val id: Int,
-    val userId: Int?,
-    val courseId: Int?,
-    val isAccessible: Boolean?,
-    val isFollowing: Boolean?,
-    val lastSeen: String?,
-    val progress: String?,
-    val progressPercentage: Int?,
-    val createdAt: String?,
-    val updatedAt: String?,
-    val course: CourseDetailData?
+    val id: Int? = null,
+    val userId: String? = null,
+    val courseId: Int? = null,
+    val isAccessible: Boolean? = null,
+    val isFollowing: Boolean? = null,
+    val lastSeen: String? = null,
+    val progress: String? = null,
+    val progressPercentage: Int? = null,
+    val createdAt: String? = null,
+    val updatedAt: String? = null,
+    val course: CourseDetailData? = null
 ) : Parcelable

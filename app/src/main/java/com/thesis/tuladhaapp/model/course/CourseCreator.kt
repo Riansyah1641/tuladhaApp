@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CourseCreator(
-    val id: Int?,
-    val name: String?
+    val id: Int? = null,
+    val name: String? = null,
 ) : Parcelable

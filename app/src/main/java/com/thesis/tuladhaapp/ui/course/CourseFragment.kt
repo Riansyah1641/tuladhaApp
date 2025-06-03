@@ -60,14 +60,12 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
         observeCourseList()
         openFilterDialog()
         setType()
-        setupSearch()
+        //setupSearch()
         observeFilterData()
-        receivedArguments()
-        refreshData()
-        buildChipItem()
+        // receivedArguments()
+        // refreshData()
+        // buildChipItem()
         viewModel.resetFilter()
-
-
     }
 
     private fun itemCourseListener(courseId: Int?) {
@@ -200,7 +198,10 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
                         isVisible = true
                         adapter = courseItemAdapter
                     }
-                    it.payload?.let { data -> courseItemAdapter.submitData(data) }
+                    it.payload?.let { data ->
+
+                        courseItemAdapter.submitData(data)
+                    }
                 },
                 doOnLoading = {
                     binding.layoutStateClassTopic.root.isVisible = true

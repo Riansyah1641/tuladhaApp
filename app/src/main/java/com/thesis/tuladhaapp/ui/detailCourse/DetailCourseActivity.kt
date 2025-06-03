@@ -5,18 +5,18 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import com.google.android.material.tabs.TabLayoutMediator
+import com.shashank.sony.fancytoastlib.FancyToast
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.ActivityDetailCourseBinding
 import com.thesis.tuladhaapp.model.detailcourse.CourseData
@@ -24,10 +24,9 @@ import com.thesis.tuladhaapp.ui.detailCourse.adapter.DetailViewPagerAdapter
 import com.thesis.tuladhaapp.ui.detailCourse.player.ExoPlayerManager
 import com.thesis.tuladhaapp.ui.detailCourse.player.PlayerManager
 import com.thesis.tuladhaapp.ui.kuisCourse.QuizActivity
-import com.thesis.tuladhaapp.ui.testPolaAsuh.ResultTestActivity
+import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import com.thesis.tuladhaapp.utils.formatSecondsToMinutes
 import com.thesis.tuladhaapp.utils.proceedWhen
-import com.thesis.tuladhaapp.utils.toCurrencyFormat
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -44,8 +43,10 @@ class DetailCourseActivity : AppCompatActivity() {
     private lateinit var playerManager: PlayerManager
 
     private var isFullScreen = false
+    private val profileViewModel: ProfileViewModel by viewModel()
 
     var courseId: Int? = 2
+    private var idUser = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +57,7 @@ class DetailCourseActivity : AppCompatActivity() {
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         observeData()
         getData()
+        sendDataCourseToDatabase()
         setTabLayout()
         setOnClickListener()
     }
@@ -131,6 +133,7 @@ class DetailCourseActivity : AppCompatActivity() {
     private fun getData() {
         courseId = intent.getIntExtra(EXTRA_COURSE, 0)
         viewModel.getDetailCourse(courseId!!)
+        idUser = profileViewModel.getCurrentUser()?.id ?: ""
     }
 
     private fun observeData() {
@@ -247,13 +250,54 @@ class DetailCourseActivity : AppCompatActivity() {
     }
 
 
+    private fun sendDataCourseToDatabase() {
+        viewModel.detailCourseData.observe(this) { resultWrapper ->
+            resultWrapper.proceedWhen(
+                doOnSuccess = { detailCourse ->
+                    detailCourse.payload?.let { selectedCourse ->
+                        val courseDataToSend = CourseData(
+                            id = selectedCourse.id,
+                            userId = idUser,
+                            courseId = selectedCourse.courseId,
+                            isAccessible = selectedCourse.isAccessible,
+                            isFollowing = selectedCourse.isFollowing,
+                            lastSeen = selectedCourse.lastSeen,
+                            progress = "On Progress",
+                            progressPercentage = 35,
+                            createdAt = selectedCourse.createdAt,
+                            updatedAt = selectedCourse.updatedAt,
+                            course = selectedCourse.course
+                        )
+
+                        viewModel.sendCourseData(courseDataToSend, idUser) { isSuccess, message ->
+                            if (isSuccess) {
+                                FancyToast.makeText(this, "Selamat, Anda Menyelesaikan Course Ini", FancyToast.LENGTH_SHORT,
+                                    FancyToast.SUCCESS, false).show()
+                            } else {
+                                FancyToast.makeText(this, "Maaf, terjadi kesalahan, harap coba lagi: $message",
+                                    FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show()
+                            }
+
+                        }
+                    }
+                },
+                doOnLoading = {
+                    Log.d("SendData", "Harap Tunggu...")
+                },
+                doOnError = { error ->
+                    FancyToast.makeText(this, "Gagal Menyimpan Riwayat Course: ${error?.message}",
+                        FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show()
+                }
+            )
+        }
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         this.lifecycle.removeObserver(playerManager)
     }
     companion object {
-        const val TYPE_GRATIS = "gratis"
-        const val TYPE_PREMIUM = "premium"
         const val EXTRA_COURSE = "EXTRA_COURSE"
         const val COURSE_DATA = "COURSE_DATA"
 
