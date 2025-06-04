@@ -11,6 +11,7 @@ import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.ActivityResultTestBinding
 import com.thesis.tuladhaapp.databinding.ActivitySplashScreenBinding
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
+import com.thesis.tuladhaapp.ui.main.MainActivity
 
 class ResultTestActivity : AppCompatActivity() {
 
@@ -31,8 +32,13 @@ class ResultTestActivity : AppCompatActivity() {
 
     private fun setOnClickListener(){
         binding.toHomeAgine.setOnClickListener{
-           onBackPressed()
+           goToHome()
         }
+    }
+    private fun goToHome(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 

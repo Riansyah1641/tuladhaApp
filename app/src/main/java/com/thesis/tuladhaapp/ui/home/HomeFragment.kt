@@ -22,6 +22,7 @@ import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.allPremiumCourse.AllPremiumCourseActivity
 import com.thesis.tuladhaapp.ui.assesmentCourse.AssesmentCourseActivity
 import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
+import com.thesis.tuladhaapp.ui.course.CourseItemAdapter
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.ui.home.adapter.CategoryAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.CourseAdapter
@@ -54,7 +55,15 @@ class HomeFragment() : Fragment() {
     }
     private val courseAdapter: CourseAdapter by lazy {
         CourseAdapter {
-            itemCourseListener(it.id)
+                if (it.type == "gratis") {
+                    itemCourseListener(it.id)
+                } else {
+                    if (homeViewModel.isUserLoggedIn()) {
+                        itemCourseListener(it.id)
+                    } else {
+                        showDialog()
+                    }
+                }
         }
     }
 
@@ -112,9 +121,6 @@ class HomeFragment() : Fragment() {
 
     private fun setClickListener() {
 
-        binding.searchBar.ivSearchButton.setOnClickListener {
-            performSearch()
-        }
         binding.swipeRefresh.setOnRefreshListener {
             binding.swipeRefresh.isRefreshing = false
         }
@@ -173,12 +179,6 @@ class HomeFragment() : Fragment() {
         }
     }
 
-    private fun performSearch() {
-        val query = binding.searchBar.etSearchBar.text.toString()
-        navigateSearchToCourseFragment(query)
-        binding.searchBar.etSearchBar.text.clear()
-    }
-
     private fun navigateToCourseByCategory(category: Category) {
         val action = HomeFragmentDirections.actionNavigationHomeToNavigationCourse(null, category)
         findNavController().navigate(action)
@@ -202,6 +202,7 @@ class HomeFragment() : Fragment() {
         binding.clSignUp.setOnClickListener {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
+            dialog.dismiss()
         }
     }
 

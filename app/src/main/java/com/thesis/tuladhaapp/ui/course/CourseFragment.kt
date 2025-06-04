@@ -1,5 +1,9 @@
 package com.thesis.tuladhaapp.ui.course
 
+import android.app.AlertDialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -10,10 +14,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import com.thesis.tuladhaapp.R
+import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
 import com.thesis.tuladhaapp.databinding.FragmentCourseBinding
 import com.thesis.tuladhaapp.model.category.Category
+import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
 import com.thesis.tuladhaapp.ui.course.filtercourse.FilterDialogFragment
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
+import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,6 +32,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     }
 
     private val viewModel: CourseViewModel by viewModel()
+    private val profileViewModel: ProfileViewModel by viewModel()
 
     private var searchQuery: String? = null
     private var selectedType: String? = null
@@ -35,7 +43,15 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     //adapter
     private val courseItemAdapter: CourseItemAdapter by lazy {
         CourseItemAdapter() {
-            itemCourseListener(it.id)
+            if (it.type == "gratis") {
+                itemCourseListener(it.id)
+            } else {
+                if (profileViewModel.isUserLoggedIn()) {
+                    itemCourseListener(it.id)
+                } else {
+                    loginDialog()
+                }
+            }
         }
     }
 
@@ -57,19 +73,35 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.resetFilter()
         observeCourseList()
         openFilterDialog()
         setType()
-        //setupSearch()
+        setupSearch()
         observeFilterData()
-        // receivedArguments()
-        // refreshData()
-        // buildChipItem()
-        viewModel.resetFilter()
+        receivedArguments()
+        refreshData()
+        buildChipItem()
     }
 
     private fun itemCourseListener(courseId: Int?) {
         navigateToDetailCourse(courseId)
+    }
+
+    private fun loginDialog() {
+        val binding: DialogNonLoginBinding = DialogNonLoginBinding.inflate(layoutInflater)
+        val dialog = AlertDialog.Builder(requireContext(), 0).create()
+
+        dialog.apply {
+            setView(binding.root)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }.show()
+
+        binding.clSignUp.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            dialog.dismiss()
+        }
     }
 
     private fun navigateToDetailCourse(courseId: Int?) {
@@ -93,6 +125,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
         binding.swipeRefresh.setOnRefreshListener {
             getData(searchQuery, selectedType, selectedCategories, selectedLevel, selectedSortBy)
             binding.swipeRefresh.isRefreshing = false
+            viewModel.resetFilter()
         }
     }
 
@@ -105,6 +138,10 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
         }
         binding.btnFree.setOnClickListener {
             viewModel.setSelectedType(TYPE_FREE)
+        }
+        binding.searchBar.ivSearchButton.setOnClickListener {
+            val searchQuery = binding.searchBar.etSearchBar.text.toString()
+            viewModel.setSearchQuery(searchQuery)
         }
     }
 
@@ -129,29 +166,43 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
             selectedType = type
             getData(searchQuery, selectedType, selectedCategories, selectedLevel, selectedSortBy)
         }
+
+        viewModel.courses.observe(viewLifecycleOwner) { resultWrapper ->
+            resultWrapper.proceedWhen(
+                doOnEmpty = {
+                    binding.emptyData.root.isVisible = true
+                    binding.emptyData.tvEmptyTeks.text = "Maaf, Pencarian tidak ditemukan"
+                    binding.rvListCourse.isVisible = false
+                }, doOnSuccess = {
+                    binding.emptyData.root.isVisible = false
+                    binding.rvListCourse.isVisible = true
+                }
+
+            )
+        }
     }
 
     private fun receivedArguments() {
         val category = arguments?.getParcelable<Category>(KEY_CATEGORY)
         if (category == null) {
             selectedCategories = null
-            binding.layoutStateClassTopic.root.isVisible = true
+
             binding.rvListCourse.isVisible = false
         } else {
             selectedCategories = listOf(category)
             viewModel.addSelectedCategory(category)
-            binding.layoutStateClassTopic.root.isVisible = false
+
         }
         val query = arguments?.getString(KEY_QUERY)
         if (!query.isNullOrEmpty()) {
             searchQuery = query
             viewModel.setSearchQuery(query)
             binding.searchBar.etSearchBar.setText(query)
-            binding.layoutStateClassTopic.root.isVisible = false
+
             binding.rvListCourse.isVisible = true
         } else {
             searchQuery = null
-            binding.layoutStateClassTopic.root.isVisible = true
+
             binding.rvListCourse.isVisible = false
         }
         getData(searchQuery, selectedType, selectedCategories, selectedLevel, selectedSortBy)
@@ -191,9 +242,6 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
         viewModel.courses.observe(viewLifecycleOwner) {
             it.proceedWhen(
                 doOnSuccess = {
-                    binding.layoutStateClassTopic.root.isVisible = false
-                    binding.layoutStateClassTopic.loadingAnimation.isVisible = false
-                    binding.layoutStateClassTopic.tvError.isVisible = false
                     binding.rvListCourse.apply {
                         isVisible = true
                         adapter = courseItemAdapter
@@ -204,14 +252,9 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
                     }
                 },
                 doOnLoading = {
-                    binding.layoutStateClassTopic.root.isVisible = true
-                    binding.layoutStateClassTopic.loadingAnimation.isVisible = true
-                    binding.layoutStateClassTopic.tvError.isVisible = false
                     binding.rvListCourse.isVisible = false
                 },
                 doOnError = {
-                    binding.layoutStateClassTopic.root.isVisible = true
-                    binding.layoutStateClassTopic.loadingAnimation.isVisible = false
                     binding.rvListCourse.isVisible = false
                 }
             )

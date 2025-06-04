@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
                 doOnSuccess = {
                     binding.btnLogin.isVisible = true
                     binding.pbLoading.isVisible = false
-                    navigateToHome()
+                    finish()
                     FancyToast.makeText(this, "Login Berhasil", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show()
                 },
 

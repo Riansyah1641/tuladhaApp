@@ -13,16 +13,16 @@
     <string name="text_search_best_course">Cari modul Anda&#8230;</string>
     <string name="text_popular_course">Kursus Populer</string>
     <string name="text_see_all">Lihat Semua</string>
-    <string name="text_class_topic">Class Topics</string>
+    <string name="text_class_topic">Pilihan Pembelajaran</string>
     <string name="text_filter">Filter</string>
     <string name="tv_btn_all">All</string>
-    <string name="tv_btn_class_premium">Premium Classes</string>
-    <string name="tv_btn_class_free">Free Classes</string>
+    <string name="tv_btn_class_premium">Premium</string>
+    <string name="tv_btn_class_free">Gratis</string>
     <string name="tv_oopps">Maaf Kosong!</string>
     <string name="text_sorry_course_not_found">Maaf, course tidak ditemukan</string>
     <string name="text_find_course">Cari Course</string>
-    <string name="tv_current_class">Kelas Berjalan</string>
-    <string name="tv_btn_in_progress">In Progress</string>
+    <string name="tv_current_class">Riwayat Courses</string>
+    <string name="tv_btn_in_progress">On Progress</string>
     <string name="tv_btn_finish">Selesai</string>
     <string name="tv_sort_by">Sort by</string>
     <string name="rb_sortby_newest">Terbaru</string>
@@ -53,7 +53,6 @@
     <string name="text_buy_class">Beli Kelas</string>
     <string name="tv_tab_detail_about">Tentang</string>
     <string name="tv_tab_detail_material_class">Materi Kelas</string>
-
     <string name="text_login">Login</string>
     <string name="text_email_or_phone_number">Email</string>
     <string name="text_password">Password</string>
@@ -121,7 +120,7 @@
     <string name="text_dialog_change_pw">Link untuk mengubah password telah dikirim di email yang terdaftar</string>
     <string name="text_back">Kembali</string>
     <string name="text_edit_profile">Edit Profile</string>
-    <string name="format_btn_buy">Beli %s</string>
+    <string name="format_btn_buy">Pelajari Sekarang</string>
     <string name="autotaritative">Autotaritative</string>
     <string name="authoritarian">Authoritarian</string>
     <string name="permissive">Permissive</string>
@@ -215,4 +214,6 @@
     <string name="mulai_tes">Mulai Tes</string>
     <string name="profil_akun">Profil Akun</string>
     <string name="netword_alert">Maaf, harap gunakan paket data untuk mengakses aplikasi</string>
+    <string name="empty_Data">Maaf, data masih kosong</string>
+    <string name="login_first">Silahkan login terlebih dahulu</string>
 </resources>

@@ -7,25 +7,15 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import com.faltenreich.skeletonlayout.applySkeleton
-import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.ActivityAllPremiumCourseBinding
 import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.allPremiumCourse.adapter.PopularCourseAdapter
 import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
-import com.thesis.tuladhaapp.ui.course.CourseFragment.Companion.TYPE_ALL
-import com.thesis.tuladhaapp.ui.course.CourseFragment.Companion.TYPE_FREE
-import com.thesis.tuladhaapp.ui.course.CourseFragment.Companion.TYPE_PREMIUM
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
-import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
-import com.thesis.tuladhaapp.utils.SkeletonConfigWrapper
+import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,6 +24,8 @@ class AllPremiumCourseActivity : AppCompatActivity() {
         ActivityAllPremiumCourseBinding.inflate(layoutInflater)
     }
     private val viewModel: AllPremiumCourseViewModel by viewModel()
+    private val profileViewModel: ProfileViewModel by viewModel()
+
 
     private val courseAdapter: PopularCourseAdapter by lazy {
         PopularCourseAdapter {
@@ -44,13 +36,11 @@ class AllPremiumCourseActivity : AppCompatActivity() {
     private var selectedType: String? = null
 
     private fun itemCourseListener(courseId: Int?) {
-//        viewModel.userData.observe(this) { resultWrapper ->
-//            if (resultWrapper.payload != null) {
-//                navigateToDetailCourse(courseId)
-//            } else {
-//                loginDialog()
-//            }
-//        }
+        if (profileViewModel.isUserLoggedIn()) {
+            navigateToDetailCourse(courseId)
+        } else {
+            loginDialog()
+        }
     }
 
 
@@ -67,7 +57,6 @@ class AllPremiumCourseActivity : AppCompatActivity() {
         observeCourseList()
         observeFilterData()
         setupSearch()
-        setType()
         setClickListener()
     }
 
@@ -149,22 +138,6 @@ class AllPremiumCourseActivity : AppCompatActivity() {
         viewModel.getCourses(search, type, categoryIdList, level, sortBy)
     }
 
-//    private fun getCourseData(search: String? = null, category: Int? = null) {
-//        viewModel.getCourses(search, category)
-//    }
-    private fun setType() {
-        binding.btnAll.setOnClickListener {
-            viewModel.setSelectedType("Authotaritative")
-        }
-        binding.btnPremium.setOnClickListener {
-            viewModel.setSelectedType("Authotarian")
-        }
-        binding.btnFree.setOnClickListener {
-            viewModel.setSelectedType("Permisive")
-        }
-    }
-
-
 
     private fun observeCourseList() {
         viewModel.courses.observe(this) { resultWrapper ->
@@ -173,7 +146,7 @@ class AllPremiumCourseActivity : AppCompatActivity() {
                     binding.layoutStatePopularCourse.root.isVisible = false
                     binding.layoutStatePopularCourse.loadingAnimation.isVisible = false
                     binding.layoutStatePopularCourse.tvError.isVisible = false
-                    binding.layoutCoursesEmpty.root.isVisible = false
+
                     binding.rvListCourse.apply {
                         isVisible = true
                         adapter = courseAdapter
@@ -184,19 +157,15 @@ class AllPremiumCourseActivity : AppCompatActivity() {
                     binding.layoutStatePopularCourse.root.isVisible = true
                     binding.layoutStatePopularCourse.loadingAnimation.isVisible = true
                     binding.layoutStatePopularCourse.tvError.isVisible = false
-                    binding.layoutCoursesEmpty.root.isVisible = false
+
                     binding.rvListCourse.isVisible = false
                 },
                 doOnError = {
                     binding.layoutStatePopularCourse.root.isVisible = true
                     binding.layoutStatePopularCourse.loadingAnimation.isVisible = false
-                    binding.rvListCourse.isVisible = false
-                            binding.layoutCoursesEmpty.root.isVisible = true
-                            binding.layoutCoursesEmpty.btnSearchCourse.isVisible = false
-
                 }
             )
         }
-    }
 
+    }
 }

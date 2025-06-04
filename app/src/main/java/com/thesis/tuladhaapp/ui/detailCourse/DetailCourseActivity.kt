@@ -1,9 +1,12 @@
 package com.thesis.tuladhaapp.ui.detailCourse
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
@@ -19,7 +22,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.shashank.sony.fancytoastlib.FancyToast
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.ActivityDetailCourseBinding
+import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
 import com.thesis.tuladhaapp.model.detailcourse.CourseData
+import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
 import com.thesis.tuladhaapp.ui.detailCourse.adapter.DetailViewPagerAdapter
 import com.thesis.tuladhaapp.ui.detailCourse.player.ExoPlayerManager
 import com.thesis.tuladhaapp.ui.detailCourse.player.PlayerManager
@@ -118,7 +123,27 @@ class DetailCourseActivity : AppCompatActivity() {
         }
 
         binding.btnNextQuiz.setOnClickListener {
-            nextToQuiz()
+            if (profileViewModel.isUserLoggedIn()) {
+                nextToQuiz()
+            } else {
+                loginDialog()
+            }
+        }
+    }
+
+    private fun loginDialog() {
+        val binding: DialogNonLoginBinding = DialogNonLoginBinding.inflate(layoutInflater)
+        val dialog = AlertDialog.Builder(this   , 0).create()
+
+        dialog.apply {
+            setView(binding.root)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }.show()
+
+        binding.clSignUp.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            dialog.dismiss()
         }
     }
 
@@ -156,7 +181,6 @@ class DetailCourseActivity : AppCompatActivity() {
                 },
                 doOnError = {
                     binding.container.isVisible = false
-
                     binding.layoutStateDetailCourse.root.isVisible = true
                     binding.layoutStateDetailCourse.loadingAnimation.isVisible = false
                     binding.layoutStateDetailCourse.tvError.isVisible = true
@@ -270,13 +294,6 @@ class DetailCourseActivity : AppCompatActivity() {
                         )
 
                         viewModel.sendCourseData(courseDataToSend, idUser) { isSuccess, message ->
-                            if (isSuccess) {
-                                FancyToast.makeText(this, "Selamat, Anda Menyelesaikan Course Ini", FancyToast.LENGTH_SHORT,
-                                    FancyToast.SUCCESS, false).show()
-                            } else {
-                                FancyToast.makeText(this, "Maaf, terjadi kesalahan, harap coba lagi: $message",
-                                    FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show()
-                            }
 
                         }
                     }

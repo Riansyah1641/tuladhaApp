@@ -1,32 +1,31 @@
 package com.thesis.tuladhaapp.ui.userClass
 
+import android.app.AlertDialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.thesis.tuladhaapp.R
+import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
 import com.thesis.tuladhaapp.databinding.FragmentClassBinding
 import com.thesis.tuladhaapp.model.category.Category
+import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
+import com.thesis.tuladhaapp.ui.main.MainActivity
+import com.thesis.tuladhaapp.ui.profile.ProfileActivity
+import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ClassFragment : Fragment() {
     private lateinit var binding: FragmentClassBinding
     private val viewModel: ClassFragmentViewModel by viewModel()
-    private var searchQuery: String? = null
+    private val profileViewModel: ProfileViewModel by viewModel()
 
-    private var selectedType: String? = null
-    private var selectedCategories: List<Category>? = null
-    private var selectedLevel: List<String>? = null
-    private var selectedSortBy: String? = null
-    private var databaseRef: DatabaseReference =
-        FirebaseDatabase.getInstance().getReference("user_courses")
-
-
-    private var selectedProgress: String? = null
 
     private val userClassAdapter: UserClassAdapter by lazy {
         UserClassAdapter {
@@ -57,21 +56,67 @@ class ClassFragment : Fragment() {
             adapter = userClassAdapter // Set adapter ke RecyclerView
         }
         setProgress()
+        getProfileData()
+        setClickListener()
         fetchCoursesData()
         observeSelectedProgress()
         observeAllUserCoursesList(progressStatus = viewModel.selectedProgress.value)
-        refreshData()
     }
 
-
-    private fun fetchData() {
-
-    }
-
-    private fun refreshData() {
+    private fun setClickListener() {
         binding.swipeRefresh.setOnRefreshListener {
-            fetchData()
             binding.swipeRefresh.isRefreshing = false
+        }
+        binding.icProfile.setOnClickListener {
+            if (profileViewModel.isUserLoggedIn()) {
+                navigateToProfile()
+            } else {
+                showDialog()
+            }
+        }
+        binding.ivLogo.setOnClickListener {
+            navigateToHome()
+        }
+    }
+
+    private fun navigateToHome() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun getProfileData() {
+        profileViewModel.getCurrentUser()?.let {
+            val firstName = it.fullName.split(" ").firstOrNull() ?: ""
+            val greeting = "Hi, $firstName"
+            binding.tvGreetingUser.text = greeting
+        }
+    }
+
+    private fun showDialog() {
+        val binding: DialogNonLoginBinding = DialogNonLoginBinding.inflate(layoutInflater)
+        val dialog = AlertDialog.Builder(requireContext(), 0).create()
+
+        dialog.apply {
+            setView(binding.root)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }.show()
+
+        binding.clSignUp.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+    }
+
+    private fun navigateToProfile() {
+        if (isAdded) {
+            val context = requireActivity()
+            val intent = Intent(context, ProfileActivity::class.java)
+            startActivity(intent)
+            requireActivity().overridePendingTransition(
+                android.R.anim.fade_in,
+                android.R.anim.fade_out
+            )
         }
     }
 
@@ -82,12 +127,24 @@ class ClassFragment : Fragment() {
         }
     }
 
-
     private fun observeSelectedProgress() {
-        viewModel.selectedProgress.observe(viewLifecycleOwner) { selectedProgress ->
-            observeAllUserCoursesList(progressStatus = selectedProgress)
+        if (profileViewModel.isUserLoggedIn()) {
+            viewModel.selectedProgress.observe(viewLifecycleOwner) { selectedProgress ->
+
+                if (viewModel.userCourses.value.isNullOrEmpty()) {
+                    binding.emptyData.root.visibility = View.VISIBLE
+
+                } else {
+                    observeAllUserCoursesList(progressStatus = selectedProgress)
+                }
+            }
+        } else {
+            binding.emptyData.root.visibility = View.VISIBLE
+            binding.emptyData.tvEmptyTeks.text = getString(R.string.login_first)
         }
+
     }
+
     private fun observeAllUserCoursesList(
         search: String? = null,
         type: String? = null,
@@ -128,9 +185,9 @@ class ClassFragment : Fragment() {
             userClassAdapter.submitList(filteredCourses)
 
             if (filteredCourses.isNotEmpty()) {
-                // Lakukan sesuatu jika daftar kursus tidak kosong
+                binding.emptyData.root.visibility = View.GONE
             } else {
-                // Lakukan sesuatu jika daftar kursus kosong setelah filter
+                binding.emptyData.root.visibility = View.VISIBLE
             }
         }
     }

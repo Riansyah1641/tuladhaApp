@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:minLines="2"
                 app:layout_constraintTop_toBottomOf="@id/tv_course_category"
                 tools:text="Belajar data cleaning dan sorting dengan Phyton" />

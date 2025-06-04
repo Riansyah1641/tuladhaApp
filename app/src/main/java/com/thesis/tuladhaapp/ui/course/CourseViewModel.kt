@@ -21,7 +21,6 @@ class CourseViewModel(private val repository: CategoriesRepository, private val 
         get() = _categories
 
     private val _courses = MutableLiveData<ResultWrapper<List<Course>>>()
-
     val courses: LiveData<ResultWrapper<List<Course>>>
         get() = _courses
 
@@ -36,6 +35,8 @@ class CourseViewModel(private val repository: CategoriesRepository, private val 
     private val _selectedCategories = MutableLiveData<List<Category>>()
     val selectedCategories: LiveData<List<Category>?>
         get() = _selectedCategories
+
+
 
     fun resetFilter() {
         _selectedCategories.postValue(listOf())

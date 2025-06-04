@@ -93,7 +93,6 @@ class ProfileActivity : AppCompatActivity() {
     private fun changeEditMode() {
         profileViewModel.isEditMode.observe(this) {
             binding.etNameTextProfile.isEnabled = it
-            binding.etNomorTextProfile.isEnabled = it
         }
     }
 
