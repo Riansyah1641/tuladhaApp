@@ -15,12 +15,14 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
+import com.thesis.tuladhaapp.databinding.DialogNonTestpolaasuhBinding
 import com.thesis.tuladhaapp.databinding.FragmentCourseBinding
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
 import com.thesis.tuladhaapp.ui.course.filtercourse.FilterDialogFragment
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
+import com.thesis.tuladhaapp.ui.testPolaAsuh.SplashTesPolaAsuhActivity
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,7 +41,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     private var selectedCategories: List<Category>? = null
     private var selectedLevel: List<String>? = null
     private var selectedSortBy: String? = null
-
+    private var checkTesPolaAsuh = false
     //adapter
     private val courseItemAdapter: CourseItemAdapter by lazy {
         CourseItemAdapter() {
@@ -47,7 +49,11 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
                 itemCourseListener(it.id)
             } else {
                 if (profileViewModel.isUserLoggedIn()) {
-                    itemCourseListener(it.id)
+                    if (checkTesPolaAsuh == true) {
+                        itemCourseListener(it.id)
+                    }else{
+                        showDialogTest()
+                    }
                 } else {
                     loginDialog()
                 }
@@ -86,6 +92,22 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
 
     private fun itemCourseListener(courseId: Int?) {
         navigateToDetailCourse(courseId)
+    }
+
+    private fun showDialogTest() {
+        val binding: DialogNonTestpolaasuhBinding = DialogNonTestpolaasuhBinding.inflate(layoutInflater)
+        val dialog = AlertDialog.Builder(requireContext(), 0).create()
+
+        dialog.apply {
+            setView(binding.root)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }.show()
+
+        binding.clSignUp.setOnClickListener {
+            val intent = Intent(requireContext(), SplashTesPolaAsuhActivity::class.java)
+            startActivity(intent)
+            dialog.dismiss()
+        }
     }
 
     private fun loginDialog() {

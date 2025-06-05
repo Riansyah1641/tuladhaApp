@@ -8,39 +8,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.faltenreich.skeletonlayout.applySkeleton
 import com.shashank.sony.fancytoastlib.FancyToast
-import com.thesis.tuladhaapp.ui.assesmentCourse.AssesCourseActivity
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
+import com.thesis.tuladhaapp.databinding.DialogNonTestpolaasuhBinding
 import com.thesis.tuladhaapp.databinding.FragmentHomeBinding
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.allPremiumCourse.AllPremiumCourseActivity
-import com.thesis.tuladhaapp.ui.assesmentCourse.AssesmentCourseActivity
 import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
-import com.thesis.tuladhaapp.ui.course.CourseItemAdapter
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.ui.home.adapter.CategoryAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.CourseAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
 import com.thesis.tuladhaapp.ui.main.MainActivity
-import com.thesis.tuladhaapp.ui.main.MainViewModel
 import com.thesis.tuladhaapp.ui.profile.ProfileActivity
+import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import com.thesis.tuladhaapp.ui.testPolaAsuh.SplashTesPolaAsuhActivity
 import com.thesis.tuladhaapp.utils.SkeletonConfigWrapper
 import com.thesis.tuladhaapp.utils.proceedWhen
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment() : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModel()
-    private val mainViewModel: MainViewModel by activityViewModel()
+    private val profileViewModel: ProfileViewModel by viewModel()
+    private var checkTesPolaAsuh = false
 
     //define adapter
     private val categoryAdapter: CategoryAdapter by lazy {
@@ -48,6 +45,7 @@ class HomeFragment() : Fragment() {
             navigateToCourseByCategory(it)
         }
     }
+
     private val popularCourseCategoryAdapter: PopularCourseCategoryAdapter by lazy {
         PopularCourseCategoryAdapter { category ->
             homeViewModel.changeSelectedCategory(category)
@@ -55,15 +53,19 @@ class HomeFragment() : Fragment() {
     }
     private val courseAdapter: CourseAdapter by lazy {
         CourseAdapter {
-                if (it.type == "gratis") {
-                    itemCourseListener(it.id)
-                } else {
-                    if (homeViewModel.isUserLoggedIn()) {
+            if (it.type == "gratis") {
+                itemCourseListener(it.id)
+            } else {
+                if (homeViewModel.isUserLoggedIn()) {
+                    if (checkTesPolaAsuh == true) {
                         itemCourseListener(it.id)
-                    } else {
-                        showDialog()
+                    }else{
+                        showDialogTest()
                     }
+                } else {
+                    showDialog()
                 }
+            }
         }
     }
 
@@ -98,7 +100,6 @@ class HomeFragment() : Fragment() {
     }
 
 
-
     private fun checkIfUserLogin() {
         if (homeViewModel.isUserLoggedIn()) {
             getProfileData()
@@ -112,6 +113,12 @@ class HomeFragment() : Fragment() {
             val firstName = it.fullName.split(" ").firstOrNull() ?: ""
             val greeting = "Hi, $firstName"
             binding.tvGreetingUser.text = greeting
+
+            if (it.uri != "Tidak Diketahui" || it.uri != null) {
+                checkTesPolaAsuh = false
+            } else {
+                checkTesPolaAsuh = true
+            }
         }
     }
 
@@ -144,21 +151,22 @@ class HomeFragment() : Fragment() {
         startActivity(Intent(requireContext(), LoginActivity::class.java))
     }
 
-    private fun navigateToHome() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        startActivity((intent))
-    }
-
     private fun navigateToTestPolaAsuh() {
 
         if (homeViewModel.isUserLoggedIn()) {
             val intent = Intent(requireContext(), SplashTesPolaAsuhActivity::class.java)
             startActivity(intent)
         } else {
-            FancyToast.makeText(requireContext(),"Silahkan Login Terlebih Dahulu", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show()
+            FancyToast.makeText(
+                requireContext(),
+                "Silahkan Login Terlebih Dahulu",
+                FancyToast.LENGTH_SHORT,
+                FancyToast.ERROR,
+                false
+            ).show()
             navigateToLogin()
         }
-     
+
     }
 
 
@@ -201,6 +209,22 @@ class HomeFragment() : Fragment() {
 
         binding.clSignUp.setOnClickListener {
             val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+    }
+
+    private fun showDialogTest() {
+        val binding: DialogNonTestpolaasuhBinding = DialogNonTestpolaasuhBinding.inflate(layoutInflater)
+        val dialog = AlertDialog.Builder(requireContext(), 0).create()
+
+        dialog.apply {
+            setView(binding.root)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }.show()
+
+        binding.clSignUp.setOnClickListener {
+            val intent = Intent(requireContext(), SplashTesPolaAsuhActivity::class.java)
             startActivity(intent)
             dialog.dismiss()
         }

@@ -16,6 +16,9 @@ class DataTypeParentingImpl : DataSourceTypeParenting {
         TypeParenting(
             3, "permissive",
             "Pola asuh ini memberikan kebebasan hampir tanpa batas. Orang tua cenderung menghindari aturan tegas dan jarang memberikan konsekuensi atas perilaku anak."
+        ), TypeParenting(
+            4, "Tidak Diketahui",
+            "Maaf, terdapat tipe pola asuh yang memiliki nilai uji yang sama, silahkan untuk melakukan tes pola asuh ulang, untuk memastikan tipe pola asuh yang cocok dengan diri anda"
         )
     )
 

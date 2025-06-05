@@ -2,18 +2,17 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id ("org.jetbrains.kotlin.kapt")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp")
     id("com.google.firebase.crashlytics")
     id("org.jlleitschuh.gradle.ktlint")
     alias(libs.plugins.google.gms.google.services)
-    id ("kotlin-kapt")
 }
 
 android {
     namespace = "com.thesis.tuladhaapp"
     compileSdk = 35
-
 
 
     defaultConfig {
@@ -46,6 +45,7 @@ android {
         viewBinding = true
         dataBinding = true
     }
+
 }
 
 dependencies {
@@ -58,6 +58,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity)
 
+    testImplementation ("junit:junit:4.13.2")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")// Contoh
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)

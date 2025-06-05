@@ -8,11 +8,11 @@
 
     <item
         android:id="@+id/navigation_course"
-        android:icon="@drawable/ic_course"
+        android:icon="@drawable/ic_search_course"
         android:title="@string/tv_menu_course" />
     <item
         android:id="@+id/navigation_class"
-        android:icon="@drawable/ic_class"
+        android:icon="@drawable/ic_paper_light"
         android:title="@string/tv_menu_class" />
 
 </menu>

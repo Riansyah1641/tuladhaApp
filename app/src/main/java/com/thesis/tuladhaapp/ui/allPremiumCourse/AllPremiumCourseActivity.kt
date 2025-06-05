@@ -8,14 +8,17 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
 import com.thesis.tuladhaapp.databinding.ActivityAllPremiumCourseBinding
 import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
+import com.thesis.tuladhaapp.databinding.DialogNonTestpolaasuhBinding
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.allPremiumCourse.adapter.PopularCourseAdapter
 import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
+import com.thesis.tuladhaapp.ui.testPolaAsuh.SplashTesPolaAsuhActivity
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,23 +28,27 @@ class AllPremiumCourseActivity : AppCompatActivity() {
     }
     private val viewModel: AllPremiumCourseViewModel by viewModel()
     private val profileViewModel: ProfileViewModel by viewModel()
-
+    private var checkTesPolaAsuh = false
 
     private val courseAdapter: PopularCourseAdapter by lazy {
         PopularCourseAdapter {
-            itemCourseListener(it.id)
+            if (it.type == "gratis") {
+                itemCourseListener(it.id)
+            } else {
+                if (profileViewModel.isUserLoggedIn()) {
+                    if (checkTesPolaAsuh == true) {
+                        itemCourseListener(it.id)
+                    } else {
+                        showDialogTest()
+                    }
+                } else {
+                    loginDialog()
+                }
+            }
         }
     }
 
     private var selectedType: String? = null
-
-    private fun itemCourseListener(courseId: Int?) {
-        if (profileViewModel.isUserLoggedIn()) {
-            navigateToDetailCourse(courseId)
-        } else {
-            loginDialog()
-        }
-    }
 
 
     private var searchQuery: String? = null
@@ -72,6 +79,27 @@ class AllPremiumCourseActivity : AppCompatActivity() {
         binding.clSignUp.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            dialog.dismiss()
+        }
+    }
+    private fun itemCourseListener(courseId: Int?) {
+        navigateToDetailCourse(courseId)
+    }
+
+    private fun showDialogTest() {
+        val binding: DialogNonTestpolaasuhBinding =
+            DialogNonTestpolaasuhBinding.inflate(layoutInflater)
+        val dialog = AlertDialog.Builder(this, 0).create()
+
+        dialog.apply {
+            setView(binding.root)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }.show()
+
+        binding.clSignUp.setOnClickListener {
+            val intent = Intent(this, SplashTesPolaAsuhActivity::class.java)
+            startActivity(intent)
+            dialog.dismiss()
         }
     }
 

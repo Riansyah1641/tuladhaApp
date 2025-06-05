@@ -15,7 +15,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_background_quick_test"
         tools:context=".ui.testPolaAsuh.QuickStartActivity">
 
         <ImageView
@@ -26,18 +25,18 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/ic_arrow_back_black"
             />
+
         <TextView
             android:id="@+id/question_number_textView"
             style="@style/quick_start_txt_view_style"
-            android:text='@{String.format("Pertanyaan %d/62", quickStartViewModel.liveIndex)}'
+            android:text='@{String.format("Pertanyaan %d/32", quickStartViewModel.liveIndex)}'
             android:textColor="@color/app_color_primary"
-            android:layout_marginTop="12dp"
             app:layout_constraintTop_toBottomOf="@+id/iv_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Pertanyaan 1/62" />
+            tools:text="Pertanyaan 1/32" />
 
         <TextView
             android:id="@+id/question_txt"
@@ -46,6 +45,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@id/question_number_textView"
             app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
@@ -94,17 +95,28 @@
                 android:onClick="@{() -> quickStartViewModel.answerAndNext(5)}" />
         </RadioGroup>
 
-
         <Button
-            android:id="@+id/next_quick_question"
+            android:id="@+id/back_quick_question"
             style="@style/next_quick_question_style"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
+            android:textColor="@color/black"
+            android:text='@{quickStartViewModel.isFirstQuestion ? "Kembali" : ""}'
+            android:onClick='@{() -> quickStartViewModel.backQuestion()}'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/next_quick_questions" />
+        <Button
+            android:id="@+id/next_quick_questions"
+            style="@style/next_quick_question_style"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/black"
             android:text='@{quickStartViewModel.isLastQuestion ? "Selesai" : "next"}'
             android:enabled='@{quickStartViewModel.isAnswerSelected}'
             android:onClick='@{() -> quickStartViewModel.nextQuestion()}'
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back_quick_question"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,7 +43,7 @@ class ProfileActivity : AppCompatActivity() {
             binding.etNomorTextProfile.setText(it.uri)
         }
     }
-
+ 
     private fun checkIfUserLogin() {
         if (profileViewModel.isUserLoggedIn()) {
         } else {

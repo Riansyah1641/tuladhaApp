@@ -44,13 +44,16 @@ class QuickStartActivity : AppCompatActivity() {
     }
 
     private fun setOnClickListener() {
-        binding.nextQuickQuestion.setOnClickListener {
-            if (binding.nextQuickQuestion.text == "Selesai") {
+        binding.nextQuickQuestions.setOnClickListener {
+            if (binding.nextQuickQuestions.text == "Selesai") {
                 viewModel.ResultUserCalculate()
             }
         }
         binding.ivBack.setOnClickListener {
             onBackPressed()
+        }
+        binding.backQuickQuestion.setOnClickListener {
+            viewModel.backQuestion()
         }
     }
 
@@ -68,7 +71,6 @@ class QuickStartActivity : AppCompatActivity() {
                 viewModel.clearSelectionHandled()
             }
         }
-
 
 
 

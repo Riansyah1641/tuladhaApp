@@ -133,7 +133,7 @@
     <string name="current_txt">Current</string>
     <string name="results_txt">Tipe Pola Asuh Anda</string>
     <string name="mentalQuestionNumber">%1$d/30</string>
-    <string name="result_polaAsuh">Selamat, Anda telah menyelesaikan tes pola asuh</string>
+    <string name="result_polaAsuh">Selamat, Tipe pola asuh Anda</string>
     <string name="desk_tespolaasuh_home">Ikuti tes singkat, untuk mengetahui pola asuhmu dan Akses ke layanan kami!</string>
     <string name="title_test_polasuhhome">Yuk, Kenali Gaya Pola Asuhmu!</string>
     <string name="start_tes">Mulai Tes</string>
@@ -210,10 +210,12 @@
     <string name="_3_4_tahun">3 - 4 Tahun</string>
     <string name="_2_3_tahun">2 - 3 Tahun</string>
     <string name="_4_5_tahun">4 - 5 Tahun</string>
-    <string name="splash_screen_tes_pola_asuh">Tes Pola Asuh ini menggunakan Parenting Styles and Dimensions Questionnaire (PSDQ) yang terdiri dari 62 pertanyaan. Tes ini bertujuan untuk membantu orang tua memahami gaya pengasuhan yang paling dominan mereka terapkan, yaitu:\n\n1. Authoritative \n2. Authoritarian \n3. Permissive \n\nSilakan tekan tombol di bawah ini untuk memulai tes.</string>
+    <string name="splash_screen_tes_pola_asuh">Tes Pola Asuh ini menggunakan Parenting Styles and Dimensions Questionnaire (PSDQ) yang terdiri dari 32 pertanyaan. Tes ini bertujuan untuk membantu orang tua memahami gaya pengasuhan yang paling dominan mereka terapkan, yaitu:\n\n1. Authoritative \n2. Authoritarian \n3. Permissive \n\nSilakan tekan tombol di bawah ini untuk memulai tes.</string>
     <string name="mulai_tes">Mulai Tes</string>
     <string name="profil_akun">Profil Akun</string>
     <string name="netword_alert">Maaf, harap gunakan paket data untuk mengakses aplikasi</string>
     <string name="empty_Data">Maaf, data masih kosong</string>
     <string name="login_first">Silahkan login terlebih dahulu</string>
+    <string name="dialog_tes_pola_asuh">Untuk mengakses course ini, harap lakukan tes pola asuh terlebih dahulu</string>
+    <string name="button_testt">Tes Pola Asuh</string>
 </resources>

@@ -24,7 +24,7 @@ class CourseRepositoryImpl(
     private val dataSource: DataSourceCourse,
     private val dataSourceDetailCourse: DataSourceDetailCourse
 ) : CourseRepository {
-    private val database = FirebaseDatabase.getInstance().getReference("user_courses")
+
 
     override fun getCourses(
         search: String?,
@@ -56,12 +56,12 @@ class CourseRepositoryImpl(
         }
     }
 
+    private val database = FirebaseDatabase.getInstance().getReference("user_courses")
     override suspend fun sendCourseDataToFirebase(courseData: CourseData, idUser: String): Boolean {
         return try {
             val courseIdToSend = courseData.courseId?.toString() ?: return false
             val courseRef = database.child(idUser).child(courseIdToSend)
 
-            // Periksa apakah progress sudah "Selesai" di database
             val isAlreadyDone = suspendCancellableCoroutine<Boolean> { continuation ->
                 courseRef.child("progress").addListenerForSingleValueEvent(object :
                     ValueEventListener {
@@ -105,16 +105,10 @@ class CourseRepositoryImpl(
     override fun getUserCourses(userId: String): Flow<List<CourseData>> = callbackFlow {
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("Repository", "Snapshot Key (level): ${snapshot.key}")
-                Log.d("Repository", "onDataChange dipanggil untuk user $userId")
+
                 val courseList = mutableListOf<CourseData>()
-
-                Log.d("Repository", "Jumlah child di bawah user $userId adalah ${snapshot.childrenCount}")
-
                 for (courseIdSnapshot in snapshot.children) {
-                    val enrollmentId = courseIdSnapshot.key // Gunakan key snapshot sebagai enrollmentId
-                    Log.d("Repository", "Memproses enrollment dengan ID: $enrollmentId")
-
+                    val enrollmentId = courseIdSnapshot.key
                     try {
                         val createAtGet = courseIdSnapshot.child("createdAt").getValue(String::class.java)
                         val accessible = courseIdSnapshot.child("accessible").getValue(Boolean::class.java)
@@ -149,7 +143,7 @@ class CourseRepositoryImpl(
                                 category = null,
                                 courseCreator = null,
                                 benefits = null, // Handle benefits manually jika perlu
-                                chapters = null // Handle chapters manually jika perlu
+                                chapters = null
                             )
                         } else {
                             null
@@ -158,7 +152,7 @@ class CourseRepositoryImpl(
                         val courseData = CourseData(
                             isAccessible = accessible,
                             course = courseDetail,
-                            id = enrollmentId?.toIntOrNull(), // Gunakan enrollmentId sebagai ID
+                            id = enrollmentId?.toIntOrNull(),
                             courseId = enrollmentId?.toIntOrNull(),
                             isFollowing = followingGet,
                             lastSeen = lastSeenGet,
@@ -170,16 +164,12 @@ class CourseRepositoryImpl(
                         )
                         courseList.add(courseData)
                     } catch (e: Exception) {
-                        Log.e("Repository", "Error processing enrollment $enrollmentId: ${e.message}")
                     }
                 }
-
-                Log.d("Repository", "Jumlah kursus yang akan di-emit adalah ${courseList.size}")
                 trySend(courseList).isSuccess
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("Repository", "Error saat mengambil data kursus: ${error.message}", error.toException())
                 close(error.toException())
             }
         }
