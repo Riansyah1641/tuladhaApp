@@ -22,6 +22,9 @@ class AssesCourseActivity : AppCompatActivity() {
         binding.nextButton.setOnClickListener {
             navigateToEvaluation()
         }
+        binding.toolbar.setOnClickListener {
+            finish()
+        }
     }
 
     private fun getData() {

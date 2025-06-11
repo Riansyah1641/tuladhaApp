@@ -5,6 +5,7 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.FragmentFilterDialogBinding
@@ -18,7 +19,7 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
     private lateinit var binding: FragmentFilterDialogBinding
 
     private val viewModel: CourseViewModel by lazy { requireParentFragment().getViewModel() }
-
+    private var isSettingCheckboxesProgrammatically = false
     private val categoryAdapter: CategoryFilterAdapter by lazy {
         CategoryFilterAdapter(object : CategoryItemListener {
             override fun onCategoryChecked(category: Category) {
@@ -78,7 +79,7 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
 
     private fun setClickListener() {
         binding.ivClose.setOnClickListener {
-            dismiss()
+            dialog?.dismiss()
         }
         binding.btnFilter.setOnClickListener {
             applyFilter()
@@ -87,6 +88,53 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
             resetFilter()
             dismiss()
         }
+
+        // Listener untuk kelompok checkbox "0-12 Bulan"
+        val monthCheckboxes = listOf(
+            binding.cb03Bulan,
+            binding.cb36Bulan,
+            binding.cb69Bulan,
+            binding.cb912Bulan
+        )
+
+        monthCheckboxes.forEach { checkBox ->
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                if (!isSettingCheckboxesProgrammatically) {
+                    // Jika ada satu yang dicentang, centang semua dalam kelompok
+                    if (isChecked) {
+                        setMonthCheckboxes(true)
+                    } else {
+                        // Jika satu tidak dicentang, biarkan yang lain jika masih ada yang tercentang
+                        // Atau jika semua dicentang dan salah satu di-uncheck, uncheck semua.
+                        // Logic ini memastikan jika salah satu di-uncheck, hanya yang di-uncheck yang berubah,
+                        // kecuali jika semua awalnya tercentang dan salah satu di-uncheck.
+                        val allMonthCheckboxes = listOf(
+                            binding.cb03Bulan,
+                            binding.cb36Bulan,
+                            binding.cb69Bulan,
+                            binding.cb912Bulan
+                        )
+                        val allChecked = allMonthCheckboxes.all { it.isChecked }
+                        if (allChecked && !isChecked) { // Jika semua awalnya checked dan yang ini di-uncheck
+                            setMonthCheckboxes(false) // Maka uncheck semua
+                        }
+                    }
+                }else{
+                    binding.rvFilterCategory.isVisible = true
+                }
+            }
+        }
+    }
+
+    private fun setMonthCheckboxes(isChecked: Boolean) {
+        isSettingCheckboxesProgrammatically = true
+        if (isChecked == true){
+            binding.rvFilterCategory.isVisible = false
+        }else{
+            binding.rvFilterCategory.isVisible = true
+        }
+
+        isSettingCheckboxesProgrammatically = false
     }
 
     private fun resetFilter() {

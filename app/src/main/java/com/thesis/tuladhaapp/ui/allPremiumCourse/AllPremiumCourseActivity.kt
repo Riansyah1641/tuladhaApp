@@ -32,7 +32,7 @@ class AllPremiumCourseActivity : AppCompatActivity() {
 
     private val courseAdapter: PopularCourseAdapter by lazy {
         PopularCourseAdapter {
-            if (it.type == "gratis") {
+            if (it.type == "umum") {
                 itemCourseListener(it.id)
             } else {
                 if (profileViewModel.isUserLoggedIn()) {
@@ -60,6 +60,7 @@ class AllPremiumCourseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        getProfileData()
         getData()
         observeCourseList()
         observeFilterData()
@@ -84,6 +85,16 @@ class AllPremiumCourseActivity : AppCompatActivity() {
     }
     private fun itemCourseListener(courseId: Int?) {
         navigateToDetailCourse(courseId)
+    }
+
+    private fun getProfileData() {
+        profileViewModel.getCurrentUser()?.let {
+            if (it.uri != "Tidak Diketahui" && it.uri != null) {
+                checkTesPolaAsuh = true
+            } else {
+                checkTesPolaAsuh = false
+            }
+        }
     }
 
     private fun showDialogTest() {

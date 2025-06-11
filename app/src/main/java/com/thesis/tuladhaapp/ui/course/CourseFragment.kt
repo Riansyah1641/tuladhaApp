@@ -42,21 +42,23 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     private var selectedLevel: List<String>? = null
     private var selectedSortBy: String? = null
     private var checkTesPolaAsuh = false
+
     //adapter
     private val courseItemAdapter: CourseItemAdapter by lazy {
         CourseItemAdapter() {
-            if (it.type == "gratis") {
-                itemCourseListener(it.id)
-            } else {
-                if (profileViewModel.isUserLoggedIn()) {
-                    if (checkTesPolaAsuh == true) {
+            if (profileViewModel.isUserLoggedIn()) {
+                getProfileData()
+                if (it.type == "premium") {
+                    if (checkTesPolaAsuh == true && it.type == "premium") {
                         itemCourseListener(it.id)
-                    }else{
+                    } else {
                         showDialogTest()
                     }
                 } else {
-                    loginDialog()
+                    itemCourseListener(it.id)
                 }
+            } else {
+                loginDialog()
             }
         }
     }
@@ -80,6 +82,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.resetFilter()
+        getProfileData()
         observeCourseList()
         openFilterDialog()
         setType()
@@ -94,8 +97,19 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
         navigateToDetailCourse(courseId)
     }
 
+    private fun getProfileData() {
+        profileViewModel.getCurrentUser()?.let {
+            if (it.uri != "Tidak Diketahui" || it.uri != null) {
+                checkTesPolaAsuh = true
+            } else {
+                checkTesPolaAsuh = false
+            }
+        }
+    }
+
     private fun showDialogTest() {
-        val binding: DialogNonTestpolaasuhBinding = DialogNonTestpolaasuhBinding.inflate(layoutInflater)
+        val binding: DialogNonTestpolaasuhBinding =
+            DialogNonTestpolaasuhBinding.inflate(layoutInflater)
         val dialog = AlertDialog.Builder(requireContext(), 0).create()
 
         dialog.apply {
@@ -312,7 +326,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     companion object {
         const val TYPE_ALL = "all"
         const val TYPE_PREMIUM = "premium"
-        const val TYPE_FREE = "gratis"
+        const val TYPE_FREE = "umum"
         const val KEY_QUERY = "searchQuery"
         const val KEY_CATEGORY = "selectedCategory"
         const val TAG_DIALOG = "FilterDialog"

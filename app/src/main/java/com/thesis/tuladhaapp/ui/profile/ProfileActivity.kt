@@ -146,10 +146,12 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun navigateToLogin() {
         startActivity(Intent(this   , LoginActivity::class.java))
+        finish()
     }
 
     private fun navigateToHome() {
         startActivity(Intent(this   , MainActivity::class.java))
+        finish()
     }
 
 

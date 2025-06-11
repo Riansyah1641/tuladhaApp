@@ -104,6 +104,5 @@ class QuizResultActivity : AppCompatActivity() {
             putExtra("ID_COURSE", idCourse)
         }
         startActivity(intent)
-        finish()
     }
 }

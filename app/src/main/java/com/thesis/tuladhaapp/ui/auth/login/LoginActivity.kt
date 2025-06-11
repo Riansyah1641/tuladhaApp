@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     binding.pbLoading.isVisible = false
                     FancyToast.makeText(
                         this,
-                        it.exception?.message.orEmpty(),
+                        "Maaf, username atau password Anda salah",
                         FancyToast.LENGTH_SHORT,
                         FancyToast.ERROR,
                         false

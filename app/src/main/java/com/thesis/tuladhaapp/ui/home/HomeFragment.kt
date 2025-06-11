@@ -53,10 +53,11 @@ class HomeFragment() : Fragment() {
     }
     private val courseAdapter: CourseAdapter by lazy {
         CourseAdapter {
-            if (it.type == "gratis") {
+            if (it.type == "umum") {
                 itemCourseListener(it.id)
             } else {
                 if (homeViewModel.isUserLoggedIn()) {
+                    getProfileData()
                     if (checkTesPolaAsuh == true) {
                         itemCourseListener(it.id)
                     }else{
@@ -103,8 +104,6 @@ class HomeFragment() : Fragment() {
     private fun checkIfUserLogin() {
         if (homeViewModel.isUserLoggedIn()) {
             getProfileData()
-        } else {
-
         }
     }
 
@@ -114,10 +113,10 @@ class HomeFragment() : Fragment() {
             val greeting = "Hi, $firstName"
             binding.tvGreetingUser.text = greeting
 
-            if (it.uri != "Tidak Diketahui" || it.uri != null) {
-                checkTesPolaAsuh = false
-            } else {
+            if (it.uri != "Tidak Diketahui" && it.uri != null) {
                 checkTesPolaAsuh = true
+            } else {
+                checkTesPolaAsuh = false
             }
         }
     }
@@ -135,7 +134,7 @@ class HomeFragment() : Fragment() {
             if (homeViewModel.isUserLoggedIn()) {
                 navigateToProfile()
             } else {
-                showDialog()
+                navigateToLogin()
             }
         }
 
