@@ -325,7 +325,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
 
     companion object {
         const val TYPE_ALL = "all"
-        const val TYPE_PREMIUM = "premium"
+        const val TYPE_PREMIUM = "khusus"
         const val TYPE_FREE = "umum"
         const val KEY_QUERY = "searchQuery"
         const val KEY_CATEGORY = "selectedCategory"
