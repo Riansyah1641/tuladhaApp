@@ -90,7 +90,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdAt = "2024-08-15T08:00:00Z",
                 updatedAt = "2024-09-10T08:00:00Z",
                 category = CourseCategory(4, "Umum"),
-                courseCreator = CourseCreator(3, "Tuladha Parenting"),
+                courseCreator = CourseCreator(3, "Mahadewi Zahra, M.Psi"),
                 benefits = listOf(
                     CourseBenefit(5, 3, "Menghindari konflik dengan anak remaja"),
                     CourseBenefit(6, 3, "Membangun empati dua arah")
@@ -154,8 +154,8 @@ class DummyCourseDataSource : DataSourceCourse {
                 id = 6,
                 name = "Melatih Motorik Kasar Anak Lewat Bermain yang Terarah",
                 imageUrl = "https://plus.unsplash.com/premium_photo-1661517729115-4b1069692b4b?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                videoPreviewUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-                level = "1-2 Tahun",
+                videoPreviewUrl = "https://github.com/riansyah251641/tuladhaAsset/blob/main/categoryAssets/video_otoritatiff.mp4?raw=true",
+                level = "2-3 Tahun",
                 rating = 4.8,
                 categoryId = 1,
                 description = "Aktivitas fisik seperti mendorong dengan kaki atau bermain aktif membutuhkan dukungan orang tua. E-course ini membahas bagaimana pola asuh authoritative dapat membimbing anak berkembang aktif dan percaya diri, dibanding otoriter yang penuh larangan atau permisif yang minim arahan.",
@@ -170,7 +170,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-07-01",
                 updatedAt = "2024-07-05",
-                category = CourseCategory(1, "Authotaritative"),
+                category = CourseCategory(1, "Otoritatif"),
                 courseCreator = CourseCreator(5, "Dr. Ana"),
                 benefits = listOf(
                     CourseBenefit(11, 6, "Mental health awareness")
@@ -196,8 +196,8 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-06-01",
                 updatedAt = "2024-06-10",
-                category = CourseCategory(1, "Authotaritative"),
-                courseCreator = CourseCreator(3, "Tuladha Parenting"),
+                category = CourseCategory(1, "Otoritatif"),
+                courseCreator = CourseCreator(3, "Mahadewi Zahra, M.Psi"),
                 benefits = listOf(
                     CourseBenefit(12, 7, "Gentle parenting")
                 )
@@ -210,7 +210,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 level = "2-3 Tahun",
                 rating = 4.6,
                 categoryId = 3,
-                description = "Permainan menirukan hewan dapat menstimulasi kreativitas, motorik, dan ekspresi emosional. Course ini menekankan pentingnya keseimbangan antara kebebasan berekspresi (permissive) dan batasan aman (authoritative), serta menghindari penekanan yang berlebihan (authoritarian).",
+                description = "Permainan menirukan hewan dapat menstimulasi kreativitas, motorik, dan ekspresi emosional. Course ini menekankan pentingnya keseimbangan antara kebebasan berekspresi (permissive)",
                 classCode = "PARENT08",
                 totalModule = 4,
                 totalDuration = 80,
@@ -222,7 +222,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-05-15",
                 updatedAt = "2024-05-20",
-                category = CourseCategory(3, "Permissive"),
+                category = CourseCategory(3, "Permisif"),
                 courseCreator = CourseCreator(2, "Rian Surya"),
                 benefits = listOf(
                     CourseBenefit(13, 8, "Membantu anak belajar")
@@ -232,7 +232,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 id = 9,
                 name = "Mengajarkan Konsep Matematika Dasar dalam Pola Asuh Seimbang",
                 imageUrl = "https://images.unsplash.com/photo-1581089778245-3ce67677f718?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                videoPreviewUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                videoPreviewUrl = "https://github.com/riansyah251641/tuladhaAsset/blob/main/categoryAssets/vidio_otoriterr.mp4?raw=true",
                 level = "3-4 Tahun",
                 rating = 4.7,
                 categoryId = 2,
@@ -248,7 +248,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-05-01",
                 updatedAt = "2024-05-05",
-                category = CourseCategory(2, "Authoritarian"),
+                category = CourseCategory(2, "Otoriter"),
                 courseCreator = CourseCreator(6, "Budi Santoso"),
                 benefits = listOf(
                     CourseBenefit(14, 9, "Peran ayah aktif")
@@ -258,7 +258,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 id = 10,
                 name = "Menanamkan Konsep Ukuran dan Perbandingan Lewat Aktivitas Bermain",
                 imageUrl = "https://images.unsplash.com/photo-1714646082106-188388cc2e3c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                videoPreviewUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                videoPreviewUrl = "https://github.com/riansyah251641/tuladhaAsset/blob/main/categoryAssets/permisif_vidioo.mp4?raw=true",
                 level = "4-5 Tahun",
                 rating = 4.9,
                 categoryId = 3,
@@ -274,7 +274,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-04-10",
                 updatedAt = "2024-04-15",
-                category = CourseCategory(3, "Permissive"),
+                category = CourseCategory(3, "Permisif"),
                 courseCreator = CourseCreator(7, "Dr. Nia"),
                 benefits = listOf(
                     CourseBenefit(15, 10, "Pendampingan ABK")
@@ -386,7 +386,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdAt = "2024-08-15T08:00:00Z",
                 updatedAt = "2024-09-10T08:00:00Z",
                 category = CourseCategory(4, "Umum"),
-                courseCreator = CourseCreator(3, "Tuladha Parenting"),
+                courseCreator = CourseCreator(3, "Mahadewi Zahra, M.Psi"),
                 benefits = listOf(
                     CourseBenefit(5, 3, "Menghindari konflik dengan anak remaja"),
                     CourseBenefit(6, 3, "Membangun empati dua arah")
@@ -450,8 +450,8 @@ class DummyCourseDataSource : DataSourceCourse {
                 id = 6,
                 name = "Melatih Motorik Kasar Anak Lewat Bermain yang Terarah",
                 imageUrl = "https://plus.unsplash.com/premium_photo-1661517729115-4b1069692b4b?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                videoPreviewUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-                level = "1-2 Tahun",
+                videoPreviewUrl = "https://github.com/riansyah251641/tuladhaAsset/blob/main/categoryAssets/video_otoritatiff.mp4?raw=true",
+                level = "2-3 Tahun",
                 rating = 4.8,
                 categoryId = 1,
                 description = "Aktivitas fisik seperti mendorong dengan kaki atau bermain aktif membutuhkan dukungan orang tua. E-course ini membahas bagaimana pola asuh authoritative dapat membimbing anak berkembang aktif dan percaya diri, dibanding otoriter yang penuh larangan atau permisif yang minim arahan.",
@@ -466,7 +466,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-07-01",
                 updatedAt = "2024-07-05",
-                category = CourseCategory(1, "Authotaritative"),
+                category = CourseCategory(1, "Otoritatif"),
                 courseCreator = CourseCreator(5, "Dr. Ana"),
                 benefits = listOf(
                     CourseBenefit(11, 6, "Mental health awareness")
@@ -492,8 +492,8 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-06-01",
                 updatedAt = "2024-06-10",
-                category = CourseCategory(1, "Authotaritative"),
-                courseCreator = CourseCreator(3, "Tuladha Parenting"),
+                category = CourseCategory(1, "Otoritatif"),
+                courseCreator = CourseCreator(3, "Mahadewi Zahra, M.Psi"),
                 benefits = listOf(
                     CourseBenefit(12, 7, "Gentle parenting")
                 )
@@ -506,7 +506,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 level = "2-3 Tahun",
                 rating = 4.6,
                 categoryId = 3,
-                description = "Permainan menirukan hewan dapat menstimulasi kreativitas, motorik, dan ekspresi emosional. Course ini menekankan pentingnya keseimbangan antara kebebasan berekspresi (permissive) dan batasan aman (authoritative), serta menghindari penekanan yang berlebihan (authoritarian).",
+                description = "Permainan menirukan hewan dapat menstimulasi kreativitas, motorik, dan ekspresi emosional. Course ini menekankan pentingnya keseimbangan antara kebebasan berekspresi (permissive)",
                 classCode = "PARENT08",
                 totalModule = 4,
                 totalDuration = 80,
@@ -518,7 +518,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-05-15",
                 updatedAt = "2024-05-20",
-                category = CourseCategory(3, "Permissive"),
+                category = CourseCategory(3, "Permisif"),
                 courseCreator = CourseCreator(2, "Rian Surya"),
                 benefits = listOf(
                     CourseBenefit(13, 8, "Membantu anak belajar")
@@ -528,7 +528,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 id = 9,
                 name = "Mengajarkan Konsep Matematika Dasar dalam Pola Asuh Seimbang",
                 imageUrl = "https://images.unsplash.com/photo-1581089778245-3ce67677f718?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                videoPreviewUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                videoPreviewUrl = "https://github.com/riansyah251641/tuladhaAsset/blob/main/categoryAssets/vidio_otoriterr.mp4?raw=true",
                 level = "3-4 Tahun",
                 rating = 4.7,
                 categoryId = 2,
@@ -544,7 +544,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-05-01",
                 updatedAt = "2024-05-05",
-                category = CourseCategory(2, "Authoritarian"),
+                category = CourseCategory(2, "Otoriter"),
                 courseCreator = CourseCreator(6, "Budi Santoso"),
                 benefits = listOf(
                     CourseBenefit(14, 9, "Peran ayah aktif")
@@ -554,7 +554,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 id = 10,
                 name = "Menanamkan Konsep Ukuran dan Perbandingan Lewat Aktivitas Bermain",
                 imageUrl = "https://images.unsplash.com/photo-1714646082106-188388cc2e3c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                videoPreviewUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                videoPreviewUrl = "https://github.com/riansyah251641/tuladhaAsset/blob/main/categoryAssets/permisif_vidioo.mp4?raw=true",
                 level = "4-5 Tahun",
                 rating = 4.9,
                 categoryId = 3,
@@ -570,7 +570,7 @@ class DummyCourseDataSource : DataSourceCourse {
                 createdBy = 1,
                 createdAt = "2024-04-10",
                 updatedAt = "2024-04-15",
-                category = CourseCategory(3, "Permissive"),
+                category = CourseCategory(3, "Permisif"),
                 courseCreator = CourseCreator(7, "Dr. Nia"),
                 benefits = listOf(
                     CourseBenefit(15, 10, "Pendampingan ABK")

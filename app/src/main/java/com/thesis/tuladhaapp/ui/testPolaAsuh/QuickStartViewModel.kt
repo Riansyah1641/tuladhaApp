@@ -62,15 +62,15 @@ class QuickStartViewModel(private val repo: UserRepository) : ViewModel() {
 
     private val typeParenting = listOf(
         TypeParenting(
-            1, "Authoritative",
+            1, "Otoritatif",
             "Pola asuh yang menekankan komunikasi terbuka, aturan yang jelas, dan dukungan emosional. Orang tua memberikan bimbingan sambil tetap menghargai pendapat dan kebutuhan anak."
         ),
         TypeParenting(
-            2, "Authoritarian",
+            2, "Otoriter",
             "Pola asuh yang berfokus pada kepatuhan dan kontrol tinggi. Orang tua menuntut disiplin ketat, namun kurang melibatkan anak dalam pengambilan keputusan dan menunjukkan kehangatan emosional."
         ),
         TypeParenting(
-            3, "Permissive",
+            3, "Permisif",
             "Pola asuh yang memberikan kebebasan hampir tanpa batas. Orang tua cenderung menghindari aturan tegas dan jarang memberikan konsekuensi atas perilaku anak."
         ),
         TypeParenting(

@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:fitsSystemWindows="true"
+
+    tools:context=".ui.profile.KidsActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/toolbar"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="?attr/actionBarSize"
+
+        android:background="?attr/colorPrimary"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:navigationIcon="@drawable/ic_arrow_back"
+
+        app:title="Data Anak"
+
+        app:titleTextColor="@android:color/white" />
+
+
+    <androidx.core.widget.NestedScrollView
+
+        android:id="@+id/nsv_profile"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="0dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+
+            android:layout_marginHorizontal="24dp"
+
+            android:layout_marginTop="20dp"
+
+            android:paddingBottom="100dp">
+
+
+            <ImageView
+
+                android:id="@+id/iv_profile"
+
+                android:layout_width="180dp"
+
+                android:layout_height="150dp"
+
+                android:layout_gravity="center"
+
+                android:padding="10dp"
+
+                android:scaleType="centerCrop"
+
+                android:src="@drawable/img_empty_course"
+
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+
+            <!-- Bagian baru untuk data anak -->
+
+            <TextView
+
+                android:id="@+id/tv_child_name_label"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="8dp"
+
+                android:paddingTop="8dp"
+
+                android:text="@string/first_name_ids"
+
+                android:textSize="18sp"
+
+                android:textStyle="bold"
+
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/et_child_name"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="45dp"
+
+                android:layout_marginHorizontal="8dp"
+
+                android:background="@drawable/bg_rectangle_white_12"
+
+                android:hint="@string/hint_name_kids"
+
+                android:paddingHorizontal="14dp"
+
+                android:textColor="@color/black"
+
+                android:textSize="14sp"
+
+                app:layout_constraintTop_toBottomOf="@+id/tv_child_name_label" />
+
+
+            <TextView
+
+                android:id="@+id/tv_child_gender_label"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="8dp"
+
+                android:paddingTop="8dp"
+
+                android:text="@string/gender_kids"
+
+                android:textSize="18sp"
+
+                android:textStyle="bold"
+
+                app:layout_constraintTop_toBottomOf="@+id/et_child_name" />
+
+
+            <RadioGroup
+
+                android:id="@+id/rg_child_gender"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="8dp"
+
+                android:orientation="horizontal"
+
+                app:layout_constraintTop_toBottomOf="@+id/tv_child_gender_label">
+
+
+                <RadioButton
+
+                    android:id="@+id/rb_male"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginEnd="16dp"
+
+                    android:text="@string/men_gender" />
+
+
+                <RadioButton
+
+                    android:id="@+id/rb_female"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/women_gender" />
+
+            </RadioGroup>
+
+
+            <TextView
+
+                android:id="@+id/tv_child_age_label"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="8dp"
+
+                android:paddingTop="8dp"
+
+                android:text="@string/age_kids_label"
+
+                android:textSize="18sp"
+
+                android:textStyle="bold"
+
+                app:layout_constraintTop_toBottomOf="@+id/rg_child_gender" />
+
+
+            <!-- Menggunakan LinearLayout untuk mengatur RadioGroup dalam 2 kolom -->
+
+            <LinearLayout
+
+                android:id="@+id/ll_child_age_options"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="8dp"
+
+                android:orientation="horizontal"
+
+                android:weightSum="2"
+
+                app:layout_constraintTop_toBottomOf="@+id/tv_child_age_label">
+
+
+                <RadioGroup
+
+                    android:id="@+id/rg_child_age_col1"
+
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+
+                    <RadioButton
+
+                        android:id="@+id/rb_age_0_3_months"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="0-3 Bulan" />
+
+
+                    <RadioButton
+
+                        android:id="@+id/rb_age_3_6_months"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="3-6 Bulan" />
+
+
+                    <RadioButton
+
+                        android:id="@+id/rb_age_6_9_months"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="6-9 Bulan" />
+
+
+                    <RadioButton
+
+                        android:id="@+id/rb_age_9_12_months"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="9-12 Bulan" />
+
+                </RadioGroup>
+
+
+                <RadioGroup
+
+                    android:id="@+id/rg_child_age_col2"
+
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+
+                    <RadioButton
+
+                        android:id="@+id/rb_age_1_2_years"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="1-2 Tahun" />
+
+
+                    <RadioButton
+
+                        android:id="@+id/rb_age_2_3_years"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="2-3 Tahun" />
+
+
+                    <RadioButton
+
+                        android:id="@+id/rb_age_3_4_years"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="3-4 Tahun" />
+
+
+                    <RadioButton
+
+                        android:id="@+id/rb_age_4_5_years"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="4-5 Tahun" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+            <Button
+
+                android:id="@+id/btn_edit_profile"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="48dp"
+
+                android:layout_marginVertical="8dp"
+
+                android:text="@string/ubah_data"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+
+                app:layout_constraintRight_toRightOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/ll_child_age_options" />
+
+
+            <Button
+
+                android:id="@+id/btn_see_all"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="48dp"
+
+                android:layout_marginVertical="8dp"
+
+                android:text="Lihat semua data"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+
+                app:layout_constraintRight_toRightOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/btn_edit_profile" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

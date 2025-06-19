@@ -235,6 +235,16 @@
                         android:visibility="gone"
                         tools:visibility="gone" />
 
+                    <include
+                        android:id="@+id/empty_data"
+                        layout="@layout/item_empty_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:visibility="visible"/>
+
                 </FrameLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

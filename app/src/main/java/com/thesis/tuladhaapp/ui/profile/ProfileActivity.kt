@@ -17,6 +17,7 @@ import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.ActivityMainBinding
 import com.thesis.tuladhaapp.databinding.ActivityProfileBinding
 import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
+import com.thesis.tuladhaapp.ui.home.HomeFragment
 import com.thesis.tuladhaapp.ui.main.MainActivity
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -69,6 +70,13 @@ class ProfileActivity : AppCompatActivity() {
                 navigateToLogin()
             }
         }
+        binding.btnAddKids.setOnClickListener {
+            if (profileViewModel.isUserLoggedIn()) {
+                startActivity(Intent(this, ActivityChildList::class.java))
+            } else {
+                navigateToLogin()
+            }
+        }
 
         binding.logoutProfile.setOnClickListener {
             if (profileViewModel.isUserLoggedIn()) {
@@ -78,7 +86,7 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
         binding.toolbar.setOnClickListener {
-            finish()
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         binding.btnChangePw.setOnClickListener {

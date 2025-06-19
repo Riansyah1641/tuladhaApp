@@ -11,7 +11,7 @@
     <string name="text_hi_user">Hai, parent</string>
     <string name="tv_lets_find_your_course">Mari temukan modulmu!</string>
     <string name="text_search_best_course">Cari modul Anda&#8230;</string>
-    <string name="text_popular_course">Kursus Populer</string>
+    <string name="text_popular_course">Rekomendasi Course</string>
     <string name="text_see_all">Lihat Semua</string>
     <string name="text_class_topic">Pilihan Pembelajaran</string>
     <string name="text_filter">Filter</string>
@@ -218,4 +218,13 @@
     <string name="login_first">Silahkan login terlebih dahulu</string>
     <string name="dialog_tes_pola_asuh">Untuk mengakses course ini, harap lakukan tes pola asuh terlebih dahulu</string>
     <string name="button_testt">Tes Pola Asuh</string>
+    <string name="fill_kids_data">Profil Anak</string>
+    <string name="ubah_data">Simpan</string>
+    <string name="first_name_ids">Nama Anak</string>
+    <string name="hint_name_kids">Masukkan nama anak</string>
+    <string name="gender_kids">Jenis Kelamin</string>
+    <string name="men_gender">Laki-laki</string>
+    <string name="women_gender">Perempuan</string>
+    <string name="age_kids_label">Usia Anak</string>
+    <string name="simpan">Tambahkan</string>
 </resources>

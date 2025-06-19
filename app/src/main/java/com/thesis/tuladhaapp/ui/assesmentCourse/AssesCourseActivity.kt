@@ -20,7 +20,12 @@ class AssesCourseActivity : AppCompatActivity() {
         getData()
 
         binding.nextButton.setOnClickListener {
-            navigateToEvaluation()
+            if (binding.likertSeekBar.progress < 3) {
+                navigateToConsultan()
+            }else{
+                navigateToEvaluation()
+            }
+
         }
         binding.toolbar.setOnClickListener {
             finish()
@@ -37,6 +42,10 @@ class AssesCourseActivity : AppCompatActivity() {
             putExtra("SEEKBAR", progress+1)
             putExtra("ID_COURSE", idCourse)
         }
+        startActivity(intent)
+    }
+    private fun navigateToConsultan(){
+        val intent = Intent(this, ActivityConsultasi::class.java)
         startActivity(intent)
     }
 }

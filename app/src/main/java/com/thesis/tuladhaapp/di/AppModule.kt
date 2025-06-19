@@ -40,7 +40,6 @@ import com.thesis.tuladhaapp.ui.assesmentCourse.AssesmentCourseViewModel
 import com.thesis.tuladhaapp.ui.auth.login.LoginViewModel
 import com.thesis.tuladhaapp.ui.auth.register.RegisterViewModel
 import com.thesis.tuladhaapp.ui.course.CourseViewModel
-import com.thesis.tuladhaapp.ui.dashboard.DashboardViewModel
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseViewModel
 import com.thesis.tuladhaapp.ui.home.HomeViewModel
 import com.thesis.tuladhaapp.ui.kuisCourse.QuizViewModel
@@ -64,7 +63,6 @@ object AppModule {
     private val viewModels = module {
         viewModel { HomeViewModel(get(), get(), get()) }
         viewModel { CourseViewModel(get(), get()) }
-        viewModel {DashboardViewModel()}
         viewModel {RegisterViewModel(get())}
         viewModel { LoginViewModel(get()) }
         viewModel { AllPremiumCourseViewModel(get(), get()) }

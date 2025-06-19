@@ -24,7 +24,6 @@ import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
 import com.thesis.tuladhaapp.ui.home.adapter.CategoryAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.CourseAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
-import com.thesis.tuladhaapp.ui.main.MainActivity
 import com.thesis.tuladhaapp.ui.profile.ProfileActivity
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import com.thesis.tuladhaapp.ui.testPolaAsuh.SplashTesPolaAsuhActivity
@@ -38,6 +37,8 @@ class HomeFragment() : Fragment() {
     private val homeViewModel: HomeViewModel by viewModel()
     private val profileViewModel: ProfileViewModel by viewModel()
     private var checkTesPolaAsuh = false
+    private var levels: List<String>? = null
+    var typeAsuh = "";
 
     //define adapter
     private val categoryAdapter: CategoryAdapter by lazy {
@@ -60,7 +61,7 @@ class HomeFragment() : Fragment() {
                     getProfileData()
                     if (checkTesPolaAsuh == true) {
                         itemCourseListener(it.id)
-                    }else{
+                    } else {
                         showDialogTest()
                     }
                 } else {
@@ -87,17 +88,24 @@ class HomeFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setClickListener()
         observeCategoryData()
         checkIfUserLogin()
+
+
         observePopularCourseCategoryData()
         observeSelectedCategory()
         observeCourseData()
     }
 
     override fun onResume() {
+        homeViewModel.getAllChildAgeRanges()
+        homeViewModel.childAgeRanges.observe(viewLifecycleOwner) { ageRangesList ->
+            levels = ageRangesList
+            getData()
+        }
         super.onResume()
-        getData()
     }
 
 
@@ -112,7 +120,7 @@ class HomeFragment() : Fragment() {
             val firstName = it.fullName.split(" ").firstOrNull() ?: ""
             val greeting = "Hi, $firstName"
             binding.tvGreetingUser.text = greeting
-
+            typeAsuh = it.uri
             if (it.uri != "Tidak Diketahui" && it.uri != null) {
                 checkTesPolaAsuh = true
             } else {
@@ -214,7 +222,8 @@ class HomeFragment() : Fragment() {
     }
 
     private fun showDialogTest() {
-        val binding: DialogNonTestpolaasuhBinding = DialogNonTestpolaasuhBinding.inflate(layoutInflater)
+        val binding: DialogNonTestpolaasuhBinding =
+            DialogNonTestpolaasuhBinding.inflate(layoutInflater)
         val dialog = AlertDialog.Builder(requireContext(), 0).create()
 
         dialog.apply {
@@ -330,10 +339,37 @@ class HomeFragment() : Fragment() {
         }
     }
 
+
     private fun getData() {
+        var typeasuhnumber: Int? = null;
+        var typeCourse: String? = null;
+        if (typeAsuh == "Otoriter") {
+            typeasuhnumber = 2;
+        } else if (typeAsuh == "Otoritatif") {
+            typeasuhnumber = 1;
+        } else if (typeAsuh == "Permisif") {
+            typeasuhnumber = 3;
+        } else {
+            typeCourse = "umum"
+        }
         homeViewModel.getCategories()
         homeViewModel.getPopularCourseCategories()
-        homeViewModel.getCourses()
+        homeViewModel.getCourses(typeCourse, typeasuhnumber, null, levels, typeCourse)
+        homeViewModel.courses.observe(viewLifecycleOwner) { resultWrapper ->
+            resultWrapper.proceedWhen(
+                doOnSuccess = {
+                    binding.emptyData.root.visibility = View.GONE
+                }, doOnEmpty = {
+                    binding.emptyData.root.visibility = View.VISIBLE
+                    if (typeasuhnumber == null){
+                        binding.emptyData.tvEmptyTeks.text = "Anda belum melakukan tes pola asuh"
+                    }else{
+                        binding.emptyData.tvEmptyTeks.text = "Maaf tidak ada kursus yang tersedia berdasarkan usia anak Anda"
+                    }
+                }
+            )
+        }
     }
+
 
 }
