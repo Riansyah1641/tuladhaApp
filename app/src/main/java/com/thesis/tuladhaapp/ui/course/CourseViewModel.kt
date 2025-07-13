@@ -32,6 +32,10 @@ class CourseViewModel(private val repository: CategoriesRepository, private val 
     val selectedType: LiveData<String>
         get() = _selectedType
 
+    private val _selectedLevel = MutableLiveData<String>()
+    val selectedLevel: LiveData<String>
+        get() = _selectedLevel
+
     private val _selectedCategories = MutableLiveData<List<Category>>()
     val selectedCategories: LiveData<List<Category>?>
         get() = _selectedCategories
@@ -105,6 +109,10 @@ class CourseViewModel(private val repository: CategoriesRepository, private val 
 
     fun setSelectedType(type: String) {
         _selectedType.value = type
+    }
+
+    fun setSelectedLevel(type: String) {
+        _selectedLevel.value = type
     }
 
 }

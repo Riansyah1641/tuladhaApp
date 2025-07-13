@@ -82,6 +82,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.resetFilter()
+        firstState()
         getProfileData()
         observeCourseList()
         openFilterDialog()
@@ -165,15 +166,25 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
         }
     }
 
+    private fun firstState(){
+        viewModel.setSelectedLevel(LEVEL_PARENT)
+        viewModel.setSelectedType(TYPE_NORMAL)
+    }
     private fun setType() {
         binding.btnAll.setOnClickListener {
-            viewModel.setSelectedType(TYPE_ALL)
+            viewModel.setSelectedType(TYPE_SHORT)
         }
         binding.btnPremium.setOnClickListener {
-            viewModel.setSelectedType(TYPE_PREMIUM)
+            viewModel.setSelectedType(TYPE_KHUSUS)
         }
         binding.btnFree.setOnClickListener {
-            viewModel.setSelectedType(TYPE_FREE)
+            viewModel.setSelectedType(TYPE_NORMAL)
+        }
+        binding.btnParent.setOnClickListener {
+            viewModel.setSelectedLevel(LEVEL_PARENT)
+        }
+        binding.btnKids.setOnClickListener {
+            viewModel.setSelectedLevel(LEVEL_KIDS)
         }
         binding.searchBar.ivSearchButton.setOnClickListener {
             val searchQuery = binding.searchBar.etSearchBar.text.toString()
@@ -194,14 +205,30 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     }
 
     private fun observeFilterData() {
-        viewModel.searchQuery.observe(viewLifecycleOwner) { query ->
-            searchQuery = query
-            getData(searchQuery, selectedType, selectedCategories, selectedLevel, selectedSortBy)
+        viewModel.selectedLevel.observe(viewLifecycleOwner) { type ->
+            selectedLevel = listOf(type)
+            viewModel.selectedType.observe(viewLifecycleOwner) { typee ->
+                selectedType = typee
+                getData(
+                    searchQuery,
+                    selectedType,
+                    selectedCategories,
+                    selectedLevel,
+                    selectedSortBy
+                )
+            }
+            viewModel.searchQuery.observe(viewLifecycleOwner) { query ->
+                searchQuery = query
+                getData(
+                    searchQuery,
+                    selectedType,
+                    selectedCategories,
+                    selectedLevel,
+                    selectedSortBy
+                )
+            }
         }
-        viewModel.selectedType.observe(viewLifecycleOwner) { type ->
-            selectedType = type
-            getData(searchQuery, selectedType, selectedCategories, selectedLevel, selectedSortBy)
-        }
+
 
         viewModel.courses.observe(viewLifecycleOwner) { resultWrapper ->
             resultWrapper.proceedWhen(
@@ -324,9 +351,11 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     }
 
     companion object {
-        const val TYPE_ALL = "all"
-        const val TYPE_PREMIUM = "khusus"
-        const val TYPE_FREE = "umum"
+        const val TYPE_SHORT = "Singkat"
+        const val TYPE_KHUSUS = "khusus"
+        const val TYPE_NORMAL = "Normal"
+        const val LEVEL_PARENT = "Orang Tua"
+        const val LEVEL_KIDS = "Si Kecil"
         const val KEY_QUERY = "searchQuery"
         const val KEY_CATEGORY = "selectedCategory"
         const val TAG_DIALOG = "FilterDialog"

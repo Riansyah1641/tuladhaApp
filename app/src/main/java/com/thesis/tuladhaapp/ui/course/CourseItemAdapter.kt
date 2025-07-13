@@ -60,43 +60,33 @@ class ItemListCourseViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Course) {
-        with(item) {
-            binding.ivCourseImage.load(item.imageUrl) {
-                crossfade(true)
-            }
-            binding.tvCourseCategory.text = item.category?.name
-            binding.tvCourseRate.text = item.rating.toString()
-            binding.tvCourseName.text = item.name
-            binding.tvCourseAuthor.text = itemView.rootView.context.getString(
-                R.string.format_course_by,
-                item.courseBy
-            )
-            binding.tvCourseLevel.text = item.level?.replaceFirstChar {
-                it.uppercase()
-            }
-            binding.tvCourseDuration.text = itemView.rootView.context.getString(
-                R.string.format_course_duration,
-                item.totalDuration?.let { formatSecondsToMinutes(it) }
-            )
-            binding.tvCourseModules.text = itemView.rootView.context.getString(
-                R.string.format_course_module,
-                item.totalModule
-            )
-            binding.tvBtnBuy.text = item.type?.replaceFirstChar {
-                it.uppercase()
-            }
-            if (item.type == TYPE_PREMIUM) {
-                binding.ivPremium.visibility = View.VISIBLE
-            } else {
-                binding.ivPremium.visibility = View.GONE
-            }
-            itemView.setOnClickListener {
-                itemClick(item)
-            }
+        binding.ivCourseImage.load(item.imageUrl) {
+            crossfade(true)
+        }
+        binding.tvCourseCategory.text = item.category?.name
+        binding.tvCourseRate.text = item.rating.toString()
+        binding.tvCourseName.text = item.name
+        binding.tvCourseAuthor.text = itemView.rootView.context.getString(
+            R.string.format_course_by,
+            item.courseBy
+        )
+        binding.tvCourseLevel.text = item.level?.replaceFirstChar {
+            it.uppercase()
+        }
+        binding.tvCourseDuration.text = itemView.rootView.context.getString(
+            R.string.format_course_duration,
+            item.totalDuration?.let { formatSecondsToMinutes(it) }
+        )
+        binding.tvCourseModules.text = itemView.rootView.context.getString(
+            R.string.format_course_module,
+            item.totalModule
+        )
+        binding.tvBtnBuy.text = item.type?.replaceFirstChar {
+            it.uppercase()
+        }
+        itemView.setOnClickListener {
+            itemClick(item)
         }
     }
 
-    companion object {
-        const val TYPE_PREMIUM = "premium"
-    }
 }

@@ -15,9 +15,9 @@
     <string name="text_see_all">Lihat Semua</string>
     <string name="text_class_topic">Pilihan Pembelajaran</string>
     <string name="text_filter">Filter</string>
-    <string name="tv_btn_all">All</string>
+    <string name="tv_btn_class_short">Singkat</string>
     <string name="tv_btn_class_premium">Khusus</string>
-    <string name="tv_btn_class_free">Umum</string>
+    <string name="tv_btn_class_normal">Normal</string>
     <string name="tv_oopps">Maaf Kosong!</string>
     <string name="text_sorry_course_not_found">Maaf, course tidak ditemukan</string>
     <string name="text_find_course">Cari Course</string>
@@ -227,4 +227,6 @@
     <string name="women_gender">Perempuan</string>
     <string name="age_kids_label">Usia Anak</string>
     <string name="simpan">Tambahkan</string>
+    <string name="level_parent">Orang Tua</string>
+    <string name="tv_btn_all">All</string>
 </resources>
