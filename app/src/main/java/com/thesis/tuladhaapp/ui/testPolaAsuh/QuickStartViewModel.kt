@@ -82,12 +82,6 @@ class QuickStartViewModel(private val repo: UserRepository) : ViewModel() {
 
     fun answerAndNext(score: Int) {
         selectAnswer(score)
-//        if (_isLastQuestion.value != true) {
-//            viewModelScope.launch {
-//                delay(1000L) // 1 detik delay
-//                nextQuestion()
-//            }
-//        }
 
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.thesis.tuladhaapp.databinding.ActivitySplashScreenSlideThreeBinding
 import com.thesis.tuladhaapp.ui.main.MainActivity
+import com.thesis.tuladhaapp.ui.rekomendasiBelajar.RekomendasiBelajarActivity
 
 class SplashScreenSlideThreeActivity : AppCompatActivity() {
 
@@ -26,7 +27,7 @@ class SplashScreenSlideThreeActivity : AppCompatActivity() {
     }
 
     private fun navigateToMain() {
-        val intent = Intent(this, MainActivity::class.java).apply {
+        val intent = Intent(this, RekomendasiBelajarActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         }
         startActivity(intent)

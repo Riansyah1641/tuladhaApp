@@ -84,6 +84,91 @@ class DummyChapterDataSource: DataSourseChapterData {
             ChapterData(10, 3, "Bukan Menekan Hasil (Authoritarian)", 25, DummyModuleDataDataSource.getModulesForChapter(57)),
             ChapterData(10, 4, "Tidak Membiarkan Tanpa Bimbingan (Permissive)", 18, DummyModuleDataDataSource.getModulesForChapter(58)),
             ChapterData(10, 5, "Eksperimen Sederhana untuk Memahami Ukuran", 20, DummyModuleDataDataSource.getModulesForChapter(59))
+        ), 11 to listOf(
+            ChapterData(11, 0, "Pengantar: Kunci Sukses Toilet Training", 18, DummyModuleDataDataSource.getModulesForChapter(60)),
+            ChapterData(11, 1, "Mengenali Kesiapan Anak untuk Toilet Training", 15, DummyModuleDataDataSource.getModulesForChapter(61)),
+            ChapterData(11, 2, "Pendekatan Positif dalam Toilet Training", 20, DummyModuleDataDataSource.getModulesForChapter(62)),
+            ChapterData(11, 3, "Menghadapi Tantangan dengan Empati", 17, DummyModuleDataDataSource.getModulesForChapter(63)),
+            ChapterData(11, 4, "Latihan Praktis dan Jadwal Konsisten", 25, DummyModuleDataDataSource.getModulesForChapter(64)),
+            ChapterData(11, 5, "Menguatkan Kepercayaan Diri Anak", 15, DummyModuleDataDataSource.getModulesForChapter(65)),
+            ChapterData(11, 6, "Studi Kasus dan Pertanyaan Umum", 20, DummyModuleDataDataSource.getModulesForChapter(66))
+        ),
+        12 to listOf(
+            ChapterData(12, 0, "Pengantar: Kreativitas Anak Melalui Seni", 15, DummyModuleDataDataSource.getModulesForChapter(67)),
+            ChapterData(12, 1, "Seni sebagai Media Ekspresi Dini", 18, DummyModuleDataDataSource.getModulesForChapter(68)),
+            ChapterData(12, 2, "Memfasilitasi Tanpa Batasan Kaku", 20, DummyModuleDataDataSource.getModulesForChapter(69)),
+            ChapterData(12, 3, "Pola Asuh Authoritative dalam Seni", 17, DummyModuleDataDataSource.getModulesForChapter(70)),
+            ChapterData(12, 4, "Mengembangkan Imajinasi dan Regulasi Emosi", 20, DummyModuleDataDataSource.getModulesForChapter(71))
+        ),
+        13 to listOf(
+            ChapterData(13, 0, "Pengantar: Mengatasi Tantrum pada Balita", 20, DummyModuleDataDataSource.getModulesForChapter(72)),
+            ChapterData(13, 1, "Tantrum: Bagian Normal dari Perkembangan", 18, DummyModuleDataDataSource.getModulesForChapter(73)),
+            ChapterData(13, 2, "Teknik Merespon Tantrum yang Konstruktif", 22, DummyModuleDataDataSource.getModulesForChapter(74)),
+            ChapterData(13, 3, "Menetapkan Batasan yang Jelas dan Konsisten", 19, DummyModuleDataDataSource.getModulesForChapter(75)),
+            ChapterData(13, 4, "Mengelola Perilaku Sulit dengan Tenang", 25, DummyModuleDataDataSource.getModulesForChapter(76)),
+            ChapterData(13, 5, "Membangun Keterampilan Regulasi Emosi Anak", 20, DummyModuleDataDataSource.getModulesForChapter(77)),
+            ChapterData(13, 6, "Pencegahan Tantrum dan Lingkungan yang Mendukung", 18, DummyModuleDataDataSource.getModulesForChapter(78)),
+            ChapterData(13, 7, "Studi Kasus dan Solusi Praktis", 8, DummyModuleDataDataSource.getModulesForChapter(79))
+        ),
+        14 to listOf(
+            ChapterData(14, 0, "Pengantar: Kemampuan Sosial Pra-Sekolah", 16, DummyModuleDataDataSource.getModulesForChapter(80)),
+            ChapterData(14, 1, "Mendorong Empati dan Berbagi", 18, DummyModuleDataDataSource.getModulesForChapter(81)),
+            ChapterData(14, 2, "Meningkatkan Kerjasama Lewat Bermain", 20, DummyModuleDataDataSource.getModulesForChapter(82)),
+            ChapterData(14, 3, "Komunikasi Sehat untuk Interaksi Sosial", 15, DummyModuleDataDataSource.getModulesForChapter(83)),
+            ChapterData(14, 4, "Pendekatan Authoritative dalam Keterampilan Sosial", 17, DummyModuleDataDataSource.getModulesForChapter(84)),
+            ChapterData(14, 5, "Membantu Anak Beradaptasi dengan Lingkungan Baru", 14, DummyModuleDataDataSource.getModulesForChapter(85))
+        ),
+        15 to listOf(
+            ChapterData(15, 0, "Pengantar: Fondasi Literasi Awal", 20, DummyModuleDataDataSource.getModulesForChapter(86)),
+            ChapterData(15, 1, "Mengenalkan Huruf dan Angka Melalui Permainan", 22, DummyModuleDataDataSource.getModulesForChapter(87)),
+            ChapterData(15, 2, "Membaca Bersama dan Mendongeng", 18, DummyModuleDataDataSource.getModulesForChapter(88)),
+            ChapterData(15, 3, "Pola Asuh Authoritative dalam Belajar Literasi", 25, DummyModuleDataDataSource.getModulesForChapter(89)),
+            ChapterData(15, 4, "Aktivitas Menulis Sederhana untuk Balita", 20, DummyModuleDataDataSource.getModulesForChapter(90)),
+            ChapterData(15, 5, "Membangun Minat Baca Sejak Dini", 22, DummyModuleDataDataSource.getModulesForChapter(91)),
+            ChapterData(15, 6, "Menghindari Tekanan Berlebihan dalam Belajar", 15, DummyModuleDataDataSource.getModulesForChapter(92)),
+            ChapterData(15, 7, "Membuat Lingkungan yang Kaya Literasi", 10, DummyModuleDataDataSource.getModulesForChapter(93)),
+            ChapterData(15, 8, "Studi Kasus dan Tips Praktis", 18, DummyModuleDataDataSource.getModulesForChapter(94))
+        ),
+        16 to listOf(
+            ChapterData(16, 0, "Pengantar: Membangun Resiliensi Anak Pra-Sekolah", 18, DummyModuleDataDataSource.getModulesForChapter(95)),
+            ChapterData(16, 1, "Memahami Konsep Resiliensi pada Anak", 15, DummyModuleDataDataSource.getModulesForChapter(96)),
+            ChapterData(16, 2, "Pola Asuh Authoritative dan Resiliensi", 20, DummyModuleDataDataSource.getModulesForChapter(97)),
+            ChapterData(16, 3, "Mendukung Anak Menghadapi Tantangan", 17, DummyModuleDataDataSource.getModulesForChapter(98)),
+            ChapterData(16, 4, "Membangun Rasa Percaya Diri dan Kemampuan Beradaptasi", 22, DummyModuleDataDataSource.getModulesForChapter(99)),
+            ChapterData(16, 5, "Mengajarkan Problem Solving Sejak Dini", 18, DummyModuleDataDataSource.getModulesForChapter(100)),
+            ChapterData(16, 6, "Studi Kasus: Anak Resilien dalam Praktik", 20, DummyModuleDataDataSource.getModulesForChapter(101))
+        ),
+        17 to listOf(
+            ChapterData(17, 0, "Pengantar: Batasan dan Disiplin Positif", 15, DummyModuleDataDataSource.getModulesForChapter(102)),
+            ChapterData(17, 1, "Mengapa Disiplin Positif Penting?", 18, DummyModuleDataDataSource.getModulesForChapter(103)),
+            ChapterData(17, 2, "Perbedaan Disiplin Positif vs. Hukuman", 20, DummyModuleDataDataSource.getModulesForChapter(104)),
+            ChapterData(17, 3, "Teknik Komunikasi Efektif dalam Menetapkan Batasan", 17, DummyModuleDataDataSource.getModulesForChapter(105)),
+            ChapterData(17, 4, "Konsekuensi Logis dan Alami", 22, DummyModuleDataDataSource.getModulesForChapter(106)),
+            ChapterData(17, 5, "Membangun Pemahaman, Bukan Hanya Ketakutan", 18, DummyModuleDataDataSource.getModulesForChapter(107))
+        ),
+        18 to listOf(
+            ChapterData(18, 0, "Pengantar: Memilih Mainan Edukatif", 14, DummyModuleDataDataSource.getModulesForChapter(108)),
+            ChapterData(18, 1, "Mainan Sesuai Usia dan Tahap Perkembangan", 16, DummyModuleDataDataSource.getModulesForChapter(109)),
+            ChapterData(18, 2, "Manfaat Mainan Edukatif untuk Kognitif dan Motorik", 20, DummyModuleDataDataSource.getModulesForChapter(110)),
+            ChapterData(18, 3, "Bimbingan Orang Tua dalam Bermain", 15, DummyModuleDataDataSource.getModulesForChapter(111)),
+            ChapterData(18, 4, "Menghindari Pembelian Mainan yang Tidak Efektif", 15, DummyModuleDataDataSource.getModulesForChapter(112))
+        ),
+        19 to listOf(
+            ChapterData(19, 0, "Pengantar: Manajemen Waktu Layar Sehat", 15, DummyModuleDataDataSource.getModulesForChapter(113)),
+            ChapterData(19, 1, "Dampak Waktu Layar pada Anak dan Remaja", 18, DummyModuleDataDataSource.getModulesForChapter(114)),
+            ChapterData(19, 2, "Menetapkan Batasan yang Jelas dan Realistis", 20, DummyModuleDataDataSource.getModulesForChapter(115)),
+            ChapterData(19, 3, "Komunikasi Terbuka tentang Aturan Gadget", 17, DummyModuleDataDataSource.getModulesForChapter(116)),
+            ChapterData(19, 4, "Mendorong Alternatif Aktivitas Offline", 20, DummyModuleDataDataSource.getModulesForChapter(117))
+        ),
+        20 to listOf(
+            ChapterData(20, 0, "Pengantar: Kebiasaan Tidur Sehat Anak Sekolah", 20, DummyModuleDataDataSource.getModulesForChapter(118)),
+            ChapterData(20, 1, "Pentingnya Tidur Cukup untuk Perkembangan Anak", 15, DummyModuleDataDataSource.getModulesForChapter(119)),
+            ChapterData(20, 2, "Membentuk Rutinitas Tidur yang Konsisten", 22, DummyModuleDataDataSource.getModulesForChapter(120)),
+            ChapterData(20, 3, "Pola Asuh Authoritative dalam Pengelolaan Tidur", 18, DummyModuleDataDataSource.getModulesForChapter(121)),
+            ChapterData(20, 4, "Mengatasi Masalah Tidur Umum pada Anak", 25, DummyModuleDataDataSource.getModulesForChapter(122)),
+            ChapterData(20, 5, "Menciptakan Lingkungan Tidur yang Optimal", 20, DummyModuleDataDataSource.getModulesForChapter(123)),
+            ChapterData(20, 6, "Tips Praktis untuk Kualitas Tidur yang Lebih Baik", 20, DummyModuleDataDataSource.getModulesForChapter(124)),
+            ChapterData(20, 7, "Kisah Sukses dari Orang Tua Lain", 10, DummyModuleDataDataSource.getModulesForChapter(125))
         )
     )
 

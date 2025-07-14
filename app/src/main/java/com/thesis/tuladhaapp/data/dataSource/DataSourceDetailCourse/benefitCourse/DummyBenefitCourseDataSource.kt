@@ -54,6 +54,56 @@ class DummyBenefitCourseDataSource: DataSourceBenefit {
             BenefitData(10, 1, "Menumbuhkan kemampuan problem solving pada anak sejak dini melalui stimulasi yang tepat."),
             BenefitData(10, 2, "Meningkatkan kreativitas dan daya pikir anak lewat aktivitas bermain yang terarah."),
             BenefitData(10, 3, "Membantu orang tua memahami pentingnya peran permainan dalam perkembangan kognitif.")
+        ),
+        11 to listOf(
+            BenefitData(11, 1, "Membekali orang tua dengan panduan praktis toilet training yang efektif."),
+            BenefitData(11, 2, "Mengajarkan cara mengenali kesiapan anak dan memberikan dukungan positif selama proses."),
+            BenefitData(11, 3, "Mengurangi tekanan dan frustrasi bagi orang tua maupun anak saat toilet training.")
+        ),
+        12 to listOf(
+            BenefitData(12, 1, "Menstimulasi imajinasi dan daya cipta anak melalui berbagai kegiatan seni."),
+            BenefitData(12, 2, "Mendorong ekspresi diri anak secara bebas dan positif."),
+            BenefitData(12, 3, "Membantu anak mengembangkan motorik halus dan koordinasi mata-tangan lewat aktivitas seni.")
+        ),
+        13 to listOf(
+            BenefitData(13, 1, "Memberikan strategi efektif untuk mengelola tantrum balita dengan tenang dan empati."),
+            BenefitData(13, 2, "Membantu orang tua memahami akar penyebab tantrum dan cara merespon yang konstruktif."),
+            BenefitData(13, 3, "Membangun kemampuan regulasi emosi pada anak sejak dini.")
+        ),
+        14 to listOf(
+            BenefitData(14, 1, "Meningkatkan kemampuan anak dalam berinteraksi sosial dengan teman sebaya."),
+            BenefitData(14, 2, "Mendorong empati, berbagi, dan kerjasama dalam berbagai situasi."),
+            BenefitData(14, 3, "Membantu anak beradaptasi lebih baik di lingkungan baru seperti pra-sekolah.")
+        ),
+        15 to listOf(
+            BenefitData(15, 1, "Mengenalkan dasar-dasar literasi (membaca dan menulis) dengan cara yang menyenangkan."),
+            BenefitData(15, 2, "Menumbuhkan minat anak terhadap buku dan proses belajar sejak usia dini."),
+            BenefitData(15, 3, "Membekali orang tua dengan aktivitas sederhana untuk stimulasi literasi di rumah.")
+        ),
+        16 to listOf(
+            BenefitData(16, 1, "Membangun ketahanan mental (resiliensi) pada anak untuk menghadapi tantangan hidup."),
+            BenefitData(16, 2, "Mengajarkan anak cara mengatasi kegagalan dan bangkit kembali dengan semangat positif."),
+            BenefitData(16, 3, "Mendorong anak untuk menjadi pribadi yang adaptif dan percaya diri.")
+        ),
+        17 to listOf(
+            BenefitData(17, 1, "Memberikan panduan tentang penerapan disiplin positif tanpa kekerasan fisik atau verbal."),
+            BenefitData(17, 2, "Membantu anak memahami alasan di balik aturan dan konsekuensi perilaku."),
+            BenefitData(17, 3, "Membangun hubungan orang tua-anak yang lebih kuat berdasarkan rasa hormat dan saling pengertian.")
+        ),
+        18 to listOf(
+            BenefitData(18, 1, "Mengedukasi orang tua tentang pemilihan mainan edukatif yang sesuai usia dan tahap perkembangan anak."),
+            BenefitData(18, 2, "Mengoptimalkan manfaat bermain untuk stimulasi kognitif, motorik, dan sosial anak."),
+            BenefitData(18, 3, "Membantu mengurangi pembelian mainan yang tidak efektif dan memaksimalkan potensi mainan yang ada.")
+        ),
+        19 to listOf(
+            BenefitData(19, 1, "Mengajarkan cara menetapkan batasan waktu layar yang sehat dan realistis untuk anak."),
+            BenefitData(19, 2, "Mendorong aktivitas alternatif yang lebih interaktif dan bermanfaat daripada waktu layar berlebihan."),
+            BenefitData(19, 3, "Membantu orang tua membimbing anak menggunakan teknologi secara bijak dan bertanggung jawab.")
+        ),
+        20 to listOf(
+            BenefitData(20, 1, "Memberikan strategi praktis untuk membentuk kebiasaan tidur yang sehat pada anak."),
+            BenefitData(20, 2, "Membantu anak memiliki pola tidur yang teratur dan berkualitas untuk tumbuh kembang optimal."),
+            BenefitData(20, 3, "Mengurangi masalah tidur umum pada anak dan meningkatkan kualitas tidur seluruh anggota keluarga.")
         )
     )
 

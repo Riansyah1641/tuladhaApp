@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="24dp"
-        tools:context=".ui.testPolaAsuh.TestDescriptionActivity">
+        tools:context=".ui.rekomendasiBelajar.SplashRekomendasiCourseActivity">
 
         <!-- Tombol Back -->
         <ImageView
@@ -32,8 +32,8 @@
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Tes Pola Asuh Parenting"
-            android:textSize="24sp"
+            android:text="Kenali Kondisi Anda Sebagai Orang Tua Pembelajar"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/app_color_primary"
             app:layout_constraintTop_toBottomOf="@+id/ivImageTes"
@@ -59,7 +59,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:lineSpacingExtra="4dp"
-                android:text="@string/splash_screen_tes_pola_asuh" />
+                android:text="Selamat datang di Tuuladha! Untuk membantu kami memberikan rekomendasi belajar yang paling sesuai, mari kenali kondisi Anda saat ini. Beri nilai dari 1 sampai 5 untuk setiap pernyataan, di mana:\n\n1 = Tidak Pernah\n2 = Jarang\n3 = Kadang Kadang \n4 = Sering\n5 = Selalu" />
         </ScrollView>
 
         <!-- Tombol Mulai Tes -->
@@ -67,7 +67,7 @@
             android:id="@+id/btnStart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/mulai_tes"
+            android:text="@string/text_isi_survei"
             android:backgroundTint="@color/app_color_primary"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

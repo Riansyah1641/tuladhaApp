@@ -351,9 +351,9 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     }
 
     companion object {
-        const val TYPE_SHORT = "Singkat"
+        const val TYPE_SHORT = "Ringkas"
         const val TYPE_KHUSUS = "khusus"
-        const val TYPE_NORMAL = "Normal"
+        const val TYPE_NORMAL = "Umum"
         const val LEVEL_PARENT = "Orang Tua"
         const val LEVEL_KIDS = "Si Kecil"
         const val KEY_QUERY = "searchQuery"

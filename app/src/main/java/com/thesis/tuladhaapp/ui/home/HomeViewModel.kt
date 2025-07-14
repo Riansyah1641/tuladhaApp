@@ -107,6 +107,45 @@ class HomeViewModel(private val repository: CategoriesRepository , private val c
         }
     }
 
+
+
+
+//    fun getCourses(
+//        search: String? = null,
+//        type: Int? = null,
+//        category: List<Int>? = null,
+//        level: List<String>? = null,
+//        sortBy: String? = null
+//    ) {
+//        val mutableCategory: MutableList<Int> = category?.toMutableList() ?: mutableListOf()
+//        type?.let {
+//            mutableCategory.add(it)
+//        }
+//
+//        viewModelScope.launch {
+//            courseRepository.getCoursesClass(
+//                search = search,
+//                type = null,
+//                category = mutableCategory,
+//                level = level,
+//                sortBy = sortBy
+//            ).collect { newResultWrapper ->
+//                if (newResultWrapper is ResultWrapper.Success) {
+//                    val newCourseList = newResultWrapper.payload ?: emptyList()
+//                    val existingCourseList = (_courses.value as? ResultWrapper.Success)?.payload ?: emptyList()
+//
+//                    val combinedCourseList = existingCourseList + newCourseList
+//
+//                    _courses.postValue(ResultWrapper.Success(combinedCourseList))
+//                } else {
+//                    _courses.postValue(newResultWrapper)
+//                }
+//            }
+//        }
+//    }
+
+
+
     fun getAllChildAgeRanges() {
         val userId = getCurrentUser()?.id
         if (userId == null) {

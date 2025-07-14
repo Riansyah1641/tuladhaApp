@@ -7,9 +7,11 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -34,6 +36,7 @@ import com.thesis.tuladhaapp.utils.formatSecondsToMinutes
 import com.thesis.tuladhaapp.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import java.net.URLEncoder
 
 class DetailCourseActivity : AppCompatActivity() {
     private val binding: ActivityDetailCourseBinding by lazy {
@@ -45,7 +48,7 @@ class DetailCourseActivity : AppCompatActivity() {
     private val windowInsetsController: WindowInsetsControllerCompat by lazy {
         WindowCompat.getInsetsController(window, window.decorView)
     }
-    private lateinit var playerManager: PlayerManager
+    private var playerManager: PlayerManager? = null
 
     private var isFullScreen = false
     private val profileViewModel: ProfileViewModel by viewModel()
@@ -60,6 +63,9 @@ class DetailCourseActivity : AppCompatActivity() {
 
         windowInsetsController.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+        WindowCompat.setDecorFitsSystemWindows(window, true)
+
         observeData()
         getData()
         sendDataCourseToDatabase()
@@ -67,13 +73,41 @@ class DetailCourseActivity : AppCompatActivity() {
         setOnClickListener()
     }
 
+    override fun onStart() {
+        super.onStart()
+        // Inisialisasi player di onStart()
+        if (playerManager == null) {
+            playerManager = ExoPlayerManager(binding.videoView)
+            this.lifecycle.addObserver(playerManager!!) // Pastikan playerManager tidak null
+        }
+        // Pastikan video diputar ulang jika ada URL
+        // Anda mungkin perlu menyimpan URL video atau memuatnya kembali dari viewModel
+        viewModel.detailCourseData.value?.proceedWhen(
+            doOnSuccess = {
+                it.payload?.course?.videoPreviewUrl?.let { videoUrl ->
+                    playerManager?.play(videoUrl) { isFullScreen ->
+                        checkFullScreen()
+                    }
+                }
+            }
+        )
+    }
+
+    override fun onStop() {
+        super.onStop()
+        playerManager?.release()
+        playerManager = null
+    }
+
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            WindowCompat.setDecorFitsSystemWindows(window, false)
             enterFullScreen()
         } else {
             exitFullScreen()
+            WindowCompat.setDecorFitsSystemWindows(window, true)
         }
     }
 
@@ -85,7 +119,7 @@ class DetailCourseActivity : AppCompatActivity() {
         binding.videoView.isVisible = true
         binding.clBtnBuy.isVisible = true
         binding.container.isVisible = true
-        binding.layoutStateDetailCourse.root.isVisible = false
+        binding.container.fitsSystemWindows = true
         val params =
             binding.clVideoPlayerContainer.layoutParams as ConstraintLayout.LayoutParams
         params.width = ViewGroup.LayoutParams.MATCH_PARENT
@@ -97,13 +131,13 @@ class DetailCourseActivity : AppCompatActivity() {
 
     private fun enterFullScreen() {
         isFullScreen = true
+        binding.container.fitsSystemWindows = false
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
         binding.llToolbar.isVisible = false
         binding.clBtnBuy.isVisible = false
         binding.clVideoPlayerContainer.isVisible = true
         binding.videoView.isVisible = true
         binding.container.isVisible = false
-        binding.layoutStateDetailCourse.root.isVisible = false
         val params =
             binding.clVideoPlayerContainer.layoutParams as ConstraintLayout.LayoutParams
         params.width = ViewGroup.LayoutParams.MATCH_PARENT
@@ -118,8 +152,29 @@ class DetailCourseActivity : AppCompatActivity() {
         }
         binding.swipeRefresh.setOnRefreshListener {
             getData()
-            playerManager.release()
             binding.swipeRefresh.isRefreshing = false
+        }
+        binding.btnKonsultasi.setOnClickListener {
+            val temaKelas = binding.tvDetailTitle.text.toString()
+            val createVideo = binding.tvBy.text.toString()
+            val phoneNumber = "6282144445148"
+            val message =
+                "Hii admin tuladha, Saya ingin berkonsultasi lebih lanjut terkait $temaKelas yang dijelaskan oleh $createVideo"
+
+            // 3. Buat dan luncurkan Intent WhatsApp
+            try {
+                val encodedMessage = URLEncoder.encode(message, "UTF-8")
+                val uri =
+                    Uri.parse("https://api.whatsapp.com/send?phone=$phoneNumber&text=$encodedMessage")
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
+            } catch (e: Exception) {
+                FancyToast.makeText(
+                    it.context,
+                    "WhatsApp tidak terinstal atau terjadi kesalahan.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         binding.btnNextQuiz.setOnClickListener {
@@ -133,7 +188,7 @@ class DetailCourseActivity : AppCompatActivity() {
 
     private fun loginDialog() {
         val binding: DialogNonLoginBinding = DialogNonLoginBinding.inflate(layoutInflater)
-        val dialog = AlertDialog.Builder(this   , 0).create()
+        val dialog = AlertDialog.Builder(this, 0).create()
 
         dialog.apply {
             setView(binding.root)
@@ -147,9 +202,9 @@ class DetailCourseActivity : AppCompatActivity() {
         }
     }
 
-    private fun nextToQuiz(){
+    private fun nextToQuiz() {
         val intent = Intent(this, QuizActivity::class.java).apply {
-            putExtra("ID_COURSE",courseId )
+            putExtra("ID_COURSE", courseId)
         }
         startActivity(intent)
         finish()
@@ -166,30 +221,19 @@ class DetailCourseActivity : AppCompatActivity() {
             resultWrapper.proceedWhen(
                 doOnSuccess = {
                     binding.container.isVisible = true
-                    binding.layoutStateDetailCourse.root.isVisible = false
-                    binding.layoutStateDetailCourse.loadingAnimation.isVisible = false
-                    binding.layoutStateDetailCourse.tvError.isVisible = false
                     bindDetailCourse(it.payload)
                 },
                 doOnLoading = {
-                    binding.layoutStateDetailCourse.root.isVisible = true
-                    binding.layoutStateDetailCourse.loadingAnimation.isVisible = true
-                    binding.layoutStateDetailCourse.tvError.isVisible = false
                     binding.container.isVisible = false
 
 
                 },
                 doOnError = {
                     binding.container.isVisible = false
-                    binding.layoutStateDetailCourse.root.isVisible = true
-                    binding.layoutStateDetailCourse.loadingAnimation.isVisible = false
-                    binding.layoutStateDetailCourse.tvError.isVisible = true
-
                 }
             )
         }
     }
-
 
 
     private fun bindDetailCourse(courseData: CourseData?) {
@@ -226,12 +270,8 @@ class DetailCourseActivity : AppCompatActivity() {
             val materialClassFragment = ClassMaterialFragment()
             materialClassFragment.arguments = bundle
 
-
-            playerManager = ExoPlayerManager(binding.videoView)
-            this.lifecycle.addObserver(playerManager)
-
             item.course?.videoPreviewUrl?.let { videoUrl ->
-                playerManager.play(videoUrl) { isFullScreen ->
+                playerManager?.play(videoUrl) { isFullScreen ->
                     checkFullScreen()
                 }
             }
@@ -246,10 +286,12 @@ class DetailCourseActivity : AppCompatActivity() {
         }
         return isFullScreen
     }
+
     fun checkLandscapeOrientation(): Boolean {
         val orientation = resources.configuration.orientation
         return orientation == Configuration.ORIENTATION_LANDSCAPE
     }
+
     fun changeOrientationToLandscape(shouldLandscape: Boolean) {
         requestedOrientation =
             if (shouldLandscape) {
@@ -258,6 +300,7 @@ class DetailCourseActivity : AppCompatActivity() {
                 ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             }
     }
+
     private fun setTabLayout() {
         val tabArray =
             arrayOf(
@@ -302,8 +345,10 @@ class DetailCourseActivity : AppCompatActivity() {
                     Log.d("SendData", "Harap Tunggu...")
                 },
                 doOnError = { error ->
-                    FancyToast.makeText(this, "Gagal Menyimpan Riwayat Course: ${error?.message}",
-                        FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show()
+                    FancyToast.makeText(
+                        this, "Gagal Menyimpan Riwayat Course: ${error?.message}",
+                        FancyToast.LENGTH_SHORT, FancyToast.ERROR, true
+                    ).show()
                 }
             )
         }
@@ -312,8 +357,9 @@ class DetailCourseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        this.lifecycle.removeObserver(playerManager)
+        playerManager?.let { this.lifecycle.removeObserver(it) }
     }
+
     companion object {
         const val EXTRA_COURSE = "EXTRA_COURSE"
         const val COURSE_DATA = "COURSE_DATA"

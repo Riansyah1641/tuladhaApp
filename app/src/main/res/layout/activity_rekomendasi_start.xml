@@ -2,15 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     >
 
     <!-- Data Binding ViewModel -->
     <data>
+
         <variable
-            name="quickStartViewModel"
-            type="com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartViewModel" />
-
-
+            name="RekomendasiBelajarViewModel"
+            type="com.thesis.tuladhaapp.ui.rekomendasiBelajar.RekomendasiBelajarViewModel" />
 
     </data>
 
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.testPolaAsuh.QuickStartActivity">
+        tools:context=".ui.rekomendasiBelajar.RekomendasiBelajarActivity">
 
         <ImageView
             android:id="@+id/iv_back"
@@ -35,7 +35,7 @@
         <TextView
             android:id="@+id/question_number_textView"
             style="@style/quick_start_txt_view_style"
-            android:text='@{String.format("Pertanyaan %d/32", quickStartViewModel.liveIndex)}'
+            android:text='@{String.format("Pertanyaan %d/6", RekomendasiBelajarViewModel.liveIndex)}'
             android:textColor="@color/app_color_primary"
             app:layout_constraintTop_toBottomOf="@+id/iv_back"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         <TextView
             android:id="@+id/question_txt"
             style="@style/quick_start_txt_view_style"
-            android:text="@{quickStartViewModel.currentQuestion}"
+            android:text="@{RekomendasiBelajarViewModel.currentQuestion}"
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@id/question_number_textView"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,31 +72,31 @@
                 android:id="@+id/rbNever"
                 style="@style/radio_btn_style"
                 android:text="Tidak Pernah"
-                android:onClick="@{() -> quickStartViewModel.answerAndNext(1)}" />
+                android:onClick="@{() -> RekomendasiBelajarViewModel.answerAndNext(1)}" />
 
             <RadioButton
                 android:id="@+id/rbRarely"
                 style="@style/radio_btn_style"
                 android:text="Jarang"
-                android:onClick="@{() -> quickStartViewModel.answerAndNext(2)}" />
+                android:onClick="@{() -> RekomendasiBelajarViewModel.answerAndNext(2)}" />
 
             <RadioButton
                 android:id="@+id/rbSometimes"
                 style="@style/radio_btn_style"
                 android:text="Kadang-kadang"
-                android:onClick="@{() -> quickStartViewModel.answerAndNext(3)}" />
+                android:onClick="@{() -> RekomendasiBelajarViewModel.answerAndNext(3)}" />
 
             <RadioButton
                 android:id="@+id/rbOften"
                 style="@style/radio_btn_style"
                 android:text="Sering"
-                android:onClick="@{() -> quickStartViewModel.answerAndNext(4)}" />
+                android:onClick="@{() -> RekomendasiBelajarViewModel.answerAndNext(4)}" />
 
             <RadioButton
                 android:id="@+id/rbAlways"
                 style="@style/radio_btn_style"
                 android:text="Selalu"
-                android:onClick="@{() -> quickStartViewModel.answerAndNext(5)}" />
+                android:onClick="@{() -> RekomendasiBelajarViewModel.answerAndNext(5)}" />
         </RadioGroup>
 
         <Button
@@ -105,8 +105,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:textColor="@color/black"
-            android:text='@{quickStartViewModel.isFirstQuestion ? "Kembali" : ""}'
-            android:onClick='@{() -> quickStartViewModel.backQuestion()}'
+            android:text='@{RekomendasiBelajarViewModel.isFirstQuestion ? "Kembali" : ""}'
+            android:onClick='@{() -> RekomendasiBelajarViewModel.backQuestion()}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/next_quick_questions" />
@@ -116,9 +116,9 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:textColor="@color/black"
-            android:text='@{quickStartViewModel.isLastQuestion ? "Selesai" : "next"}'
-            android:enabled='@{quickStartViewModel.isAnswerSelected}'
-            android:onClick='@{() -> quickStartViewModel.nextQuestion()}'
+            android:text='@{RekomendasiBelajarViewModel.isLastQuestion ? "Selesai" : "next"}'
+            android:enabled='@{RekomendasiBelajarViewModel.isAnswerSelected}'
+            android:onClick='@{() -> RekomendasiBelajarViewModel.nextQuestion()}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/back_quick_question"
             app:layout_constraintEnd_toEndOf="parent" />

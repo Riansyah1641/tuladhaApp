@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -26,6 +27,8 @@ import com.thesis.tuladhaapp.ui.home.adapter.CourseAdapter
 import com.thesis.tuladhaapp.ui.home.adapter.PopularCourseCategoryAdapter
 import com.thesis.tuladhaapp.ui.profile.ProfileActivity
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
+import com.thesis.tuladhaapp.ui.rekomendasiBelajar.RekomendasiBelajarActivity
+import com.thesis.tuladhaapp.ui.rekomendasiBelajar.SplashRekomendasiCourseActivity
 import com.thesis.tuladhaapp.ui.testPolaAsuh.SplashTesPolaAsuhActivity
 import com.thesis.tuladhaapp.utils.SkeletonConfigWrapper
 import com.thesis.tuladhaapp.utils.proceedWhen
@@ -35,7 +38,6 @@ class HomeFragment() : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModel()
-    private val profileViewModel: ProfileViewModel by viewModel()
     private var checkTesPolaAsuh = false
     private var levels: List<String>? = null
     var typeAsuh = "";
@@ -54,7 +56,7 @@ class HomeFragment() : Fragment() {
     }
     private val courseAdapter: CourseAdapter by lazy {
         CourseAdapter {
-            if (it.type == "umum") {
+            if (it.type == "Normal") {
                 itemCourseListener(it.id)
             } else {
                 if (homeViewModel.isUserLoggedIn()) {
@@ -152,10 +154,28 @@ class HomeFragment() : Fragment() {
         binding.btnStartTest.setOnClickListener {
             navigateToTestPolaAsuh()
         }
+        binding.btnUpdateRecommendation.setOnClickListener {
+            navigateToRekomendasiBelajar()
+        }
     }
 
     private fun navigateToLogin() {
         startActivity(Intent(requireContext(), LoginActivity::class.java))
+    }
+    private fun navigateToRekomendasiBelajar() {
+        if (homeViewModel.isUserLoggedIn()) {
+            val intent = Intent(requireContext(), SplashRekomendasiCourseActivity::class.java)
+            startActivity(intent)
+        } else {
+            FancyToast.makeText(
+                requireContext(),
+                "Silahkan Login Terlebih Dahulu",
+                FancyToast.LENGTH_SHORT,
+                FancyToast.ERROR,
+                false
+            ).show()
+            navigateToLogin()
+        }
     }
 
     private fun navigateToTestPolaAsuh() {
@@ -242,9 +262,7 @@ class HomeFragment() : Fragment() {
         homeViewModel.categories.observe(viewLifecycleOwner) { resultWrapper ->
             resultWrapper.proceedWhen(
                 doOnSuccess = {
-                    binding.layoutStateCategories.root.isVisible = false
-                    binding.layoutStateCategories.loadingAnimation.isVisible = false
-                    binding.layoutStateCategories.tvError.isVisible = false
+
                     binding.rvListCategories.apply {
                         isVisible = true
                         adapter = categoryAdapter
@@ -252,9 +270,7 @@ class HomeFragment() : Fragment() {
                     it.payload?.let { data -> categoryAdapter.submitData(data) }
                 },
                 doOnLoading = {
-                    binding.layoutStateCategories.root.isVisible = false
-                    binding.layoutStateCategories.loadingAnimation.isVisible = false
-                    binding.layoutStateCategories.tvError.isVisible = false
+
                     binding.rvListCategories.isVisible = true
                     binding.rvListCategories.applySkeleton(
                         R.layout.item_grid_categories,
@@ -263,11 +279,7 @@ class HomeFragment() : Fragment() {
                     ).showSkeleton()
                 },
                 doOnError = {
-                    binding.layoutStateCategories.root.isVisible = true
-                    binding.layoutStateCategories.loadingAnimation.isVisible = false
-                    binding.layoutStateCategories.tvError.isVisible = true
-                    binding.layoutStateCategories.tvError.text =
-                        getString(R.string.exception_notif)
+
                     binding.rvListCategories.isVisible = false
                 }
             )
@@ -278,25 +290,7 @@ class HomeFragment() : Fragment() {
         homeViewModel.popularCourseCategories.observe(viewLifecycleOwner) { resultWrapper ->
             resultWrapper.proceedWhen(
                 doOnSuccess = {
-                    binding.layoutStatePopularCategories.root.isVisible = false
-                    binding.layoutStatePopularCategories.loadingAnimation.isVisible = false
-                    binding.layoutStatePopularCategories.tvError.isVisible = false
-
                     it.payload?.let { data -> popularCourseCategoryAdapter.submitData(data) }
-                },
-                doOnLoading = {
-                    binding.layoutStatePopularCategories.root.isVisible = false
-                    binding.layoutStatePopularCategories.loadingAnimation.isVisible = false
-                    binding.layoutStatePopularCategories.tvError.isVisible = false
-
-                },
-                doOnError = {
-                    binding.layoutStatePopularCategories.root.isVisible = true
-                    binding.layoutStatePopularCategories.loadingAnimation.isVisible = false
-                    binding.layoutStatePopularCategories.tvError.isVisible = true
-                    binding.layoutStatePopularCategories.tvError.text =
-                        getString(R.string.exception_notif)
-
                 }
             )
         }
@@ -312,9 +306,6 @@ class HomeFragment() : Fragment() {
         homeViewModel.courses.observe(viewLifecycleOwner) { resultWrapper ->
             resultWrapper.proceedWhen(
                 doOnSuccess = {
-                    binding.layoutStatePopularCourse.root.isVisible = false
-                    binding.layoutStatePopularCourse.loadingAnimation.isVisible = false
-                    binding.layoutStatePopularCourse.tvError.isVisible = false
                     binding.rvListCourse.apply {
                         isVisible = true
                         adapter = courseAdapter
@@ -322,17 +313,9 @@ class HomeFragment() : Fragment() {
                     it.payload?.let { data -> courseAdapter.submitData(data) }
                 },
                 doOnLoading = {
-                    binding.layoutStatePopularCourse.root.isVisible = true
-                    binding.layoutStatePopularCourse.loadingAnimation.isVisible = true
-                    binding.layoutStatePopularCourse.tvError.isVisible = false
                     binding.rvListCourse.isVisible = false
                 },
                 doOnError = {
-                    binding.layoutStatePopularCourse.root.isVisible = true
-                    binding.layoutStatePopularCourse.loadingAnimation.isVisible = false
-                    binding.layoutStatePopularCourse.tvError.isVisible = true
-                    binding.layoutStatePopularCourse.tvError.text =
-                        getString(R.string.text_sorry_course_not_found)
                     binding.rvListCourse.isVisible = false
                 }
             )
@@ -341,27 +324,62 @@ class HomeFragment() : Fragment() {
 
 
     private fun getData() {
-        var typeasuhnumber: Int? = null;
+
+        val categoriesToFilter: MutableList<Int> = mutableListOf()
         var typeCourse: String? = null;
-        if (typeAsuh == "Otoriter") {
-            typeasuhnumber = 2;
-        } else if (typeAsuh == "Otoritatif") {
-            typeasuhnumber = 1;
-        } else if (typeAsuh == "Permisif") {
-            typeasuhnumber = 3;
-        } else {
-            typeCourse = "umum"
+
+        levels?.let {
+            if (it.contains("0-3 Bulan")) {
+                categoriesToFilter.add(4)
+            }
+            if (it.contains("3-6 Bulan")) {
+                categoriesToFilter.add(5)
+            }
+            if (it.contains("6-9 Bulan")) {
+                categoriesToFilter.add(6)
+            }
+            if (it.contains("9-12 Bulan")) {
+                categoriesToFilter.add(7)
+            }
+            if (it.contains("1-2 Tahun")) {
+                categoriesToFilter.add(8)
+            }
+            if (it.contains("2-3 Tahun")) {
+                categoriesToFilter.add(9)
+            }
+            if (it.contains("3-4 Tahun")) {
+                categoriesToFilter.add(10)
+            }
+            if (it.contains("4-5 Tahun")) {
+                categoriesToFilter.add(11)
+            }
         }
+
+        if (typeAsuh == "Otoriter") {
+            categoriesToFilter.add(2)
+        } else if (typeAsuh == "Otoritatif") {
+            categoriesToFilter.add(1)
+        } else if (typeAsuh == "Permisif") {
+            categoriesToFilter.add(3)
+        } else {
+            typeCourse = "Ringkas"
+        }
+
         homeViewModel.getCategories()
         homeViewModel.getPopularCourseCategories()
-        homeViewModel.getCourses(typeCourse, typeasuhnumber, null, levels, typeCourse)
+
+        homeViewModel.getCourses(typeCourse, null, categoriesToFilter, null, typeCourse)
+
+//        if (levels?.size!! > 0) {
+//            homeViewModel.getCourses(typeCourse, null, null, levels, typeCourse)
+//        }
         homeViewModel.courses.observe(viewLifecycleOwner) { resultWrapper ->
             resultWrapper.proceedWhen(
                 doOnSuccess = {
                     binding.emptyData.root.visibility = View.GONE
                 }, doOnEmpty = {
                     binding.emptyData.root.visibility = View.VISIBLE
-                    if (typeasuhnumber == null){
+                    if (categoriesToFilter == null){
                         binding.emptyData.tvEmptyTeks.text = "Anda belum melakukan tes pola asuh"
                     }else{
                         binding.emptyData.tvEmptyTeks.text = "Maaf tidak ada kursus yang tersedia berdasarkan usia anak Anda"

@@ -45,6 +45,7 @@ import com.thesis.tuladhaapp.ui.home.HomeViewModel
 import com.thesis.tuladhaapp.ui.kuisCourse.QuizViewModel
 import com.thesis.tuladhaapp.ui.main.MainViewModel
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
+import com.thesis.tuladhaapp.ui.rekomendasiBelajar.RekomendasiBelajarViewModel
 import com.thesis.tuladhaapp.ui.testPolaAsuh.QuickStartViewModel
 import com.thesis.tuladhaapp.ui.userClass.ClassFragmentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -67,6 +68,7 @@ object AppModule {
         viewModel { LoginViewModel(get()) }
         viewModel { AllPremiumCourseViewModel(get(), get()) }
         viewModel { ProfileViewModel(get()) }
+        viewModel { RekomendasiBelajarViewModel(get()) }
         viewModel { MainViewModel() }
         viewModel { AssesmentCourseViewModel(get(),get()) }
         viewModel { QuizViewModel(get()) }
