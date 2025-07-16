@@ -11,7 +11,7 @@
     <string name="text_hi_user">Hai, parent</string>
     <string name="tv_lets_find_your_course">Mari temukan modulmu!</string>
     <string name="text_search_best_course">Cari modul Anda&#8230;</string>
-    <string name="text_popular_course">Lihat Semua Course</string>
+    <string name="text_popular_course">Rekomendasi Course</string>
     <string name="text_see_all">Lihat Semua</string>
     <string name="text_class_topic">Pilihan Pembelajaran</string>
     <string name="text_filter">Filter</string>
@@ -19,9 +19,9 @@
     <string name="tv_btn_class_premium">Khusus</string>
     <string name="tv_btn_class_normal">Umum</string>
     <string name="tv_oopps">Maaf Kosong!</string>
-    <string name="text_sorry_course_not_found">Maaf, course tidak ditemukan</string>
-    <string name="text_find_course">Cari Course</string>
-    <string name="tv_current_class">Riwayat Courses</string>
+    <string name="text_sorry_course_not_found">Maaf, Kursus tidak ditemukan</string>
+    <string name="text_find_course">Cari Kursus</string>
+    <string name="tv_current_class">Riwayat Kursus</string>
     <string name="tv_btn_in_progress">On Progress</string>
     <string name="tv_btn_finish">Selesai</string>
     <string name="tv_sort_by">Sort by</string>
@@ -197,7 +197,7 @@
     <string name="next_to_assesment">Lanjut</string>
     <string name="assesment_stimulate">Stimulatasi Anak</string>
     <string name="repeat_quiz">Maaf, Anda harus memahami materi ini kembali</string>
-    <string name="back_to_course">Kembali ke Course</string>
+    <string name="back_to_course">Kembali ke Kursus</string>
     <string name="text_feedback_answer">Kami ingin mendengar pendapat Anda memberikan nilai %1$s pada kami. berikan masukan atau kesan Anda:</string>
     <string name="hint_feedback">Tulis masukan Anda di sini...</string>
     <string name="feedback_not_emptyy">Masukan tidak boleh kosong</string>
@@ -216,7 +216,7 @@
     <string name="netword_alert">Maaf, harap gunakan paket data untuk mengakses aplikasi</string>
     <string name="empty_Data">Maaf, data masih kosong</string>
     <string name="login_first">Silahkan login terlebih dahulu</string>
-    <string name="dialog_tes_pola_asuh">Untuk mengakses course ini, harap lakukan tes pola asuh terlebih dahulu</string>
+    <string name="dialog_tes_pola_asuh">Untuk mengakses pembelajaran ini, harap lakukan tes pola asuh terlebih dahulu</string>
     <string name="button_testt">Tes Pola Asuh</string>
     <string name="fill_kids_data">Profil Anak</string>
     <string name="ubah_data">Simpan</string>
@@ -231,8 +231,9 @@
     <string name="tv_btn_all">All</string>
     <string name="konsultasi_ahli">Konsultasi ahli</string>
     <string name="text_isi_survei">Isi Survei</string>
-    <string name="tv_rekomendasi_course_title">Kami menyarankan Anda untuk mulai pembelajaran berikut pada aplikasi</string>
+    <string name="tv_rekomendasi_course_title">dari hasil survei, Kami menyarankan Anda untuk mulai pembelajaran berikut</string>
     <string name="start_learn">Mulai Belajar</string>
     <string name="text_home_rekomendasi">Cek perkembangan Anda dan dapatkan rekomendasi pembelajaran</string>
     <string name="btn_text_pengembagnan">Cek Perkembangan</string>
+    <string name="splash_rekomendasi_long">Selamat datang di Tuladha! Untuk membantu kami memberikan rekomendasi belajar yang paling sesuai, mari kenali kondisi Anda saat ini. Beri nilai dari 1 sampai 5 untuk setiap pernyataan, di mana:\n\n1 = Tidak Pernah\n2 = Jarang\n3 = Kadang Kadang \n4 = Sering\n5 = Selalu</string>
 </resources>

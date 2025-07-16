@@ -51,12 +51,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include
-        android:id="@+id/search_bar"
-        layout="@layout/layout_content_search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tab_level" />
 
 
 
@@ -65,24 +59,39 @@
         style="@style/TextAppearance.Material3.TitleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
         android:textSize="18sp"
         android:text="@string/text_class_topic"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_level" />
 
-    <TextView
+
+    <ImageView
         android:id="@+id/tv_filter"
-        style="@style/TextAppearance.Material3.BodyLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_marginTop="24dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="24dp"
-        android:text="@string/text_filter"
-        android:textColor="@color/app_color_primary"
-        android:textStyle="bold"
+        android:background="@drawable/bg_rounded_corners_color"
+        android:padding="5dp"
+        android:src="@drawable/ic_filter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_level" />
+
+    <ImageView
+        android:id="@+id/tv_see_all"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_rounded_corners_color"
+        android:padding="5dp"
+        android:src="@drawable/ic_see_all"
+        app:layout_constraintEnd_toStartOf="@+id/tv_filter"
+        app:layout_constraintTop_toBottomOf="@+id/tab_level"
+        />
 
     <HorizontalScrollView
         android:id="@+id/sv_filter_result"
@@ -102,8 +111,22 @@
             android:layout_height="wrap_content"
             android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@id/tv_class_topic"
-            app:singleLine="true" />
+             />
+
     </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        android:visibility="gone"
+        android:background="@drawable/bg_rounded_corners_color"
+        android:padding="4dp"
+        android:src="@drawable/ic_trash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_filter" />
 
     <RadioGroup
         android:id="@+id/tab_selection"

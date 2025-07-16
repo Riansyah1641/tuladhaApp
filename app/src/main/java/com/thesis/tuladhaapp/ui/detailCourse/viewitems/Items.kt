@@ -14,7 +14,6 @@ class HeaderItemVideoChapter(
     BindableItem<ItemHeaderClassMaterialBinding>() {
     override fun bind(viewBinding: ItemHeaderClassMaterialBinding, position: Int) {
         viewBinding.tvChapterMaterials.text = title
-        viewBinding.tvDuration.text = String.format("%d Menit", duration)
         viewBinding.root.setOnClickListener { onHeaderClick.invoke(title.toString()) }
     }
 
@@ -33,19 +32,7 @@ class DataItemVideoChapter(
     BindableItem<ItemListVideoChapterBinding>() {
     override fun bind(viewBinding: ItemListVideoChapterBinding, position: Int) {
         viewBinding.tvTitleUnlock.text = moduleName
-        when (moduleStatus) {
-            STATUS_OPEN -> {
-                viewBinding.ivPlayVideo.setImageResource(R.drawable.ic_play)
-            }
 
-            STATUS_LOCKED -> {
-                viewBinding.ivPlayVideo.setImageResource(R.drawable.ic_lock_video)
-            }
-
-            else -> {
-                viewBinding.ivPlayVideo.setImageResource(R.drawable.ic_checked)
-            }
-        }
         viewBinding.tvNumber.text = moduleNumber.toString()
         viewBinding.root.setOnClickListener { onItemClick.invoke(moduleName.toString()) }
     }

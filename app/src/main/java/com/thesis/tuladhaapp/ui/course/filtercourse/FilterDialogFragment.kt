@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.thesis.tuladhaapp.R
+import com.thesis.tuladhaapp.databinding.FragmentCourseBinding
 import com.thesis.tuladhaapp.databinding.FragmentFilterDialogBinding
 import com.thesis.tuladhaapp.model.category.Category
 import com.thesis.tuladhaapp.ui.course.CourseViewModel
@@ -17,6 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 class FilterDialogFragment : SuperBottomSheetFragment() {
 
     private lateinit var binding: FragmentFilterDialogBinding
+    private lateinit var bindingMain: FragmentCourseBinding
 
     private val viewModel: CourseViewModel by lazy { requireParentFragment().getViewModel() }
     private var isSettingCheckboxesProgrammatically = false
@@ -86,6 +88,7 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
         }
         binding.tvResetFilter.setOnClickListener {
             resetFilter()
+            bindingMain.ivDelete.isVisible = false
             dismiss()
         }
 
@@ -137,7 +140,7 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
         isSettingCheckboxesProgrammatically = false
     }
 
-    private fun resetFilter() {
+    fun resetFilter() {
         val searchQuery = null
         val selectedType = null
         val selectedCategories = emptyList<Category>()

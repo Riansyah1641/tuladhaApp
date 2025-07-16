@@ -59,7 +59,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:lineSpacingExtra="4dp"
-                android:text="Selamat datang di Tuuladha! Untuk membantu kami memberikan rekomendasi belajar yang paling sesuai, mari kenali kondisi Anda saat ini. Beri nilai dari 1 sampai 5 untuk setiap pernyataan, di mana:\n\n1 = Tidak Pernah\n2 = Jarang\n3 = Kadang Kadang \n4 = Sering\n5 = Selalu" />
+                android:text="@string/splash_rekomendasi_long" />
         </ScrollView>
 
         <!-- Tombol Mulai Tes -->

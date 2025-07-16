@@ -62,27 +62,27 @@ class RekomendasiBelajarViewModel(private val repo: UserRepository) : ViewModel(
     private val typeParenting = listOf(
         TypeParenting(
             1, "Pengembangan Orang Tua dalam pembelajaran singkat",
-            "Materi parenting ringkas untuk penerapan cepat. \nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, \nlalu temukan kategori 'Pembelajaran Singkat'."
+            "Materi parenting ringkas untuk penerapan cepat. \n\nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, lalu temukan kategori 'Pembelajaran Singkat'."
         ),
         TypeParenting(
             2, "Pengembangan Orang Tua dalam pembelajaran Umum",
-            "Pemahaman fundamental parenting dari berbagai aspek. \nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, \nlalu temukan kategori 'Pembelajaran Umum'."
+            "Pemahaman fundamental parenting dari berbagai aspek. \n\nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, lalu temukan kategori 'Pembelajaran Umum'."
         ),
         TypeParenting(
             3, "Pengembangan Orang Tua dalam pembelajaran Khusus",
-            "Studi mendalam topik parenting untuk penanganan kasus spesifik atau kondisi khusus. \nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, \nlalu temukan kategori 'Pembelajaran Khusus'."
+            "Studi mendalam topik parenting untuk penanganan kasus spesifik atau kondisi khusus. \n\nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, lalu temukan kategori 'Pembelajaran Khusus'."
         ),
         TypeParenting(
             4, "Pengembangan Si kecil dalam pembelajaran Ringkas",
-            "Panduan ringkas mendukung tumbuh kembang anak secara optimal. \nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, \nlalu temukan kategori 'Pembelajaran Ringkas'."
+            "Panduan ringkas mendukung tumbuh kembang anak secara optimal. \n\nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, lalu temukan kategori 'Pembelajaran Ringkas'."
         ),
         TypeParenting(
             5, "Pengembangan Si kecil dalam pembelajaran Umum",
-            "Pemahaman komprehensif fase perkembangan anak. \nLangkah menuju belajar:\n Pilih tab 'Course' di tengah navigasi bawah, \nlalu temukan kategori 'Pembelajaran Umum'."
+            "Pemahaman komprehensif fase perkembangan anak. \n\nLangkah menuju belajar:\n Pilih tab 'Course' di tengah navigasi bawah, lalu temukan kategori 'Pembelajaran Umum'."
         ),
         TypeParenting(
             6, "Pengembangan Si kecil dalam pembelajaran Khusus",
-            "Fokus pada stimulasi dan penanganan anak dengan indikasi keterlambatan perkembangan atau kebutuhan khusus. Informasi mendalam dan terarah. \nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, \nlalu temukan kategori 'Pembelajaran Khusus'."
+            "Fokus pada stimulasi dan penanganan anak dengan indikasi keterlambatan perkembangan atau kebutuhan khusus. Informasi mendalam dan terarah. \n\nLangkah menuju belajar:\nPilih tab 'Course' di tengah navigasi bawah, lalu temukan kategori 'Pembelajaran Khusus'."
         ),
     )
 

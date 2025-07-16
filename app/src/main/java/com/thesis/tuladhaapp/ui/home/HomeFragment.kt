@@ -94,8 +94,6 @@ class HomeFragment() : Fragment() {
         setClickListener()
         observeCategoryData()
         checkIfUserLogin()
-
-
         observePopularCourseCategoryData()
         observeSelectedCategory()
         observeCourseData()
@@ -147,6 +145,7 @@ class HomeFragment() : Fragment() {
                 navigateToLogin()
             }
         }
+
 
         binding.tvSeeAllCourse.setOnClickListener {
             navigateToAllPremiumCourse()
@@ -370,9 +369,6 @@ class HomeFragment() : Fragment() {
 
         homeViewModel.getCourses(typeCourse, null, categoriesToFilter, null, typeCourse)
 
-//        if (levels?.size!! > 0) {
-//            homeViewModel.getCourses(typeCourse, null, null, levels, typeCourse)
-//        }
         homeViewModel.courses.observe(viewLifecycleOwner) { resultWrapper ->
             resultWrapper.proceedWhen(
                 doOnSuccess = {

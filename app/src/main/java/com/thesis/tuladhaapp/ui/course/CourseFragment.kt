@@ -17,10 +17,14 @@ import com.thesis.tuladhaapp.R
 import com.thesis.tuladhaapp.databinding.DialogNonLoginBinding
 import com.thesis.tuladhaapp.databinding.DialogNonTestpolaasuhBinding
 import com.thesis.tuladhaapp.databinding.FragmentCourseBinding
+import com.thesis.tuladhaapp.databinding.FragmentFilterDialogBinding
 import com.thesis.tuladhaapp.model.category.Category
+import com.thesis.tuladhaapp.ui.allPremiumCourse.AllPremiumCourseActivity
 import com.thesis.tuladhaapp.ui.auth.login.LoginActivity
 import com.thesis.tuladhaapp.ui.course.filtercourse.FilterDialogFragment
+import com.thesis.tuladhaapp.ui.course.filtercourse.FilterDialogFragment.OnFilterListener
 import com.thesis.tuladhaapp.ui.detailCourse.DetailCourseActivity
+import com.thesis.tuladhaapp.ui.profile.ProfileActivity
 import com.thesis.tuladhaapp.ui.profile.ProfileViewModel
 import com.thesis.tuladhaapp.ui.testPolaAsuh.SplashTesPolaAsuhActivity
 import com.thesis.tuladhaapp.utils.proceedWhen
@@ -29,6 +33,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     private lateinit var binding: FragmentCourseBinding
+    private lateinit var bindingDialog: FragmentFilterDialogBinding
     private val filterDialogFragment: FilterDialogFragment by lazy {
         FilterDialogFragment()
     }
@@ -42,14 +47,15 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
     private var selectedLevel: List<String>? = null
     private var selectedSortBy: String? = null
     private var checkTesPolaAsuh = false
+    private var filterListener: OnFilterListener? = null
 
     //adapter
     private val courseItemAdapter: CourseItemAdapter by lazy {
         CourseItemAdapter() {
             if (profileViewModel.isUserLoggedIn()) {
                 getProfileData()
-                if (it.type == "premium") {
-                    if (checkTesPolaAsuh == true && it.type == "premium") {
+                if (it.type == "khusus") {
+                    if (checkTesPolaAsuh == true && it.type == "khusus") {
                         itemCourseListener(it.id)
                     } else {
                         showDialogTest()
@@ -87,16 +93,31 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
         observeCourseList()
         openFilterDialog()
         setType()
-        setupSearch()
         observeFilterData()
         receivedArguments()
         refreshData()
         buildChipItem()
+        onClickListener()
     }
 
     private fun itemCourseListener(courseId: Int?) {
         navigateToDetailCourse(courseId)
     }
+
+    private fun onClickListener(){
+        binding.tvSeeAll.setOnClickListener {
+            navigateToAllPremiumCourse()
+        }
+        binding.ivDelete.setOnClickListener {
+            filterDialogFragment.setFilterListener(this)
+        }
+    }
+
+    private fun navigateToAllPremiumCourse() {
+        val intent = Intent(requireContext(), AllPremiumCourseActivity::class.java)
+        startActivity(intent)
+    }
+
 
     private fun getProfileData() {
         profileViewModel.getCurrentUser()?.let {
@@ -186,23 +207,9 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
         binding.btnKids.setOnClickListener {
             viewModel.setSelectedLevel(LEVEL_KIDS)
         }
-        binding.searchBar.ivSearchButton.setOnClickListener {
-            val searchQuery = binding.searchBar.etSearchBar.text.toString()
-            viewModel.setSearchQuery(searchQuery)
-        }
+
     }
 
-    private fun setupSearch() {
-        binding.searchBar.etSearchBar.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH || event?.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER) {
-                val searchQuery = binding.searchBar.etSearchBar.text.toString()
-                viewModel.setSearchQuery(searchQuery)
-                this.searchQuery = searchQuery
-                return@setOnEditorActionListener true
-            }
-            return@setOnEditorActionListener false
-        }
-    }
 
     private fun observeFilterData() {
         viewModel.selectedLevel.observe(viewLifecycleOwner) { type ->
@@ -260,7 +267,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
         if (!query.isNullOrEmpty()) {
             searchQuery = query
             viewModel.setSearchQuery(query)
-            binding.searchBar.etSearchBar.setText(query)
+
 
             binding.rvListCourse.isVisible = true
         } else {
@@ -298,6 +305,7 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
             chip.isChipIconVisible = false
             chip.isCheckable = false
             binding.chipGroup.addView(chip as View)
+            binding.ivDelete.isVisible = true
         }
     }
 
@@ -322,6 +330,35 @@ class CourseFragment : Fragment(), FilterDialogFragment.OnFilterListener {
                 }
             )
         }
+    }
+
+
+    fun setFilterListener(listener: OnFilterListener) {
+        filterListener = listener
+    }
+    private fun resetFilter() {
+        val searchQuery = null
+        val selectedType = null
+        val selectedCategories = emptyList<Category>()
+        viewModel.clearSelectedCategories()
+
+        val selectedLevels = mutableListOf<String>().apply {
+
+            bindingDialog.cb03Bulan.isChecked = false
+            bindingDialog.cb12Tahun.isChecked = false
+            bindingDialog.cb23Tahun.isChecked = false
+            bindingDialog.cb34Tahun.isChecked = false
+            bindingDialog.cb36Bulan.isChecked = false
+            bindingDialog.cb45Tahun.isChecked = false
+            bindingDialog.cb69Bulan.isChecked = false
+            bindingDialog.cb912Bulan.isChecked = false
+        }
+        val selectedSortBy = null
+        bindingDialog.topPicks.clearCheck()
+
+        binding.ivDelete.isVisible = false
+
+        filterListener?.onFilterApplied(searchQuery, selectedType, selectedCategories, selectedLevels, selectedSortBy)
     }
 
     private fun openFilterDialog() {
