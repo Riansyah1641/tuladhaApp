@@ -218,5 +218,6 @@ class FilterDialogFragment : SuperBottomSheetFragment() {
         const val NEW_SORT = "terbaru"
         const val POPULAR_SORT = "terpopuler"
         const val PROMO_SORT = "rating"
+
     }
 }
